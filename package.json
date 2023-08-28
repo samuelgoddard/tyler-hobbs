@@ -1,14 +1,14 @@
 {
-  "name": "next-tailwind-motion",
-  "description": "A simple Next.js starter kit with TailwindCSS (JIT) and Framer Motion preconfigured",
+  "name": "tyler-hobbs",
+  "description": "Next.js based front-end for Tyler Hobbs, built with TailwindCSS, Framer Motion and Sanity",
   "author": "Sam Goddard <hello@samgoddard.co.uk> (https://samgoddard.co.uk)",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git@github.com:samuelgoddard/next-tailwind-motion.git"
+    "url": "git@github.com:samuelgoddard/tyler-hobbs.git"
   },
   "bugs": {
-    "url": "https://github.com/samuelgoddard/next-tailwind-motion/issues"
+    "url": "https://github.com/samuelgoddard/tyler-hobbs/issues"
   },
   "license": "ISC",
   "keywords": [
@@ -18,7 +18,7 @@
     "framer",
     "motion"
   ],
-  "homepage": "https://sg-next-tailwind-motion.vercel.app/",
+  "homepage": "https://tyler-hobbs.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "eslint-config-next": "^13.2.4",
-    "framer-motion": "^10.3.0",
+    "framer-motion": "^10.14.0",
     "next": "^13.2.4",
     "next-seo": "^4.26.0",
     "postcss-import": "^14.0.0",
@@ -39,7 +39,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "eslint": "8.36.0",
+    "next-themes": "^0.2.1",
     "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.13"
+    "tailwindcss": "^3.3.3"
   }
 }
