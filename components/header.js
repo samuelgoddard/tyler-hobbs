@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const router = useRouter()
   
   const menuToggle = () => {
@@ -51,14 +51,14 @@ export default function Header() {
 
                 className="fixed top-0 right-0 bottom-0 w-full lg:w-[33vw] lg:max-w-2xl h-full bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 lg:border-l lg:border-black dark:lg:border-white backdrop-blur-[6px] z-[1000] p-4 lg:p-8 flex flex-col"
               >
-                <button aria-label="Close Menu" onClick={menuToggle} className="absolute top-4 lg:top-8 right-4 lg:right-8 a11y-focus">Close</button>
+                <button aria-label="Close Menu" onClick={menuToggle} className="absolute top-4 lg:top-8 right-4 lg:right-8 a11y-focus block transition-transform ease-in-out duration-300 lg:hover:-translate-x-1">Close</button>
                 
                 <nav className="pt-20 text-[12vw]/[0.7] lg:text-[4.3vw]/[0.7] w-full">
                   <ul>
                     <li className="block mb-4 lg:mb-5 xl:mb-6">
                       <Link
                         onClick={menuToggle}
-                        className="a11y-focus"
+                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
                         href="/works/cat"
                       >
                         Works
@@ -67,7 +67,7 @@ export default function Header() {
                     <li className="block mb-4 lg:mb-5 xl:mb-6">
                       <Link
                         onClick={menuToggle}
-                        className="a11y-focus"
+                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
                         href="/words"
                       >
                         Words
@@ -76,14 +76,14 @@ export default function Header() {
                     <li className="block mb-4 lg:mb-5 xl:mb-6">
                       <Link
                         onClick={menuToggle}
-                        className="a11y-focus"
+                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
                         href="/exhibitions"
                       >Exhibitions</Link>
                     </li>
                     <li className="block mb-4 lg:mb-5 xl:mb-6">
                       <Link
                         onClick={menuToggle}
-                        className="a11y-focus"
+                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
                         href="/about"
                       >
                         About
@@ -93,9 +93,13 @@ export default function Header() {
                 </nav>
 
                 <div className="mt-auto">
-                  <form className="text-base/tight pb-[9vh]">
+                  <form className="text-base/tight mb-[9vh] relative block w-9/12">
                     <span className="block mb-3">Newsletter:</span>
-                    <input className="appearance-none text-2xl/tight placeholder:text-gray border-b border-gray w-9/12 focus-visible:border-b focus-visible:outline-none focus-visible:border-black dark:focus-visible:border-white bg-transparent dark:bg-transparent" type="email" placeholder="Email address"></input>
+                    <input className="appearance-none text-2xl/tight placeholder:text-gray border-b border-gray w-full focus-visible:border-b focus-visible:outline-none focus-visible:border-black dark:focus-visible:border-white bg-transparent dark:bg-transparent pr-12" type="email" required placeholder="Email address"></input>
+
+                    <button type="submit" className="block absolute bottom-0 right-0 text-lg w-7 mb-[2px] text-gray a11y-focus lg:hover:text-black focus-visible:text-black dark:lg:hover:text-white dark:focus-visible:text-white">
+                      <svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                    </button>
                   </form>
 
                   <div className="flex flex-wrap items-end">
@@ -104,7 +108,7 @@ export default function Header() {
                         <ul>
                           <li className="block mb-1">
                             <a
-                              className="a11y-focus"
+                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
                               href="https://test.com"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -114,7 +118,7 @@ export default function Header() {
                           </li>
                           <li className="block mb-1">
                             <a
-                              className="a11y-focus"
+                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
                               href="https://twitter.com/tylerxhobbs"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -124,7 +128,7 @@ export default function Header() {
                           </li>
                           <li className="block mb-1">
                             <a
-                              className="a11y-focus"
+                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
                               href="https://www.instagram.com/tylerxhobbs/"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -133,7 +137,7 @@ export default function Header() {
                           </li>
                           <li className="block mb-1">
                             <a
-                              className="a11y-focus"
+                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
                               href="https://test.com"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -143,7 +147,7 @@ export default function Header() {
                           </li>
                           <li className="block">
                             <a
-                              className="a11y-focus"
+                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
                               href="https://test.com"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -156,7 +160,7 @@ export default function Header() {
                     </div>
 
                     <div className="w-1/2">
-                      <button className="ml-auto w-10 block" onClick={()=> setTheme( theme === 'dark' ? 'light' : 'dark' )}>
+                      <button className="ml-auto w-10 block" onClick={()=> setTheme( resolvedTheme === 'dark' ? 'light' : 'dark' )}>
                         <svg className="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 248">
                           <path fill="currentColor" fill-rule="evenodd" d="m103.3 123.8 103.3 61.9V61.9L103.3 0v123.8zm0 123.7V123.8L0 61.9v123.8l103.3 61.8z" clip-rule="evenodd"/>
                         </svg>

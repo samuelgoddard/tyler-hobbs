@@ -4,6 +4,7 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import TeaserWorks from '@/components/teaser-works'
 
 export default function WorksCat() {
   return (
@@ -70,87 +71,39 @@ export default function WorksCat() {
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80 mb-4 lg:mb-8">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-4 lg:pt-[25vw]">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
               <div className="col-span-12 lg:col-span-4 lg:col-start-8">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" series />
               </div>
             </div>
 
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-4 lg:col-start-3 lg:pt-[25vw]">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
               <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
             </div>
 
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-4 lg:pt-[25vw]">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" series />
               </div>
               <div className="col-span-12 lg:col-span-4 lg:col-start-8">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
             </div>
 
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-4 lg:col-start-3 lg:pt-[25vw]">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
               <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full lg:flex-1">Artwork Title, Year</span>
-                    <span className="block w-full lg:w-auto">[Series]</span>
-                  </div>
-                </Link>
+                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
               </div>
             </div>
           </m.article>

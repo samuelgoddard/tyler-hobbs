@@ -4,6 +4,7 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import TeaserExhibition from '@/components/teaser-exhibition'
 
 export default function Exhibitions() {
   return (
@@ -36,45 +37,33 @@ export default function Exhibitions() {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80">
               <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <Link href="/exhibitions/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[14/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full mb-1">Exhibition Title, Year</span>
-                    <span className="block w-full mb-1">Gallery Location</span>
-                    <span className="block w-full mb-1">Year</span>
-                  </div>
-                </Link>
+                <TeaserExhibition
+                  href="/exhibitions/slug"
+                  heading="Exhibition Title, Year"
+                  location="Gallery Location"
+                  year="Year" />
               </div>
               <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <Link href="/exhibitions/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[14/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full mb-1">Exhibition Title, Year</span>
-                    <span className="block w-full mb-1">Gallery Location</span>
-                    <span className="block w-full mb-1">Year</span>
-                  </div>
-                </Link>
+                <TeaserExhibition
+                  href="/exhibitions/slug"
+                  heading="Exhibition Title, Year"
+                  location="Gallery Location"
+                  year="Year" />
               </div>
 
               <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <Link href="/exhibitions/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[14/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full mb-1">Exhibition Title, Year</span>
-                    <span className="block w-full mb-1">Gallery Location</span>
-                    <span className="block w-full mb-1">Year</span>
-                  </div>
-                </Link>
+                <TeaserExhibition
+                  href="/exhibitions/slug"
+                  heading="Exhibition Title, Year"
+                  location="Gallery Location"
+                  year="Year" />
               </div>
               <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <Link href="/exhibitions/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[14/10] mb-2 lg:mb-4"></div>
-                  <div className="flex flex-wrap text-base/tight text-gray">
-                    <span className="block w-full mb-1">Exhibition Title, Year</span>
-                    <span className="block w-full mb-1">Gallery Location</span>
-                    <span className="block w-full mb-1">Year</span>
-                  </div>
-                </Link>
+                <TeaserExhibition
+                  href="/exhibitions/slug"
+                  heading="Exhibition Title, Year"
+                  location="Gallery Location"
+                  year="Year" />
               </div>
             </div>
           </m.article>

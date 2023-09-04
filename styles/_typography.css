@@ -1,11 +1,11 @@
 /* Content Stylings */
 .content {
   & > p {
-    @apply mb-5 last-of-type:mb-0;
+    @apply mb-6 last-of-type:mb-0;
   }
 
   & > p > a {
-    @apply underline hover:text-opacity-25 focus:text-opacity-25;
+    @apply underline;
   }
 
   & > h1, & > .h1 {
@@ -15,9 +15,13 @@
   & > h2, & > .h2 {
     @apply text-3xl lg:text-4xl;
   }
+
+  & > * ~ h2 {
+    @apply mt-16 lg:mt-24;
+  }
 }
 
 /* Heading Defaults */
 h1, .h1, h2, .h2, h3, .h3 {
-  @apply p-0 mb-6 mt-12 lg:mt-20;
+  @apply p-0 mb-6;
 }

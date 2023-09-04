@@ -68,20 +68,47 @@ export default function WordsSlug() {
               </div>
             </div>
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8">              
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <div className="grid grid-cols-12">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-4 xl:col-span-3 content order-2 lg:order-1">
+                    <span className="w-7 h-7 bg-gray/30 flex items-center justify-center text-xs/none lg:text-sm/none rounded-full mb-3">1</span>
+                    <p className="text-sm/normal lg:text-base/normal">The most notable exceptions are probably "live" programs that could be infinitely refreshed. These share some of the same concerns. With that said, in these new models, the fact that the artist is targeting a specific output set size, combined with the fact that every output will be put up for collection (with no skipping) makes the intent feel significantly different to me.</p>
+                  </div>
+
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 content order-1 lg:order-2">
+                    <p>There&rsquo;s a new art form on the rise. Generative art has existed since the 1960s, but the new on-chain generative art platforms are pushing the medium in an exciting new direction. While many of the generative techniques are the same, the goals for the program output are wildly different from before. The direct path from the script to the viewer, as well as the large number of iterations, encourages artists to create a special class of artistic algorithm, what I’ll refer to here as long-form generativism. In this essay, I&rsquo;ll discuss what makes these algorithms different, and how we can analyze their quality.</p>
+
+                    <h2>Generative Art in the Past</h2>
+
+                    <p>Historically, generative art had some typical qualities that were taken for granted.</p>
+
+                    <p>First, there was almost always a &ldquo;curation&rdquo; step. The artist could generate as many outputs as they pleased and then filter those down to a small set of favorites. Only this curated set of output would be presented to the public.</p>
+
+                    <p>Second, the size of that final curated set was generally small. In fact, it was extremely common to choose just a single best output to show. At most, perhaps a dozen iterations would be shown.
+                    There have been exceptions [1], but this was the way things were usually done. For an example from my own work, here are three iterations from Lines 1, a program from 2017. I initially generated about 200 images from the program, and then curated that down to a final set of just 10 images that I felt captured most of the interesting characteristics.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
                   <div className="col-span-12 lg:col-span-7 lg:col-start-6 content">
-                  <p>There’s a new art form on the rise. Generative art has existed since the 1960s, but the new on-chain generative art platforms are pushing the medium in an exciting new direction. While many of the generative techniques are the same, the goals for the program output are wildly different from before. The direct path from the script to the viewer, as well as the large number of iterations, encourages artists to create a special class of artistic algorithm, what I’ll refer to here as long-form generativism. In this essay, I’ll discuss what makes these algorithms different, and how we can analyze their quality.</p>
+                    <h2>The New World</h2>
 
-                  <h2>Generative Art in the Past</h2>
+                    <p>Today, platforms like <a href="https://example.com" target="_blank" rel="noopener noreferrer">Art Blocks</a> (and in the future, I&rsquo;m sure many others) allow for something different. The artist creates a generative script (e.g. <a href="https://example.com" target="_blank" rel="noopener noreferrer">Fidenza</a>) that is written to the Ethereum blockchain, making it permanent, immutable, and verifiable. Next, the artist specifies how many iterations will be available to be minted by the script. A typical choice is in the 500 to 1000 range. When a collector mints an iteration (i.e. they make a purchase), the script is run to generate a new output, and that output is wrapped in an NFT and transferred directly to the collector. Nobody, including the collector, the platform, or the artist, knows precisely what will be generated when the script is run, so the full range of outputs is a surprise to everyone.</p>
+                    
+                    <p>Note the two key differences from earlier forms of generative art. First, the script output goes directly into the hands of the collector, with no opportunity for intervention or curation by the artist. Second, the generative algorithms are expected to create roughly 100x more iterations than before. Both of these have massive implications for the artist. They should also have massive implications for how collectors and critics evaluate the quality of a generative art algorithm.</p>
 
-                  <p>Historically, generative art had some typical qualities that were taken for granted.</p>
+                    <h2>Analyzing Quality</h2>
 
-                  <p>First, there was almost always a &ldquo;curation&rdquo; step. The artist could generate as many outputs as they pleased and then filter those down to a small set of favorites. Only this curated set of output would be presented to the public.</p>
-
-                  <p>Second, the size of that final curated set was generally small. In fact, it was extremely common to choose just a single best output to show. At most, perhaps a dozen iterations would be shown.
-                  There have been exceptions [1], but this was the way things were usually done. For an example from my own work, here are three iterations from Lines 1, a program from 2017. I initially generated about 200 images from the program, and then curated that down to a final set of just 10 images that I felt captured most of the interesting characteristics.</p>
+                    <p>As with any art form, there are a million unpredictable ways to make something good. Without speaking in absolutes, I'll try to describe what I think are useful characteristics for evaluating whether a long-form generative art program is successful or not, and how this differs from previous (short) forms of generative art.</p>
+                    
+                    <p>Fundamentally, with long-form, collectors and viewers become much more familiar with the "output space" of the program. In other words, they have a clear idea of exactly what the program is capable of generating, and how likely it is to generate one output versus another. This was not the case with short-form works, where the output space was either very narrow (sometimes singular) or cherry-picked for the best highlights. By withholding most of the program output, the artist could present a particular, limited view of the algorithm. With long-form works, the artist has nowhere to hide, and collectors will get to know the scope of the algorithm almost as well as the artist.</p>
+                    
+                    <p>What are the implications of this? It makes the "average" output from the program crucial. In fact, even the worst outputs are arguably important, because they're just as visible. Before, this bad output could be ignored and discarded. The artist only cared about the top 5% of output, because that's what would make it into the final curated set to be presented to the public. The artist might have been happy to design an algorithm that produced 95% garbage and 5% gems.</p>
                   </div>
                 </div>
               </div>
