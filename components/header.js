@@ -17,7 +17,7 @@ export default function Header() {
     <>
       <LazyMotion features={domAnimation}>
         <header className="">
-          <div className="absolute top-4 lg:top-8 left-4 lg:left-8 z-10 leading-none">
+          <div className="absolute top-4 lg:top-8 left-4 lg:left-8 z-[100] leading-none">
             <div className="block">
               <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[120px] block">
                 <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 678 129">

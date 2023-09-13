@@ -12,8 +12,39 @@ html {
 body {
   @apply font-sans antialiased text-black bg-white selection:bg-black selection:text-white text-2xl dark:bg-black dark:text-white;
   overscroll-behavior: none!important;
+  overflow-y: scroll !important;
 }
 
 .a11y-focus {
   @apply outline-none ring-current focus-visible:ring-4;
+}
+
+.carousel-viewport.is-draggable {
+  cursor: move;
+  cursor: grab;
+}
+.carousel-viewport.is-dragging {
+  cursor: grabbing;
+}
+.carousel-container {
+  transform: none !important;
+  display: flex;
+}
+
+.slide {
+  @apply w-full h-full inset-0 opacity-0 transition-all ease-in-out duration-[330ms] delay-[0ms];
+  flex: 0 0 auto;
+  transform: none !important;
+  counter-increment: embla;
+}
+.carousel--ready .carousel-container {
+  display: grid;
+}
+.carousel--ready .slide {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.slide.is-snapped {
+  @apply opacity-100 z-[1] transition-all ease-in-out duration-[330ms] delay-[330ms];
 }

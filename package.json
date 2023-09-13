@@ -26,6 +26,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "embla-carousel-class-names": "^8.0.0-rc12",
+    "embla-carousel-react": "^8.0.0-rc12",
     "eslint-config-next": "^13.2.4",
     "framer-motion": "^10.14.0",
     "next": "^13.2.4",

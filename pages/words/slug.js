@@ -95,6 +95,27 @@ export default function WordsSlug() {
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 grid grid-cols-3 gap-x-4">
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
                   <div className="col-span-12 lg:col-span-7 lg:col-start-6 content">
                     <h2>The New World</h2>
 
@@ -111,6 +132,85 @@ export default function WordsSlug() {
                     <p>What are the implications of this? It makes the &ldquo;average&rdquo; output from the program crucial. In fact, even the worst outputs are arguably important, because they&rsquo;re just as visible. Before, this bad output could be ignored and discarded. The artist only cared about the top 5% of output, because that&rsquo;s what would make it into the final curated set to be presented to the public. The artist might have been happy to design an algorithm that produced 95% garbage and 5% gems.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">              
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
+                <div className="aspect-video bg-gray/30 mb-2"></div>
+                <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
+                <blockquote className="text-4xl/none lg:text-5xl/none w-[90%] lg:w-[75%] max-w-6xl mb-0 pl-4 border-l border-gray">Nobody, including the collector, the platform, or the artist, knows precisely what will be generated when the script is run, so the full range of outputs is a surprise to everyone.</blockquote>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 content order-1 lg:order-2">
+                    <p>That type of design doesn&rsquo;t work with long-form generative art. Instead, the artist needs to ensure that bad results are extremely rare. The algorithm can&rsquo;t stumble across great results by luck anymore, it needs to produce them dependably. Speaking as an artist, I can assure you that this is difficult. The logic around how generation works must be much more sophisticated. There&rsquo;s also a need for what is essentially a &ldquo;quality assurance&rdquo; process. The artist must systematically work through the full high-dimensional space of possible outputs, and ensure that all of them are up to par. For Fidenza, I spent about two months on this step. I repeatedly generated large sets of output, looked for the weakest examples, and figured out ways to improve or eliminate those cases.</p>
+                    
+                    <p>The need for consistent minimum output quality is dramatically complicated by the second new demand of long-form generativism: the output space of the algorithm must be varied enough to justify the set of 100, 500, or 1000 iterations generated from it. With a top-class algorithm, every output will have something new about it, a little surprise that teaches you more about what is possible. You shouldn&rsquo;t ever get bored flipping through the results. If you do, edition size should have been smaller, or the algorithm should have expressed more variety.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 grid grid-cols-3 gap-x-4">
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                    <div className="col-span-1">
+                      <div className="h-[45vw] lg:h-[20vw] bg-gray/30 mb-2"></div>
+                      <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 content">
+                    <p>With that said, the artist should be careful about how they add variety to their program. Simply jamming in new elements can make the entire collection less coherent. It&rsquo;s better to carefully craft something that makes sense as a unified whole, something that is the full expression of a single idea. Just as we can judge the success of a long-form generative algorithm by the best, worst, and average outputs, we can also judge it by its &ldquo;Collective Unity&rdquo;. It should make sense as a whole, to the extent where the removal of any one component would be harmful.</p>
+
+                    <h2>Moving Forward</h2>
+
+                    <p>In summary, long-form generative art introduces the new demands of consistent quality and high variety, while maintaining the existing need for unity across all output from a program. Right now, few artists are capable of navigating this balance, but I have no doubt that will change. The art form is just ramping up, and generative artists are starting to become familiar with the new dynamic. Short-form generative work will continue to exist and will continue to be the best fit for many artistic visions, but right now long-form is the fertile, unexplored space. I look forward to seeing all of the amazing work that will be created over the next few years!</p>
+
+                    <div className="w-8 text-[#DA442F] mt-8">
+                      <svg className="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 248">
+                        <path fill="currentColor" fill-rule="evenodd" d="m103.3 123.8 103.3 61.9V61.9L103.3 0v123.8zm0 123.7V123.8L0 61.9v123.8l103.3 61.8z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64">
+              <div className="col-span-12 lg:col-span-8 lg:col-start-5">
+                <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0">Continue Reading</h2>
+                <ul className="border-t border-gray">
+                  {Array.from(Array(16), (e, i) => {
+                    return (
+                      <li className="block" key={i}><Link href="/words/slug" className="block py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">The Rise of Long-Form Generative Art<span className="absolute top-2 lg:top-[13px] right-0 w-7 transition-opacity ease-in-out duration-300 opacity-0 lg:group-hover:opacity-100"><svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg></span></Link></li>
+                    )
+                  })}
+                </ul>
               </div>
             </div>
           </m.article>

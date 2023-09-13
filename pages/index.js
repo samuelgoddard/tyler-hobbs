@@ -18,50 +18,50 @@ export default function Home() {
           exit="exit"
         >
           <m.article variants={fade} className="w-full h-screen pb-4 lg:pb-8">
-            <div className="grid grid-cols-10 grid-rows-4 w-full h-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-40">
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
+            <div className="grid grid-cols-10 md:grid-cols-9 lg:grid-cols-8 xl:grid-cols-10 md:grid-rows-4 w-full h-full px-4 lg:px-8 gap-4 md:gap-6 lg:gap-8 pt-28 lg:pt-40">
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 lg:bg-transparent"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
               
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 lg:bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
-              <div className="col-span-1 row-span-1 bg-gray bg-opacity-50"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
             </div>
           </m.article>
         </m.main>
