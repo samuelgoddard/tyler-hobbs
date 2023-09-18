@@ -42,7 +42,7 @@ export default function Exhibitions(initialData) {
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80">
               {exhibitions.map((e, i) => {
                 return (
-                  <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
+                  <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8" key={i}>
                     <TeaserExhibition
                       href={`/exhibitions/${e.slug.current}`}
                       priority={i == 0 || i == 1 }

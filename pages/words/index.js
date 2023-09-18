@@ -76,6 +76,7 @@ export default function Words(initialData) {
                   {words.map((e, i) => {
                     return (
                       <SanityImage
+                        key={i}
                         image={e.teaserImage}
                         sizes={`(max-width: 1024px) 100vw,12vw`}
                         className={`w-full h-full absolute inset-0 object-center object-cover transition-opacity ease-in-out duration-[400ms] ${imageActive == i ? 'opacity-100' : 'opacity-0' }`}

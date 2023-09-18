@@ -89,7 +89,7 @@ export default function ExhibitionsSlug(initialData) {
                     <ul className="flex text-base/none lg:text-base/none text-gray space-x-2">
                       {exhibition.heroImages.map((e, i) => {
                         return (
-                          <li className={i == 1 ? 'text-black dark:text-white' : '' }>{i + 1}</li>
+                          <li key={i} className={i == 1 ? 'text-black dark:text-white' : '' }>{i + 1}</li>
                         )
                       })}
                     </ul>
