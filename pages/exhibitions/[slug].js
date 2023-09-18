@@ -4,11 +4,16 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import { exhibitionsSlugQuery } from '@/helpers/queries'
+import SanityPageService from '@/services/sanityPageService'
+import SanityImageResponsive from '@/components/sanity-image-responsive'
+const pageService = new SanityPageService(exhibitionsSlugQuery)
 
-export default function WordsSlug() {
+export default function ExhibitionsSlug(initialData) {
+  const { data: { exhibition }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
-      <NextSeo title="Exhibitions Slug" />
+      <NextSeo title={exhibition.title} />
 
       <Header />
       
@@ -36,43 +41,61 @@ export default function WordsSlug() {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0">QQL: Analogs</h1>
+                <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0">{exhibition.title}</h1>
               </div>
             </div>
             
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
               <div className="col-span-12 lg:col-span-2 order-2 lg:order-1">
-                <div className="mb-3 lg:mb-5">
-                  <span className="block text-base/none mb-1">Gallery</span>
-                  <span className="block leading-none">Pace Gallery, London</span>
-                </div>
-                <div className="mb-3 lg:mb-5">
-                  <span className="block text-base/none mb-1">Location</span>
-                  <span className="block leading-none">London, UK</span>
-                </div>
-                <div className="mb-3 lg:mb-5">
-                  <span className="block text-base/none mb-1">Year</span>
-                  <span className="block leading-none">2023</span>
-                </div>
+                {exhibition.gallery && (
+                  <div className="mb-3 lg:mb-5">
+                    <span className="block text-base/none mb-1">Gallery</span>
+                    <span className="block leading-none">{exhibition.gallery}</span>
+                  </div>
+                )}
+                {exhibition.location && (
+                  <div className="mb-3 lg:mb-5">
+                    <span className="block text-base/none mb-1">Location</span>
+                    <span className="block leading-none">{exhibition.location}</span>
+                  </div>
+                )}
+                {exhibition.year && (
+                  <div className="mb-3 lg:mb-5">
+                    <span className="block text-base/none mb-1">Year</span>
+                    <span className="block leading-none">{exhibition.year}</span>
+                  </div>
+                )}
+                
                 <div className="">
                   <span className="block text-base/none mb-1">Links</span>
                   <span className="block leading-none text-gray">QQL Analogs</span>
                   <span className="block leading-none text-gray">Process</span>
                   <span className="block leading-none text-gray">Pace Gallery</span>
                 </div>
+                
               </div>
               
               <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-16 lg:mb-0">
-                <div className="aspect-video bg-gray/30 mb-3"></div>
-
-                <ul className="flex text-base/none lg:text-base/none text-gray space-x-2">
-                  <li>1</li>
-                  <li className="text-black dark:text-white">2</li>
-                  <li>3</li>
-                  <li>4</li>
-                  <li>5</li>
-                  <li>6</li>
-                </ul>
+                {exhibition.heroImages && (
+                  <>
+                  <div className={`w-full ${exhibition.heroImages.length > 1 && 'mb-3'}`}>
+                    <SanityImageResponsive
+                      image={exhibition.heroImages[0]}
+                      priority={true}
+                    />
+                  </div>
+                  
+                  {exhibition.heroImages.length > 1 && (
+                    <ul className="flex text-base/none lg:text-base/none text-gray space-x-2">
+                      {exhibition.heroImages.map((e, i) => {
+                        return (
+                          <li className={i == 1 ? 'text-black dark:text-white' : '' }>{i + 1}</li>
+                        )
+                      })}
+                    </ul>
+                  )}
+                  </>
+                )}
               </div>
             </div>
 
@@ -126,4 +149,19 @@ export default function WordsSlug() {
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await pageService.fetchPaths('exhibitions')
+  return {
+    paths: paths,
+    fallback: false,
+  };
 }

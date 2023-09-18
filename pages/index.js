@@ -4,10 +4,15 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-export default function Home() {
+import { homeQuery } from '@/helpers/queries'
+import SanityPageService from '@/services/sanityPageService'
+const pageService = new SanityPageService(homeQuery)
+
+export default function Home(initialData) {
+  const { data: { home }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
-      <NextSeo title="Home" />
+      <NextSeo title={home.title} />
 
       <Header />
       
@@ -68,4 +73,11 @@ export default function Home() {
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
 }

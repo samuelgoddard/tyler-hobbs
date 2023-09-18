@@ -3,10 +3,14 @@ import Header from '@/components/header'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
 import TeaserExhibition from '@/components/teaser-exhibition'
 
-export default function Exhibitions() {
+import { exhibitionsQuery } from '@/helpers/queries'
+import SanityPageService from '@/services/sanityPageService'
+const pageService = new SanityPageService(exhibitionsQuery)
+
+export default function Exhibitions(initialData) {
+  const { data: { exhibitions }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
       <NextSeo title="Exhibitions" />
@@ -36,39 +40,30 @@ export default function Exhibitions() {
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80">
-              <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <TeaserExhibition
-                  href="/exhibitions/slug"
-                  heading="Exhibition Title, Year"
-                  location="Gallery Location"
-                  year="Year" />
-              </div>
-              <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <TeaserExhibition
-                  href="/exhibitions/slug"
-                  heading="Exhibition Title, Year"
-                  location="Gallery Location"
-                  year="Year" />
-              </div>
-
-              <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <TeaserExhibition
-                  href="/exhibitions/slug"
-                  heading="Exhibition Title, Year"
-                  location="Gallery Location"
-                  year="Year" />
-              </div>
-              <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
-                <TeaserExhibition
-                  href="/exhibitions/slug"
-                  heading="Exhibition Title, Year"
-                  location="Gallery Location"
-                  year="Year" />
-              </div>
+              {exhibitions.map((e, i) => {
+                return (
+                  <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8">
+                    <TeaserExhibition
+                      href={`/exhibitions/${e.slug.current}`}
+                      priority={i == 0 || i == 1 }
+                      image={e.teaserImage}
+                      heading={`${e.title}`}
+                      location={`${e.gallery} ${e.location}`}
+                      year={e.year} />
+                  </div>
+                )
+              })}
             </div>
           </m.article>
         </m.main>
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
 }
