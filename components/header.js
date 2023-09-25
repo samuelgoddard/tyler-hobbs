@@ -4,13 +4,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function Header() {
+export default function Header({ contact, worksCats }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [menuInstaOpen, setMenuInstaOpen] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const router = useRouter()
   
   const menuToggle = () => {
     menuOpen ? setMenuOpen(false) : setMenuOpen(true)
+    menuInstaOpen ? setMenuInstaOpen(false) : setMenuInstaOpen(true)
   }
 
   return (
@@ -28,7 +30,13 @@ export default function Header() {
             </div>
 
             <div className="fixed top-4 lg:top-8 right-4 lg:right-8 text-right">
-              <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className="a11y-focus">Menu</button>
+              <div className="relative overflow-hidden pl-1">
+                <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-in-out duration-300 lg:hover:-translate-x-1`}>
+                  <div className={`transition-translate ease-in-out duration-[450ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[450ms]' }`}>
+                    Menu
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -40,50 +48,56 @@ export default function Header() {
             className={`focus-visible:border-none focus-visible:outline-none fixed inset-0 z-[100] ${!menuOpen && 'pointer-events-none'}`}
           ></button>
         )}
+        
+        <button aria-label="Close Menu" onClick={menuToggle} className={`fixed top-4 lg:top-[30px] right-4 lg:right-8 a11y-focus block transition-transform ease-in-out duration-300 lg:hover:-translate-x-1 z-[10000] leading-none lg:leading-none ${!menuOpen ? 'pointer-events-none' : ''}`}>
+          <span className="relative overflow-hidden block">
+            <span className={`block transition-translate ease-in-out duration-[450ms] ${!menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[450ms]'}`}>
+              Close
+            </span>
+          </span>
+        </button>
 
         <AnimatePresence>
           {menuOpen && (
             <>
               <m.div
                 initial={{ x: '100%'}}
-                animate={{ x: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                animate={{ x: 0, transition: { duration: 0.45, delay: 0.25, ease: [0.71,0,0.17,1]}}}
                 exit={{ x: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]} }}
 
                 className="fixed top-0 right-0 bottom-0 w-full lg:w-[33vw] lg:max-w-2xl h-full bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 lg:border-l lg:border-black dark:lg:border-white backdrop-blur-[6px] z-[1000] p-4 lg:p-8 flex flex-col"
-              >
-                <button aria-label="Close Menu" onClick={menuToggle} className="absolute top-4 lg:top-8 right-4 lg:right-8 a11y-focus block transition-transform ease-in-out duration-300 lg:hover:-translate-x-1">Close</button>
-                
+              >                
                 <nav className="pt-20 text-[12vw]/[0.7] lg:text-[4.3vw]/[0.7] w-full">
                   <ul>
-                    <li className="block mb-4 lg:mb-5 xl:mb-6">
+                    <li className="block mb-4 lg:mb-3 xl:mb-4">
                       <Link
                         onClick={menuToggle}
-                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
-                        href="/works/cat"
+                        className={`inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2 pb-1 lg:pb-1 ${router.asPath.includes('/works') ? 'border-b-2' : '' }`}
+                        href={`/works/categories/${worksCats.slug.current}`}
                       >
                         Works
                       </Link>
                     </li>
-                    <li className="block mb-4 lg:mb-5 xl:mb-6">
+                    <li className="block mb-4 lg:mb-3 xl:mb-4">
                       <Link
                         onClick={menuToggle}
-                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
+                        className={`inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2 pb-1 lg:pb-1 ${router.asPath.includes('/words') ? 'border-b-2' : '' }`}
                         href="/words"
                       >
                         Words
                       </Link>
                     </li>
-                    <li className="block mb-4 lg:mb-5 xl:mb-6">
+                    <li className="block mb-4 lg:mb-3 xl:mb-4">
                       <Link
                         onClick={menuToggle}
-                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
+                        className={`inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2 pb-1 lg:pb-1 ${router.asPath.includes('/exhibitions') ? 'border-b-2' : '' }`}
                         href="/exhibitions"
                       >Exhibitions</Link>
                     </li>
-                    <li className="block mb-4 lg:mb-5 xl:mb-6">
+                    <li className="block mb-4 lg:mb-3 xl:mb-4">
                       <Link
                         onClick={menuToggle}
-                        className="inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2"
+                        className={`inline-block a11y-focus transition-translate ease-in-out duration-300 lg:hover:translate-x-2 pb-1 lg:pb-1 ${router.asPath.includes('/about') ? 'border-b-2' : '' }`}
                         href="/about"
                       >
                         About
@@ -104,59 +118,26 @@ export default function Header() {
 
                   <div className="flex flex-wrap items-end">
                     <div className="w-1/2">
-                      <nav className="text-base/tight">
-                        <ul>
-                          <li className="block mb-1">
-                            <a
-                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
-                              href="https://test.com"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Discord
-                            </a>
-                          </li>
-                          <li className="block mb-1">
-                            <a
-                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
-                              href="https://twitter.com/tylerxhobbs"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Twitter
-                            </a>
-                          </li>
-                          <li className="block mb-1">
-                            <a
-                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
-                              href="https://www.instagram.com/tylerxhobbs/"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Instagram</a>
-                          </li>
-                          <li className="block mb-1">
-                            <a
-                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
-                              href="https://test.com"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Threads
-                            </a>
-                          </li>
-                          <li className="block">
-                            <a
-                              className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
-                              href="https://test.com"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Opensea
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
+                      {contact?.socials && (
+                        <nav className="text-base/tight">
+                          <ul>
+                            {contact.socials.map((e,i) => { 
+                              return (
+                                <li className="block mb-1" key={i}>
+                                  <a
+                                    className="a11y-focus lg:hover:text-gray transition-colors ease-in-out duration-300"
+                                    href={e.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {e.platform}
+                                  </a>
+                                </li>    
+                              )
+                            })}
+                          </ul>
+                        </nav>
+                      )}
                     </div>
 
                     <div className="w-1/2">

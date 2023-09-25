@@ -10,12 +10,12 @@ import SanityImageResponsive from '@/components/sanity-image-responsive'
 const pageService = new SanityPageService(exhibitionsSlugQuery)
 
 export default function ExhibitionsSlug(initialData) {
-  const { data: { exhibition }  } = pageService.getPreviewHook(initialData)()
+  const { data: { exhibition, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
       <NextSeo title={exhibition.title} />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main
@@ -65,13 +65,24 @@ export default function ExhibitionsSlug(initialData) {
                     <span className="block leading-none">{exhibition.year}</span>
                   </div>
                 )}
-                
-                <div className="">
-                  <span className="block text-base/none mb-1">Links</span>
-                  <span className="block leading-none text-gray">QQL Analogs</span>
-                  <span className="block leading-none text-gray">Process</span>
-                  <span className="block leading-none text-gray">Pace Gallery</span>
-                </div>
+                {exhibition.links && (
+                  <div className="">
+                    <span className="block text-base/none mb-1">Links</span>
+                    
+                    {exhibition.links.map((e,i) => {
+                      let route = '/'
+                      e?.internalLink?._type == 'work' && (route = '/works')
+                      e?.internalLink?._type == 'words' && (route = '/words')
+                      e?.internalLink?._type == 'exhibitions' && (route = '/exhibitions')
+
+                      return e.internal ? (
+                        <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                      ) : (
+                        <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                      )
+                    })}
+                  </div>
+                )}
                 
               </div>
               

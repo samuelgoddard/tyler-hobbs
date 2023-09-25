@@ -11,7 +11,7 @@ import SanityImage from '@/components/sanity-image'
 const pageService = new SanityPageService(wordsQuery)
 
 export default function Words(initialData) {
-  const { data: { words, cats }  } = pageService.getPreviewHook(initialData)()
+  const { data: { words, cats, contact, firstWorksCatSlug } } = pageService.getPreviewHook(initialData)()
   const [imageActive, setImageActive] = useState(false)
   
   const imageToggle = () => {
@@ -22,7 +22,7 @@ export default function Words(initialData) {
     <Layout>
       <NextSeo title="Words" />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main

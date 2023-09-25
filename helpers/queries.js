@@ -1,18 +1,60 @@
+// Internal Vars
+const seo = `seo { ..., shareGraphic { asset-> } }`
+const image = `asset-> { ... }, caption, alt, hotspot { x, y }`
+const slug = `slug { current }`
+const firstWorksCatSlug = `"firstWorksCatSlug": *[_type == "workCategories"][0]{ slug {current}}`
+const contentBlocks = `contentBlocks[] { ..., annotationNotes[], image { ${image} }, }`
+const contact = `"contact": *[_type == "contact"][0]{ emailAddress, socials[] { platform, url }}`
+
+// External Queries
 export const homeQuery = `{
   "home": *[_type == "home"][0]{
     title,
     heroVideoPosterDesktop {
-      asset-> {
-        ...
-      },
-      caption,
-      alt,
-      hotspot {
-        x,
-        y
-      },
+      ${image},
     }
-  }
+  },
+  ${seo},
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const worksQuery = `{
+  "works": *[_type == "work"] {
+    title,
+    teaserImage {
+      ${image},
+    },
+    ${slug}
+  },
+  "cats": *[_type == "workCategories"] {
+    title,
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const worksSlugQuery = `{
+  "work": *[_type == "work"][0]{
+    title,
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const worksCatSlugQuery = `{
+  "cat": *[_type == "workCategories" && slug.current == $slug][0]{
+    title,
+    ${slug}
+  },
+  "cats": *[_type == "workCategories"] {
+    title,
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
 }`
 
 export const wordsQuery = `{
@@ -20,66 +62,35 @@ export const wordsQuery = `{
     title,
     publishedDate,
     teaserImage {
-      asset-> {
-        ...
-      },
-      caption,
-      alt,
-      hotspot {
-        x,
-        y
-      },
+      ${image},
     },
-    slug {
-      current
-    }
+    ${slug}
   },
   "cats": *[_type == "wordsCategories"] {
     title,
-    slug {
-      current
-    }
-  }
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
 }`
 
 export const wordsSlugQuery = `{
   "article": *[_type == "words" && slug.current == $slug][0]{
     title,
-    slug {
-      current
-    },
     _updatedAt,
     publishedDate,
     heroImage {
-      asset-> {
-        ...
-      },
-      caption,
-      alt,
-      hotspot {
-        x,
-        y
-      },
+      ${image},
     },
-    contentBlocks[] {
-      ...,
-      annotationNotes[],
-      image {
-        asset-> {
-          ...
-        },
-        caption,
-        alt,
-        hotspot {
-          x,
-          y
-        },
-      },
-    },
+    ${contentBlocks},
     author-> {
       name
-    }
-  }
+    },
+    ${slug},
+    ${seo}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
 }`
 
 export const exhibitionsQuery = `{
@@ -89,20 +100,12 @@ export const exhibitionsQuery = `{
     location,
     year,
     teaserImage {
-      asset-> {
-        ...
-      },
-      caption,
-      alt,
-      hotspot {
-        x,
-        y
-      },
+      ${image},
     },
-    slug {
-      current
-    }
-  }
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
 }`
 
 
@@ -112,19 +115,35 @@ export const exhibitionsSlugQuery = `{
     gallery,
     location,
     year,
-    heroImages[] {
-      asset-> {
-        ...
-      },
-      caption,
-      alt,
-      hotspot {
-        x,
-        y
-      },
+    links[] {
+      ...,
+      internalLink->{
+        _type,
+        slug {
+          current
+        }
+      }
     },
-    slug {
-      current
-    }
-  }
+    heroImages[] {
+      ${image},
+    },
+    ${slug},
+    ${seo}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const aboutQuery = `{
+  "about": *[_type == "about"][0]{
+    title,
+    ${seo}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const errorQuery = `{
+  ${contact},
+  ${firstWorksCatSlug}
 }`

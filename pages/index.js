@@ -9,12 +9,12 @@ import SanityPageService from '@/services/sanityPageService'
 const pageService = new SanityPageService(homeQuery)
 
 export default function Home(initialData) {
-  const { data: { home }  } = pageService.getPreviewHook(initialData)()
+  const { data: { home, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
       <NextSeo title={home.title} />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main

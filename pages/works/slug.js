@@ -7,8 +7,13 @@ import { SplitText } from '@/components/splitText'
 import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import ClassNames from 'embla-carousel-class-names'
+import { worksSlugQuery } from '@/helpers/queries'
+import SanityPageService from '@/services/sanityPageService'
+import SanityImageResponsive from '@/components/sanity-image-responsive'
+const pageService = new SanityPageService(worksSlugQuery)
 
-export default function WorksSlug() {
+export default function WorkSlug(initialData) {
+  const { data: { work, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
   const [mode, setMode] = useState('gallery')
   const [carouselReady, setCarouselReady] = useState(false)
   const classNamesOptions = { selected: 'my-selected-class', inView: 'is-in-view'  }
@@ -60,7 +65,7 @@ export default function WorksSlug() {
     <Layout>
       <NextSeo title="Works Slug" />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main
@@ -230,3 +235,18 @@ export default function WorksSlug() {
     </Layout>
   )
 }
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
+}
+
+// export async function getStaticPaths() {
+//   const paths = await pageService.fetchPaths('work')
+//   return {
+//     paths: paths,
+//     fallback: false,
+//   };
+// }

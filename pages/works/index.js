@@ -4,13 +4,17 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
+import { worksQuery } from '@/helpers/queries'
+import SanityPageService from '@/services/sanityPageService'
+const pageService = new SanityPageService(worksQuery)
 
-export default function Works() {
+export default function Works(initialData) {
+  const { data: { works, cats, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
       <NextSeo title="Works" />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main
@@ -33,30 +37,19 @@ export default function Works() {
 
 
               <div className="col-span-2 block leading-[0.9] text-gray">
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works/cat">Digital</Link></m.span>
-                </span>
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works/cat">Physical</Link></m.span>
-                </span>
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works/cat">Spacial</Link></m.span>
-                </span>
+                {cats.map((e,i) => {
+                  return (
+                    <span className="block relative overflow-hidden" key={i}>
+                      <m.span
+                        initial={{ y: '100%' }}
+                        animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        className="block leading-none"
+                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug.current}`}>{e.title}</Link></m.span>
+                    </span>
+                  )
+                })}
+                
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
@@ -207,4 +200,11 @@ export default function Works() {
       </LazyMotion>
     </Layout>
   )
+}
+
+export async function getStaticProps(context) {
+  const props = await pageService.fetchQuery(context)
+  return { 
+    props: props
+  };
 }

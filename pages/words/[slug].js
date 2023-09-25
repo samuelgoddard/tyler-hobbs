@@ -11,7 +11,7 @@ import Link from 'next/link'
 const pageService = new SanityPageService(wordsSlugQuery)
 
 export default function WordsSlug(initialData) {
-  const { data: { article }  } = pageService.getPreviewHook(initialData)()
+  const { data: { article, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
 
   // Published Date
   let mainPublishedD = new Date(article.publishedDate);
@@ -30,7 +30,7 @@ export default function WordsSlug(initialData) {
     <Layout>
       <NextSeo title={article.title} />
 
-      <Header />
+      <Header contact={contact} worksCats={firstWorksCatSlug} />
       
       <LazyMotion features={domAnimation}>
         <m.main
