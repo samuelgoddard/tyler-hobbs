@@ -1,5 +1,5 @@
 export default function ModularEmbedBlock({ embedCode }) {
-  return (
+  return embedCode && (
     <div dangerouslySetInnerHTML={{ __html: embedCode}} />
   )
 }

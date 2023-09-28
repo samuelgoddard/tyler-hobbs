@@ -1,9 +1,42 @@
 // Internal Vars
 const seo = `seo { ..., shareGraphic { asset-> } }`
-const image = `asset-> { ... }, caption, alt, hotspot { x, y }`
+const image = `
+  asset-> { ... },
+  caption[] {
+    ...,
+    markDefs[] {
+      ...,
+      _type == "internalLink" => {
+        "slug": @.reference->slug,
+        "type": @.reference->_type,
+        "title": @.reference->title
+      }
+    }
+  }
+`
 const slug = `slug { current }`
 const firstWorksCatSlug = `"firstWorksCatSlug": *[_type == "workCategories"][0]{ slug {current}}`
-const contentBlocks = `contentBlocks[] { ..., annotationNotes[], image { ${image} }, }`
+const contentBlocks = `
+  contentBlocks[] {
+    ...,
+    annotationNotes[],
+    image {
+      ${image}
+    },
+    images[] {
+      ${image}
+    },
+    listItems[] {
+      ...,
+      internalLink->{
+        _type,
+        slug {
+          current
+        }
+      }
+    }
+  }
+`
 const contact = `"contact": *[_type == "contact"][0]{ emailAddress, socials[] { platform, url }}`
 
 // External Queries
@@ -89,6 +122,10 @@ export const wordsSlugQuery = `{
     ${slug},
     ${seo}
   },
+  "further": *[_type == "words" && slug.current != $slug] | order(publishedDate desc) {
+    title,
+    ${slug}
+  },
   ${contact},
   ${firstWorksCatSlug}
 }`
@@ -127,6 +164,7 @@ export const exhibitionsSlugQuery = `{
     heroImages[] {
       ${image},
     },
+    ${contentBlocks},
     ${slug},
     ${seo}
   },

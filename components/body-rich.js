@@ -11,13 +11,14 @@ export default function BodyRich({ content }) {
         
         // Prefix
         let prefix = '/'
-        value.type == 'marketingPages' && (prefix = '/marketing/')
-        value.type == 'products' && (prefix = '/homa-lab/')
+        value.type == 'work' && (prefix = '/works/')
+        value.type == 'words' && (prefix = '/words/')
+        value.type == 'exhibitions' && (prefix = '/exhibitions/')
 
         // HREF
         const href = `${prefix}${ slug ? slug.current : slugify(value.title, { lower: true })}`
 
-        return <Link href={href}><a>{children}</a></Link>
+        return <Link href={href}>{children}</Link>
       },
       link: ({value, children}) => {
         const { blank, href } = value

@@ -2,8 +2,11 @@ import BlockContentWrapper from '@/components/block-content-wrapper'
 import ModularTextBlock from '@/components/modular-text-block'
 import ModularBlockquoteBlock from './modular-blockquote-block'
 import ModularEmbedBlock from './modular-embed-block'
+import ModularHeadingBlock from './modular-heading-block'
 import ModularImageBlock from './modular-image-block'
 import ModularImageGridBlock from './modular-image-grid-block'
+import ModularCodeBlock from './modularCodeBlock'
+import ModularListBlock from './modularListBlock'
 
 const notImplemented = ({ type }) => <h1>Not implemented {type}</h1>
 
@@ -11,43 +14,80 @@ let bodySerializers = {
   block: {
     component: BlockContentWrapper,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+      <div className="mb-16 lg:mb-20">
         {children}
       </div>
   },
   textBlock: {
     component: ModularTextBlock,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-0 lg:gap-0 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+        <div className="grid grid-cols-12 items-end gap-0 lg:gap-0">
+          {children}
+        </div>
+      </div>
+    </div>
+  },
+  headingBlock: {
+    component: ModularHeadingBlock,
+    wrapper: ({ children }) => 
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
       </div>
+    </div>
   },
   blockquoteBlock: {
     component: ModularBlockquoteBlock,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
       </div>
+    </div>
   },
   imageBlock: {
     component: ModularImageBlock,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-12">
         {children}
       </div>
+    </div>
   },
   imageGridBlock: {
     component: ModularImageGridBlock,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
         {children}
       </div>
   },
   embedBlock: {
     component: ModularEmbedBlock,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-24">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
+      </div>
+    </div>
+  },
+  codeBlock: {
+    component: ModularCodeBlock,
+    wrapper: ({ children }) => 
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+        {children}
+      </div>
+    </div>
+  },
+  listBlock: {
+    component: ModularListBlock,
+    wrapper: ({ children }) => 
+      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+        <div className="col-span-12 lg:col-span-8 lg:col-start-5">
+          {children}
+        </div>
       </div>
   },
 }

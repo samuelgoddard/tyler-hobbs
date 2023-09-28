@@ -11,7 +11,7 @@ import Link from 'next/link'
 const pageService = new SanityPageService(wordsSlugQuery)
 
 export default function WordsSlug(initialData) {
-  const { data: { article, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
+  const { data: { article, contact, firstWorksCatSlug, further }  } = pageService.getPreviewHook(initialData)()
 
   // Published Date
   let mainPublishedD = new Date(article.publishedDate);
@@ -71,49 +71,59 @@ export default function WordsSlug(initialData) {
                 {article.publishedDate && (
                   <div className="mb-3 lg:mb-5">
                     <span className="block text-base/none mb-1">Published</span>
-                    <span className="block">{mainPublishedDa}.{mainPublishedMo}.{mainPublishedYe}</span>
+                    <span className="block">{mainPublishedYe}.{mainPublishedMo}.{mainPublishedDa}</span>
                   </div>
                 )}
                 {article._updatedAt && (
                   <div className="">
                     <span className="block text-base/none mb-1">Last Updated</span>
-                    <span className="block">{mainUpdatedDa}.{mainUpdatedMo}.{mainUpdatedYe}</span>
+                    <span className="block">{mainUpdatedYe}.{mainUpdatedMo}.{mainUpdatedDa}</span>
                   </div>
                 )}
               </div>
               
-              <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
-                <SanityImageResponsive
-                  priority={true}
-                  image={article.heroImage}
-                  sizes={`(max-width: 1024px) 100vw,80vw`}
-                  className={`w-full`}
-                />
-              </div>
+              {article.heroImage && (
+                <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
+                  <SanityImageResponsive
+                    priority={true}
+                    image={article.heroImage}
+                    sizes={`(max-width: 1024px) 100vw,90vw`}
+                    className={`w-full`}
+                  />
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8">
-              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+            <div className="">
+              <div className="">
                 <BodyRenderer body={article.contentBlocks} />
-                
-                <div className="grid grid-cols-12 gap-x-8 lg:gap-0 -mt-8 lg:-mt-12">
-                  <div className="col-span-12 lg:col-span-7 lg:col-start-6">
-                    <div class="w-8 text-[#DA442F]"><svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 248"><path fill="currentColor" fill-rule="evenodd" d="m103.3 123.8 103.3 61.9V61.9L103.3 0v123.8zm0 123.7V123.8L0 61.9v123.8l103.3 61.8z" clip-rule="evenodd"></path></svg></div>
+                  
+                <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-20">
+                  <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                    <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                      <div className="col-span-12 lg:col-span-7 lg:col-start-6 content">
+                        <div className="w-8 text-[#DA442F]"><svg className="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 248"><path fill="currentColor" fillRule="evenodd" d="m103.3 123.8 103.3 61.9V61.9L103.3 0v123.8zm0 123.7V123.8L0 61.9v123.8l103.3 61.8z" clipRule="evenodd"></path></svg></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64">
-              <div className="col-span-12 lg:col-span-8 lg:col-start-5">
-                <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0">Continue Reading</h2>
-                <ul className="border-t border-gray">
-                  {Array.from(Array(16), (e, i) => {
-                    return (
-                      <li className="block" key={i}><span href="/words/slug" className="block py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">The Rise of Long-Form Generative Art<span className="absolute top-2 lg:top-[13px] right-0 w-7 transition-opacity ease-in-out duration-300 opacity-0 lg:group-hover:opacity-100"><svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg></span></span></li>
-                    )
-                  })}
-                </ul>
+              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
+                  <div className="col-span-12 lg:col-span-9 lg:col-start-4">
+                    <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0">Continue Reading</h2>
+                    <ul className="border-t border-gray">
+                      {further.map((e, i) => {
+                        return (
+                          <li className="block" key={i}><Link href={`/words/${e.slug.current}`} className="block py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">{e.title}<span className="absolute top-2 lg:top-[13px] right-0 w-7 transition-opacity ease-in-out duration-300 opacity-0 lg:group-hover:opacity-100"><svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg></span></Link></li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </m.article>

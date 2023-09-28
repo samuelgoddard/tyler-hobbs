@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { exhibitionsSlugQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
+import BodyRenderer from '@/components/body-renderer'
 const pageService = new SanityPageService(exhibitionsSlugQuery)
 
 export default function ExhibitionsSlug(initialData) {
@@ -110,36 +111,20 @@ export default function ExhibitionsSlug(initialData) {
               </div>
             </div>
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
-              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
-                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 content order-1 lg:order-2">
-                    <p>This solo exhibition showcases 12 large-scale paintings that are physical representations of carefully curated QQL outputs. Created using a combination of traditional painting techniques and robotic tools, including a plotter adapted with mechanical customizations, these works reflect enactments of both chaos and order, foregrounding the vast possibilities of systematic approaches to art making.</p>
+            <div>
+              <div>
+                <BodyRenderer body={exhibition.contentBlocks} />
+                
+                {/* <div className="grid grid-cols-12 gap-x-8 lg:gap-0 -mt-8 lg:-mt-12">
+                  <div className="col-span-12 lg:col-span-7 lg:col-start-6">
+                    <div className="w-8 text-[#DA442F]"><svg className="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 207 248"><path fill="currentColor" fillRule="evenodd" d="m103.3 123.8 103.3 61.9V61.9L103.3 0v123.8zm0 123.7V123.8L0 61.9v123.8l103.3 61.8z" clipRule="evenodd"></path></svg></div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">              
-              <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
-                <div className="aspect-video bg-gray/30"></div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
-              <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
-                  <div className="col-span-12 lg:col-span-7 lg:col-start-6 content order-1 lg:order-2">
-                    <p>As part of a process that unites programmed digital equipment with the human touch, Hobbs feeds code through the plotter to forge the compositions and then refines details by hand directly on the panels. The resulting works feature a wide spectrum of visual effects, forms, and moods, from minimal to maximal and contemplative to exuberant.</p>
-
-                    <p>While these paintings are derived from the QQL algorithm, they are also unique artworks in their own right, bearing aesthetic traces of both the machine and the artist&rsquo;s paint strokes.</p>
-                  </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">              
+            {/* <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">              
               <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2">
                 <div className="grid grid-cols-12 items-end gap-8 lg:gap-0">
                   <div className="col-span-12 grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-4 lg:gap-y-8">
@@ -154,7 +139,7 @@ export default function ExhibitionsSlug(initialData) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </m.article>
         </m.main>
       </LazyMotion>

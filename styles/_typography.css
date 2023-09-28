@@ -2,6 +2,22 @@
 .content {
   & > p {
     @apply mb-6 last-of-type:mb-0;
+
+    code {
+      @apply bg-gray/20 rounded-lg px-1 border border-black/20 dark:border-white/20 text-[93%]
+    }
+  }
+
+  & > ul {
+    @apply list-item list-inside mt-6;
+    li {
+      @apply relative pl-5;
+      
+      &::after {
+        content: ' ';
+        @apply absolute top-[12px] left-0 w-[6px] h-[6px] rounded-full bg-current;
+      }
+    }
   }
 
   & > p > a {
@@ -17,7 +33,7 @@
   }
 
   & > * ~ h2 {
-    @apply mt-16 lg:mt-24;
+    @apply mt-16 lg:mt-20;
   }
 }
 

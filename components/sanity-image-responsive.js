@@ -2,6 +2,7 @@ import Image from 'next/image'
 import sanity from '@/services/sanity'
 import { useState } from 'react';
 import { useNextSanityImage } from 'next-sanity-image';
+import BodyRich from './body-rich';
 
 export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes }) {
   const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
@@ -31,8 +32,8 @@ export default function SanityImageResponsive({ image, className, alt, priority,
       />
       
       {image.caption && (
-        <figcaption className="block text-sm lg:text-base text-gray py-2">
-          {image.caption}
+        <figcaption className="block text-sm/snug lg:text-base/snug text-gray py-2">
+          <BodyRich content={image.caption} />
         </figcaption>
       )}
     </figure> 
