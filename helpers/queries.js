@@ -55,6 +55,7 @@ export const homeQuery = `{
 export const worksQuery = `{
   "works": *[_type == "work"] {
     title,
+    year,
     teaserImage {
       ${image},
     },
@@ -69,8 +70,11 @@ export const worksQuery = `{
 }`
 
 export const worksSlugQuery = `{
-  "work": *[_type == "work"][0]{
+  "work": *[_type == "work" && slug.current == $slug][0]{
     title,
+    year,
+    dims,
+    media,
     ${slug}
   },
   ${contact},
@@ -78,6 +82,17 @@ export const worksSlugQuery = `{
 }`
 
 export const worksCatSlugQuery = `{
+  "works": *[_type == "work" && category->slug.current == $slug]{
+    title,
+    year,
+    teaserImage {
+      ${image}
+    },
+    category-> {
+      ${slug}
+    },
+    ${slug}
+  },
   "cat": *[_type == "workCategories" && slug.current == $slug][0]{
     title,
     ${slug}

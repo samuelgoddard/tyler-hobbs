@@ -10,7 +10,7 @@ import SanityPageService from '@/services/sanityPageService'
 const pageService = new SanityPageService(worksCatSlugQuery)
 
 export default function WorksCatSlug(initialData) {
-  const { data: { cat, cats, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
+  const { data: { works, cat, cats, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
   return (
     <Layout>
       <NextSeo title={cat.title} />
@@ -62,41 +62,15 @@ export default function WorksCatSlug(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64 mb-4 lg:mb-8">
-              <div className="col-span-12 lg:col-span-4 lg:pt-[25vw]">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
-              <div className="col-span-12 lg:col-span-4 lg:col-start-8">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" series />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
-              <div className="col-span-12 lg:col-span-4 lg:col-start-3 lg:pt-[25vw]">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
-              <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
-              <div className="col-span-12 lg:col-span-4 lg:pt-[25vw]">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" series />
-              </div>
-              <div className="col-span-12 lg:col-span-4 lg:col-start-8">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8">
-              <div className="col-span-12 lg:col-span-4 lg:col-start-3 lg:pt-[25vw]">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
-              <div className="col-span-12 lg:col-span-4 lg:col-start-9">
-                <TeaserWorks href="/works/slug" heading="Artwork Title, Year" />
-              </div>
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-64">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8 items-start">
+              {works.map((e,i) => {
+                return (
+                  <div className="works-teaser" key={i}>
+                    <TeaserWorks image={e.teaserImage} href={`/works/${e.slug.current}`} heading={`${e.title}, ${e.year}`} />
+                  </div>
+                )
+              })}
             </div>
           </m.article>
         </m.main>

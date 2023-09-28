@@ -87,7 +87,7 @@ export default function WorkSlug(initialData) {
                       exit: i => ({ y: '100%' })
                     }}
                   >
-                    Connected, For the Moment
+                    {work.title}
                   </SplitText>
                 </span>
               </div>
@@ -182,11 +182,11 @@ export default function WorkSlug(initialData) {
                       <div className="col-span-1 lg:col-span-2">
                         <div className="mb-3 lg:mb-5">
                           <span className="block text-base/none mb-1">Year</span>
-                          <span className="block">2023</span>
+                          <span className="block">{work.year}</span>
                         </div>
                         <div className="mb-3 lg:mb-5">
                           <span className="block text-base/none mb-1">Dimensions</span>
-                          <span className="block">4:5</span>
+                          <span className="block leading-[1.2]">{work.dims}</span>
                         </div>
                         <div className="">
                           <span className="block text-base/none mb-1">Links</span>
@@ -198,7 +198,7 @@ export default function WorkSlug(initialData) {
                       <div className="col-span-1 lg:col-span-2">
                         <div className="mb-3 lg:mb-5">
                           <span className="block text-base/none mb-1">Medium</span>
-                          <span className="block">Generative Art</span>
+                          <span className="block leading-[1.2]">{work.media}</span>
                         </div>
                         <div className="mb-3 lg:mb-5">
                           <span className="block text-base/none mb-1">Iterations</span>
@@ -243,10 +243,10 @@ export async function getStaticProps(context) {
   };
 }
 
-// export async function getStaticPaths() {
-//   const paths = await pageService.fetchPaths('work')
-//   return {
-//     paths: paths,
-//     fallback: false,
-//   };
-// }
+export async function getStaticPaths() {
+  const paths = await pageService.fetchPaths('work')
+  return {
+    paths: paths,
+    fallback: false,
+  };
+}

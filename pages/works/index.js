@@ -6,6 +6,8 @@ import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { worksQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
+import SanityImage from '@/components/sanity-image'
+import SanityImageResponsive from '@/components/sanity-image-responsive'
 const pageService = new SanityPageService(worksQuery)
 
 export default function Works(initialData) {
@@ -82,117 +84,29 @@ export default function Works(initialData) {
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80">
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
-              <div className="col-span-6 lg:col-span-2">
-                <Link href="/works/slug" className="block w-full a11y-focus">
-                  <div className="bg-gray/30 aspect-[8/10]"></div>
-                </Link>
-              </div>
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-5 pt-28 lg:pt-80">
+              {works.map((e, i) => {
+                return (
+                  <div className="col-span-6 lg:col-span-2" key={i}>
+                    <Link href={`/works/${e.slug.current}`} className="block w-full a11y-focus group">
+                      <div className="block">
+                        {e.teaserImage && (
+                          <SanityImageResponsive
+                            image={e.teaserImage}
+                            className="w-full mb-3"
+                            sizes={`(max-width: 1024px) 100vw, 15vw`}
+                          />
+                        )}
+                        <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">
+                          <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
+                          
+                          <span className="block w-full lg:w-auto transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              })}
             </div>
 
           </m.article>

@@ -49,11 +49,10 @@ body {
   @apply opacity-100 z-[1] transition-all ease-in-out duration-[330ms] delay-[330ms];
 }
 
-
-
-
-
-
+.works-teaser:nth-child(4n+4) { @apply col-span-12 lg:col-span-4 lg:col-start-9; }
+.works-teaser:nth-child(4n+3) { @apply col-span-12 lg:col-span-4 lg:col-start-2 lg:pt-[25vw]; }
+.works-teaser:nth-child(4n+2) { @apply col-span-12 lg:col-span-4 lg:col-start-8; }
+.works-teaser:nth-child(4n+1) { @apply col-span-12 lg:col-span-4 lg:pt-[25vw] }
 
 
 
