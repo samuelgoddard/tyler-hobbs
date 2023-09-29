@@ -70,11 +70,16 @@ export const homeQuery = `{
 }`
 
 export const worksQuery = `{
-  "works": *[_type == "work"] {
+  "works": *[_type == "work"] | order(_createdAt desc) {
     title,
     year,
     teaserImage {
       ${image},
+    },
+    gallerySlides[] {
+      images[] {
+        ${image}
+      },
     },
     ${slug}
   },
