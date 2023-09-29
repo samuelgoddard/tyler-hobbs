@@ -18,7 +18,8 @@ const checkIfSlugIsKnown = (slug) => {
     'about',
     'works',
     'words',
-    'exhibitions'
+    'exhibitions',
+    'pages'
   ]
   return globalSlugs.includes(slug)
 }

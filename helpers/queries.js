@@ -54,6 +54,12 @@ const contact = `"contact": *[_type == "contact"][0]{ emailAddress, socials[] { 
 export const homeQuery = `{
   "home": *[_type == "home"][0]{
     title,
+    randomisedImagesBucket[] {
+      ${image}
+    },
+    randomisedHeadshotsBucket[] {
+      ${image}
+    },
     heroVideoPosterDesktop {
       ${image},
     }
@@ -248,6 +254,16 @@ export const exhibitionsSlugQuery = `{
 
 export const aboutQuery = `{
   "about": *[_type == "about"][0]{
+    title,
+    ${contentBlocks},
+    ${seo}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
+export const pagesSlugQuery = `{
+  "page": *[_type == "pages" && slug.current == $slug][0]{
     title,
     ${contentBlocks},
     ${seo}

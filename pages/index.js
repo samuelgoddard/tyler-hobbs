@@ -6,6 +6,7 @@ import { NextSeo } from 'next-seo'
 
 import { homeQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
+import SanityImage from '@/components/sanity-image'
 const pageService = new SanityPageService(homeQuery)
 
 export default function Home(initialData) {
@@ -15,7 +16,7 @@ export default function Home(initialData) {
       <NextSeo title={home.title} />
 
       <Header contact={contact} worksCats={firstWorksCatSlug} />
-      
+
       <LazyMotion features={domAnimation}>
         <m.main
           initial="initial"
@@ -24,49 +25,146 @@ export default function Home(initialData) {
         >
           <m.article variants={fade} className="w-full h-screen pb-4 lg:pb-8">
             <div className="grid grid-cols-10 md:grid-cols-9 lg:grid-cols-8 xl:grid-cols-10 md:grid-rows-4 w-full h-full px-4 lg:px-8 gap-4 md:gap-6 lg:gap-8 pt-28 lg:pt-40">
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
-              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent">
+                <SanityImage
+                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center lg:hidden"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 lg:bg-transparent"></div>
-              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center lg:hidden"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
-              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               
               <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 lg:bg-transparent"></div>
+              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent">
+                <SanityImage
+                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center lg:hidden"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
-              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent relative overflow-hidden">
+              </div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
-              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
-              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30"></div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
+              <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden">
+                <SanityImage
+                  image={home.randomisedImagesBucket[Math.floor(Math.random() * (home.randomisedImagesBucket.length - 0) + 0)]}
+                  className="w-full h-full object-cover object-center"
+                  sizes={`(max-width: 1024px) 100vw,1vw`}
+                />
+              </div>
             </div>
           </m.article>
         </m.main>
