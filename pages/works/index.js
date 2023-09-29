@@ -100,7 +100,7 @@ export default function Works(initialData) {
                         <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">
                           <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
                           
-                          <span className="block w-full lg:w-auto transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span>
+                          {/* <span className="block w-full lg:w-auto transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
                         </div>
                       </div>
                     </Link>

@@ -26,6 +26,17 @@ const contentBlocks = `
     images[] {
       ${image}
     },
+    text[] {
+      ...,
+      markDefs[] {
+        ...,
+        _type == "internalLink" => {
+          "slug": @.reference->slug,
+          "type": @.reference->_type,
+          "title": @.reference->title
+        }
+      }
+    },
     listItems[] {
       ...,
       internalLink->{
@@ -75,7 +86,54 @@ export const worksSlugQuery = `{
     year,
     dims,
     media,
-    ${slug}
+    iterations,
+    links[] {
+      ...,
+      internalLink->{
+        _type,
+        slug {
+          current
+        }
+      }
+    },
+    text[] {
+      ...,
+      markDefs[] {
+        ...,
+        _type == "internalLink" => {
+          "slug": @.reference->slug,
+          "type": @.reference->_type,
+          "title": @.reference->title
+        }
+      }
+    },
+    gallerySlides[] {
+      images[] {
+        ${image}
+      },
+      layout1,
+      layout2,
+      layout3,
+      layout4,
+      layout5,
+    },
+    _createdAt,
+    _id,
+    ${slug},
+    "next": *[_type == "work" && ^._createdAt < _createdAt] | order(_createdAt asc)[0] {
+      title,
+      year,
+      media,
+      dims,
+      ${slug}
+    },
+    "first": *[_type == "work"] | order(_createdAt asc)[0] {
+      title,
+      year,
+      media,
+      dims,
+      ${slug}
+    }
   },
   ${contact},
   ${firstWorksCatSlug}
@@ -85,6 +143,7 @@ export const worksCatSlugQuery = `{
   "works": *[_type == "work" && category->slug.current == $slug]{
     title,
     year,
+    series,
     teaserImage {
       ${image}
     },
@@ -190,6 +249,7 @@ export const exhibitionsSlugQuery = `{
 export const aboutQuery = `{
   "about": *[_type == "about"][0]{
     title,
+    ${contentBlocks},
     ${seo}
   },
   ${contact},

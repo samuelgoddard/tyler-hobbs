@@ -1,5 +1,10 @@
 /* Content Stylings */
 .content {
+
+  strong {
+    @apply font-semibold;
+  }
+
   & > p {
     @apply mb-6 last-of-type:mb-0;
 

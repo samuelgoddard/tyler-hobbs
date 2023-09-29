@@ -10,60 +10,45 @@ import ClassNames from 'embla-carousel-class-names'
 import { worksSlugQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
+import BodyRich from '@/components/body-rich'
+import Link from 'next/link'
+import ConditionalWrap from 'conditional-wrap';
 const pageService = new SanityPageService(worksSlugQuery)
 
 export default function WorkSlug(initialData) {
   const { data: { work, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
-  const [mode, setMode] = useState('gallery')
-  const [carouselReady, setCarouselReady] = useState(false)
-  const classNamesOptions = { selected: 'my-selected-class', inView: 'is-in-view'  }
+  const [mode, setMode] = useState(work.gallerySlides?.length > 0 ? 'gallery' : 'info' )
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, inViewThreshold: 1, skipSnaps: false }, [
-    ClassNames(classNamesOptions)
-  ])
-
+  const [textExpanded, setTextExpanded] = useState(false)
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState([])
+  
+  const textExpandToggle = () => {
+    textExpanded ? setTextExpanded(false) : setTextExpanded(true)
+  }
 
-  const scrollPrev = useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
-  )
-  const scrollNext = useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
-  )
-  const scrollTo = useCallback(
-    (index) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
-  )
+  const scrollNext = () => {
+    selectedIndex != work.gallerySlides.length && setSelectedIndex(selectedIndex + 1)
+  }
 
-  const onInit = useCallback((emblaApi) => {
-    setScrollSnaps(emblaApi.scrollSnapList())
-    setCarouselReady(true)
-  }, [])
+  const scrollPrev = () => {
+    selectedIndex != 0 && setSelectedIndex(selectedIndex - 1)
+  }
 
-  const onSelect = useCallback((emblaApi) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-    setPrevBtnDisabled(!emblaApi.canScrollPrev())
-    setNextBtnDisabled(!emblaApi.canScrollNext())
-  }, [])
+  const resetSelectedIndex = () => {
+    setMode('info')
+    setSelectedIndex(0)
+  }
 
-  useEffect(() => {
-    if (!emblaApi) return
-
-    onInit(emblaApi)
-    onSelect(emblaApi)
-    emblaApi.on('reInit', onInit)
-    emblaApi.on('reInit', onSelect)
-    emblaApi.on('select', onSelect)
-  }, [emblaApi, onInit, onSelect])
+  const goToSpecificIndex = (index) => {
+    setMode('gallery')
+    setSelectedIndex(index)
+  }
 
   return (
     <Layout>
-      <NextSeo title="Works Slug" />
+      <NextSeo title={work.title} />
 
       <Header contact={contact} worksCats={firstWorksCatSlug} />
       
@@ -76,33 +61,59 @@ export default function WorkSlug(initialData) {
           <div className="p-4 lg:p-8 absolute top-0 left-0 right-0 w-full z-[10]">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
-                <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
-                  <SplitText
-                    animate="enter"
-                    exit="exit"
-                    initial={{ y: '100%' }}
-                    transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
-                    variants={{
-                      enter: i => ({ y: 0 }),
-                      exit: i => ({ y: '100%' })
-                    }}
-                  >
-                    {work.title}
-                  </SplitText>
-                </span>
+              <ConditionalWrap
+                condition={selectedIndex == work.gallerySlides?.length}
+                wrap={children => (
+                  <button className="a11y-focus text-left appearance-none" onClick={resetSelectedIndex}>
+                    {children}
+                  </button>
+                )}
+              >
+                  <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
+                    {selectedIndex == work.gallerySlides?.length && (<>
+                      <SplitText
+                        animate="enter"
+                        exit="exit"
+                        initial={{ y: '100%' }}
+                        transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                        variants={{
+                          enter: i => ({ y: 0 }),
+                          exit: i => ({ y: '100%' })
+                        }}
+                      >
+                        Back To&nbsp;
+                      </SplitText></>)}
+                    <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${selectedIndex == work.gallerySlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
+                      <SplitText
+                        animate="enter"
+                        exit="exit"
+                        initial={{ y: '100%' }}
+                        transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                        variants={{
+                          enter: i => ({ y: 0 }),
+                          exit: i => ({ y: '100%' })
+                        }}
+                      >
+                        {work.title}
+                      </SplitText>
+                    </span>
+                  </span>
+                </ConditionalWrap>
               </div>
 
 
               <div className="col-span-2 block leading-[0.9] text-gray">
-                <span className="block relative overflow-hidden">
-                  <m.button
-                    onClick={()=> setMode('gallery')}
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className={`block leading-none a11y-focus ${mode == 'gallery' && 'text-black dark:text-white'}`}
-                  >Gallery</m.button>
-                </span>
+                { work.gallerySlides && (
+                  <span className="block relative overflow-hidden">
+                    <m.button
+                      onClick={()=> setMode('gallery')}
+                      initial={{ y: '100%' }}
+                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      className={`block leading-none a11y-focus ${mode == 'gallery' && 'text-black dark:text-white'}`}
+                    >Gallery</m.button>
+                  </span>
+                )}
                 <span className="block relative overflow-hidden">
                   <m.button
                     onClick={()=> setMode('info')}
@@ -121,7 +132,7 @@ export default function WorkSlug(initialData) {
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
-                  >1 — 8</m.span>
+                  >{work.gallerySlides && (`${selectedIndex + 1} — ${work.gallerySlides.length}`)}</m.span>
                 </span>
               </div>
             </div>
@@ -138,37 +149,67 @@ export default function WorkSlug(initialData) {
                     exit={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
                     className="w-full h-screen pt-52 lg:pt-16"
                   >
-                    <button onClick={scrollPrev} disabled={prevBtnDisabled} type="submit" className={`block absolute bottom-3 lg:bottom-auto lg:top-[calc(50%-20px)] left-3 lg:left-8 w-8 lg:w-10 text-gray z-[100] ${prevBtnDisabled ? 'opacity-20 cursor-not-allowed' : 'a11y-focus lg:hover:text-black focus-visible:text-black dark:lg:hover:text-white dark:focus-visible:text-white' }`}>
-                      <svg className="w-full rotate-180" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
-                    </button>
+                    {(selectedIndex !== 0 && selectedIndex !== work.gallerySlides.length) && (
+                      <button onClick={scrollPrev} className={`absolute bottom-3 lg:bottom-0 lg:top-24 left-3 lg:left-0 lg:pl-6 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-start hover:text-black dark:hover:text-white`}>
+                        <svg className="w-8 lg:w-10 rotate-180" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      </button>
+                    )}
+                    
+                    {(selectedIndex !== work.gallerySlides.length) && (
+                      <button onClick={scrollNext} className={`absolute bottom-3 lg:bottom-0 lg:top-24 right-3 lg:right-0 lg:pr-8 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-end hover:text-black dark:hover:text-white`}>
+                        <svg className="w-8 lg:w-10" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      </button>
+                    )}
 
-                    <button onClick={scrollNext} disabled={nextBtnDisabled} type="submit" className={`block absolute bottom-3 lg:bottom-auto lg:top-[calc(50%-20px)] right-3 lg:right-8 w-8 lg:w-10 text-gray z-[100] ${nextBtnDisabled ? 'opacity-20 cursor-not-allowed' : 'a11y-focus lg:hover:text-black focus-visible:text-black dark:lg:hover:text-white dark:focus-visible:text-white' }`}>
-                      <svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
-                    </button>
+                    {work.gallerySlides && (
+                      <div className={`overflow-hidden h-full`}>
+                        <div className="w-full h-full">
+                          <div className="h-full w-full relative">
+                            {work.gallerySlides.map((e, i) => {
+                              return (
+                                <div className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                                  {e.images && (
+                                    <div className="flex h-full items-center justify-center">
+                                      <div className="w-full flex items-start justify-center space-x-4 lg:space-x-8">
+                                        {e.images.map((img, i) => {
+                                          return (
+                                            <div className="w-[35vh] lg:w-[35vh]" key={i}>
+                                              <div className="mb-4 relative overflow-hidden">
+                                                <SanityImageResponsive
+                                                  image={img}
+                                                  sizes={`(max-width: 1024px) 90vw,30vw`}
+                                                  className="w-full h-full object-cover object-center aspect-[9/12]"
+                                                />
+                                              </div>
+                                            </div>
+                                          )
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              )
+                            })}
 
-                    <div className={`carousel overflow-hidden h-full ${carouselReady && 'carousel--ready' }`}>
-                      <div className="carousel-viewport w-full h-full" ref={emblaRef}>
-                        <div className="carousel-container h-full w-full">
-                          <div className="slide px-4 lg:px-0">
-                            <div className="flex h-full items-center justify-center">
-                              <div className="w-[35vh] lg:w-[40vh]">
-                                <div className="aspect-[9/12] bg-gray/30 mb-4"></div>
-                                <span className="block text-sm/none lg:text-base/none text-gray">Slide 1</span>
-                              </div>
-                            </div>
-                          </div>
+                            <Link href={`/works/${work.next ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                              <div className="flex h-full items-end justify-start">
+                                <div className="mb-6 lg:mb-[15%] max-w-[80%] lg:max-w-[65%]">
+                                  <span className="grey block mb-3">Next</span>
 
-                          <div className="slide px-4 lg:px-0">
-                            <div className="flex h-full items-center justify-center">
-                              <div className="w-[35vh] lg:w-[40vh]">
-                                <div className="aspect-[9/12] bg-gray/30 mb-4"></div>
-                                <span className="block text-sm/none lg:text-base/none text-gray">Slide 2</span>
-                              </div>
-                            </div>
+                                  <span className="block text-4xl/none lg:text-7xl">
+                                    {work.next ? (
+                                      <>{work.next.title} <span className="text-gray"> — {work.next.year}, {work.next.media}, {work.next.dims}</span></>
+                                    ) : (
+                                      <>{work.first.title} <span className="text-gray"> — {work.first.year}, {work.first.media}, {work.first.dims}</span></>
+                                    )}
+                                  </span>
+                                </div>
+                              </div>    
+                            </Link>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </m.div>
                 ) : (
                   <m.div
@@ -180,51 +221,94 @@ export default function WorkSlug(initialData) {
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
                       <div className="col-span-1 lg:col-span-2">
-                        <div className="mb-3 lg:mb-5">
-                          <span className="block text-base/none mb-1">Year</span>
-                          <span className="block">{work.year}</span>
-                        </div>
-                        <div className="mb-3 lg:mb-5">
-                          <span className="block text-base/none mb-1">Dimensions</span>
-                          <span className="block leading-[1.2]">{work.dims}</span>
-                        </div>
-                        <div className="">
-                          <span className="block text-base/none mb-1">Links</span>
-                          <span className="block text-gray">Opensea</span>
-                          <span className="block text-gray">Exhibit</span>
-                        </div>
+                        {work.year && (
+                          <div className="mb-3 lg:mb-5">
+                            <span className="block text-base/none mb-1">Year</span>
+                            <span className="block">{work.year}</span>
+                          </div>
+                        )}
+                        {work.dims && (
+                          <div className="mb-3 lg:mb-5">
+                            <span className="block text-base/none mb-1">Dimensions</span>
+                            <span className="block leading-[1.2]">{work.dims}</span>
+                          </div>
+                        )}
+                        {work.links && (
+                          <div className="">
+                            <span className="block text-base/none mb-1">Links</span>
+                            
+                            {work.links.map((e,i) => {
+                              let route = '/'
+                              e?.internalLink?._type == 'work' && (route = '/works')
+                              e?.internalLink?._type == 'words' && (route = '/words')
+                              e?.internalLink?._type == 'exhibitions' && (route = '/exhibitions')
+
+                              return e.internal ? (
+                                <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                              ) : (
+                                <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                              )
+                            })}
+                          </div>
+                        )}
                       </div>
 
                       <div className="col-span-1 lg:col-span-2">
-                        <div className="mb-3 lg:mb-5">
-                          <span className="block text-base/none mb-1">Medium</span>
-                          <span className="block leading-[1.2]">{work.media}</span>
-                        </div>
-                        <div className="mb-3 lg:mb-5">
-                          <span className="block text-base/none mb-1">Iterations</span>
-                          <span className="block">4+ Iterations</span>
-                        </div>
+                        {work.media && (
+                          <div className="mb-3 lg:mb-5">
+                            <span className="block text-base/none mb-1">Medium</span>
+                            <span className="block leading-[1.2]">{work.media}</span>
+                          </div>
+                        )}
+                        {work.iterations && (
+                          <div className="mb-3 lg:mb-5">
+                            <span className="block text-base/none mb-1">Iterations</span>
+                            <span className="block">{work.iterations}</span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="col-span-2 lg:col-span-5 lg:col-start-7 mt-16 lg:mt-0">
-                        <div className="content mb-4 lg:mb-6 w-[90%] lg:w-full">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        </div>
+                        {work.text && (
+                          <>
+                            <div className={`content mb-4 lg:mb-6 w-[90%] lg:w-full`}>
+                              {work.text.length > 1 && !textExpanded ? (
+                                <BodyRich content={work.text[0]} />
+                              ) : (
+                                <BodyRich content={work.text} />
+                              )}
+                            </div>
 
-                        <button className="text-gray block">Read more</button>
+                            {work.text.length > 1 && (
+                              <button onClick={textExpandToggle} className="text-gray block">{textExpanded ? '- Read Less' : '+ Read more'}</button>
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
-
-                    <ul className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-16 mt-16 lg:mt-28 mb-4 lg:mb-32">
-                      {Array.from(Array(9), (e, i) => {
-                        return (
-                          <li key={i} className="block col-span-1">
-                            <div className="w-full h-[60vw] lg:h-[20vw] bg-gray/30 mb-3"></div>
-                            <span className="block text-sm lg:text-base text-gray">Artwork Caption</span>
-                          </li>
-                        )
-                      })}
-                    </ul>
+                    
+                    {work.gallerySlides && (
+                      <ul className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32">
+                        {work.gallerySlides.map((e, index) => {
+                          return (
+                            <>
+                            {e.images.map((img, i) => {
+                              return (
+                                <li key={i} className="block col-span-1">
+                                  <button onClick={ ()=> goToSpecificIndex(index)} className="w-full block">
+                                    <SanityImageResponsive
+                                      image={img}
+                                      sizes={`(max-width: 1024px) 100vw,20vw`}
+                                      />
+                                  </button>
+                                </li>
+                                )
+                              })}
+                            </>
+                          )
+                        })}
+                      </ul>
+                    )}
                   </m.div>
                 )}
               </AnimatePresence>

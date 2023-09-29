@@ -67,7 +67,7 @@ export default function WorksCatSlug(initialData) {
               {works.map((e,i) => {
                 return (
                   <div className="works-teaser" key={i}>
-                    <TeaserWorks image={e.teaserImage} href={`/works/${e.slug.current}`} heading={`${e.title}, ${e.year}`} />
+                    <TeaserWorks image={e.teaserImage} href={`/works/${e.slug.current}`} heading={`${e.title}, ${e.year}`} series={e.series} />
                   </div>
                 )
               })}

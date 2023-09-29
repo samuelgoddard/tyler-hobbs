@@ -4,7 +4,7 @@ export default function ModularTextBlock({ text, annotationNotes }) {
   return (
     <>
       {annotationNotes && (
-        <div className="col-span-12 lg:col-span-4 xl:col-span-3 content order-2 lg:order-1">
+        <div className="col-span-12 lg:col-span-4 xl:col-span-3 content order-2 lg:order-1 pt-12 lg:pt-0">
           {annotationNotes.map((e, i) => {
             return (
               <div key={i} className={i+1 < annotationNotes.length ? 'mb-6' : '' }>

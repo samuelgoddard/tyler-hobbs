@@ -7,6 +7,7 @@ import Link from 'next/link'
 
 import { aboutQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
+import BodyRenderer from '@/components/body-renderer'
 const pageService = new SanityPageService(aboutQuery)
 
 export default function About(initialData) {
@@ -38,31 +39,31 @@ export default function About(initialData) {
 
               <div className="col-span-2 block leading-[0.9] text-gray">
                 <span className="block relative overflow-hidden">
-                  <m.a
+                  <m.span
                     href="#artist-statement"
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
-                  >Artist Statement</m.a>
+                  >Artist Statement</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
-                  <m.a
+                  <m.span
                     href="#bio"
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
-                  >Bio</m.a>
+                  >Bio</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
-                  <m.a
+                  <m.span
                     href="#process"
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
-                  >Process</m.a>
+                  >Process</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
                   <m.span
@@ -76,8 +77,10 @@ export default function About(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80 mb-16 lg:mb-24" id="artist-statement">
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-28 lg:pt-80">
+            <BodyRenderer body={about.contentBlocks} />
+
+            {/* <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80 mb-16 lg:mb-24" id="artist-statement">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <h1 className="text-4xl lg:text-6xl w-[95%] lg:w-[80%] mb-0">What separates man from machine? How are the two artistically related, and when they are inevitably brought closer by technological progress, what will the result be? My work explores these questions.</h1>
               </div>
@@ -190,7 +193,7 @@ export default function About(initialData) {
                   })}
                 </ul>
               </div>
-            </div>
+            </div> */}
           </m.article>
         </m.main>
       </LazyMotion>

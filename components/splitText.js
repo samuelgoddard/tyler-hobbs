@@ -7,7 +7,7 @@ export function SplitText({ children, ...rest }) {
     return (
       <span
         key={children + i}
-        className="block overflow-hidden"
+        className="block overflow-hidden mb-0 pb-0"
       >
         <m.span
           {...rest}
