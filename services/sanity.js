@@ -6,6 +6,9 @@ import {
   createCurrentUserHook,
 } from 'next-sanity'
 
+
+console.log(process.env.NODE_ENV)
+
 class Sanity {
   config = {
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
