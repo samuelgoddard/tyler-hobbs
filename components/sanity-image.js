@@ -40,7 +40,7 @@ export default function SanityImage({ image, className, priority, widthOverride,
           )}
           sizes={sizes ? sizes : `(max-width: 1024px) 100vw,90vw`}
           fill
-          quality={quality ? quality : 75}
+          quality={quality ? quality : 85}
           alt={image.alt ? image.alt : 'MISSING ALT TEXT'}
 
           onLoad={event => {

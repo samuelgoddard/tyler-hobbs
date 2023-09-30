@@ -17,9 +17,9 @@ export default function SanityImageResponsive({ image, className, alt, priority,
         src={imageProps?.src}
         sizes={sizes ? sizes : `(max-width: 1024px) 100vw,80vw`}
         className={`${className ? className : '' } bg-black/10 w-full ${imageIsLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity ease-in-out duration-[1000ms]`}
-        quality={quality ? quality : 85}
-        width={image?.asset.metadata.dimensions.width / 1.5}
-        height={image?.asset.metadata.dimensions.height / 1.5}
+        quality={quality ? quality : 90}
+        width={image?.asset.metadata.dimensions.width / 2}
+        height={image?.asset.metadata.dimensions.height / 2}
         {...(priority ? {priority: true} : {})}
         alt={image.alt ? image.alt : 'MISSING ALT TEXT'}
         
