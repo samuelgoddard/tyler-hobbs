@@ -70,7 +70,6 @@ body {
    text-shadow: 0 1px white;
    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
    text-align: left;
-   white-space: pre;
    word-spacing: normal;
    word-break: normal;
    word-wrap: normal;
@@ -84,6 +83,8 @@ body {
    -moz-hyphens: none;
    -ms-hyphens: none;
    hyphens: none;
+
+	 @apply whitespace-pre-wrap
  }
  
  pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
@@ -210,7 +211,6 @@ pre[class*="language-"] {
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	text-align: left;
 	text-shadow: 0 -.1em .2em black;
-	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
@@ -224,11 +224,12 @@ pre[class*="language-"] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
+	@apply whitespace-pre-wrap
 }
 
 pre[class*="language-"],
 :not(pre) > code[class*="language-"] {
-	background: hsl(0, 0%, 8%); /* #141414 */
+	background: hsl(0, 0%, 5%); /* #141414 */
 }
 
 /* Code blocks */

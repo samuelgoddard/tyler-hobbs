@@ -20,6 +20,19 @@ const contentBlocks = `
   contentBlocks[] {
     ...,
     annotationNotes[],
+    annotationNotesRich[] {
+      content[] {
+        ...,
+        markDefs[] {
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug,
+            "type": @.reference->_type,
+            "title": @.reference->title
+          }
+        }
+      }
+    },
     image {
       ${image}
     },
@@ -197,6 +210,15 @@ export const wordsSlugQuery = `{
     title,
     _updatedAt,
     publishedDate,
+    links[] {
+      ...,
+      internalLink->{
+        _type,
+        slug {
+          current
+        }
+      }
+    },
     heroImage {
       ${image},
     },
@@ -205,11 +227,19 @@ export const wordsSlugQuery = `{
       name
     },
     ${slug},
-    ${seo}
-  },
-  "further": *[_type == "words" && slug.current != $slug] | order(publishedDate desc) {
-    title,
-    ${slug}
+    ${seo},
+    relatedArticles[]-> {
+      title,
+      slug
+    },
+    "further": *[_type == "words" && slug.current != $slug && publishedDate < ^.publishedDate] | order(publishedDate desc)[0..6] {
+      title,
+      ${slug}
+    },
+    "furtherReset": *[_type == "words"] | order(publishedDate desc)[0..6] {
+      title,
+      ${slug}
+    },
   },
   ${contact},
   ${firstWorksCatSlug}

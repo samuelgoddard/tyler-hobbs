@@ -1,16 +1,18 @@
 import BodyRich from '@/components/body-rich'
 
-export default function ModularTextBlock({ text, annotationNotes }) {
+export default function ModularTextBlock({ text, annotationNotesRich }) {
   return (
     <>
-      {annotationNotes && (
+      {annotationNotesRich && (
         <div className="col-span-12 lg:col-span-4 xl:col-span-3 content order-2 lg:order-1 pt-12 lg:pt-0">
-          {annotationNotes.map((e, i) => {
+          {annotationNotesRich.map((e, i) => {
             return (
-              <div key={i} className={i+1 < annotationNotes.length ? 'mb-6' : '' }>
+              <div key={i} className={i+1 < annotationNotesRich.length ? 'mb-6' : '' }>
                 <span className="w-7 h-7 bg-gray/30 flex items-center justify-center text-xs/none lg:text-sm/none rounded-full mb-3">{i + 1}</span>
                 {e && (
-                  <p className="text-sm/normal lg:text-base/normal">{e}</p>
+                  <div className="text-sm/normal lg:text-base/normal">
+                    <BodyRich content={e.content} />
+                  </div>
                 )}
               </div>
             )
