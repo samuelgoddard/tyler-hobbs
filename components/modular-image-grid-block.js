@@ -14,11 +14,56 @@ export default function ModularImageGridBlock({ images, columns, width }) {
   let cols = 'col-span-4'
   let sizes = '(max-width: 1024px) 100vw,33vw'
   
-  columns == 'one' && ( cols = 'col-span-12', sizes = '(max-width: 1024px) 100vw,25vw' )
-  columns == 'two' && ( cols = 'col-span-6', sizes = '(max-width: 1024px) 100vw,25vw' )
-  columns == 'three' && ( cols = 'col-span-4 lg:col-span-4', sizes = '(max-width: 1024px) 100vw,25vw' )
-  columns == 'four' && ( cols = 'col-span-4 lg:col-span-3', sizes = '(max-width: 1024px) 100vw,16vw' )
-  columns == 'five' && ( cols = 'col-span-1', sizes = '(max-width: 1024px) 100vw,10vw', innerGridCols = 'grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-4' )
+  columns == 'one' && (
+    cols = 'col-span-12',
+
+    images.length > 1 ? (
+      sizes = '(max-width: 1024px) 100vw,50vw'
+     ) : (
+      width == 'ten' ? (
+        sizes = '(max-width: 1024px) 100vw,80vw'
+      ) : (
+        sizes = '(max-width: 1024px) 100vw,55vw'
+      )
+    )
+  )
+  columns == 'two' && (
+    cols = 'col-span-6',
+    images.length > 1 ? (
+      sizes = '(max-width: 1024px) 100vw,55vw'
+     ) : (
+      width == 'ten' ? (
+        sizes = '(max-width: 1024px) 100vw,80vw'
+      ) : (
+        sizes = '(max-width: 1024px) 100vw,55vw'
+      )
+    )
+  )
+  columns == 'three' && (
+    cols = 'col-span-4 lg:col-span-4',
+    images.length > 1 ? (
+      sizes = '(max-width: 1024px) 100vw,33vw'
+     ) : (
+      sizes = '(max-width: 1024px) 100vw,80vw'
+     )
+  )
+  columns == 'four' && (
+    cols = 'col-span-4 lg:col-span-3',
+    images.length > 1 ? (
+      sizes = '(max-width: 1024px) 100vw,25vw'
+     ) : (
+      sizes = '(max-width: 1024px) 100vw,80vw'
+     )
+  )
+  
+  columns == 'five' && (
+    cols = 'col-span-1',
+    images.length > 1 ? (
+      sizes = '(max-width: 1024px) 100vw,20vw'
+     ) : (
+      sizes = '(max-width: 1024px) 100vw,80vw'
+     )
+  )
 
   return images && (
     <div className={`${containerWidth} grid ${innerGridCols} px-0 lg:px-[0.25vw] xl:px-[0.45vw] 3xl:px-[0.65vw]`}>

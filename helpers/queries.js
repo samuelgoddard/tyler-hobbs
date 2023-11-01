@@ -2,6 +2,7 @@
 const seo = `seo { ..., shareGraphic { asset-> } }`
 const image = `
   asset-> { ... },
+  vimeoVideoOverrideUrl,
   caption[] {
     ...,
     markDefs[] {

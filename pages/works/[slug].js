@@ -13,6 +13,7 @@ import SanityImageResponsive from '@/components/sanity-image-responsive'
 import BodyRich from '@/components/body-rich'
 import Link from 'next/link'
 import ConditionalWrap from 'conditional-wrap';
+import GalleryImages from '@/components/gallery-images'
 const pageService = new SanityPageService(worksSlugQuery)
 
 export default function WorkSlug(initialData) {
@@ -167,27 +168,17 @@ export default function WorkSlug(initialData) {
                           <div className="h-full w-full relative">
                             {work.gallerySlides.map((e, i) => {
                               return (
-                                <div className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`} key={i}>
-                                  {e.images && (
-                                    <div className="flex h-full items-center justify-center">
-                                      <div className="w-full flex items-start justify-center space-x-4 lg:space-x-8">
-                                        {e.images.map((img, i) => {
-                                          return (
-                                            <div className="w-[35vh] lg:w-[35vh]" key={i}>
-                                              <div className="mb-4 relative overflow-hidden">
-                                                <SanityImageResponsive
-                                                  image={img}
-                                                  sizes={`(max-width: 1024px) 90vw,30vw`}
-                                                  className="w-full h-full object-cover object-center aspect-[9/12]"
-                                                />
-                                              </div>
-                                            </div>
-                                          )
-                                        })}
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
+                                <GalleryImages
+                                  layout1={e.layout1}
+                                  layout2={e.layout2}
+                                  layout3={e.layout3}
+                                  layout4={e.layout4}
+                                  layout5={e.layout5}
+                                  images={e.images}
+                                  key={i}
+                                  i={i}
+                                  selectedIndex={selectedIndex}
+                                />
                               )
                             })}
 
