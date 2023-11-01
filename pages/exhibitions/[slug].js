@@ -8,6 +8,7 @@ import { exhibitionsSlugQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
 import BodyRenderer from '@/components/body-renderer'
+import Carousel from '@/components/carousel'
 const pageService = new SanityPageService(exhibitionsSlugQuery)
 
 export default function ExhibitionsSlug(initialData) {
@@ -89,24 +90,7 @@ export default function ExhibitionsSlug(initialData) {
               
               <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-16 lg:mb-0">
                 {exhibition.heroImages && (
-                  <>
-                  <div className={`w-full ${exhibition.heroImages.length > 1 && 'mb-3'}`}>
-                    <SanityImageResponsive
-                      image={exhibition.heroImages[0]}
-                      priority={true}
-                    />
-                  </div>
-                  
-                  {exhibition.heroImages.length > 1 && (
-                    <ul className="flex text-base/none lg:text-base/none text-gray space-x-2">
-                      {exhibition.heroImages.map((e, i) => {
-                        return (
-                          <li key={i} className={i == 1 ? 'text-black dark:text-white' : '' }>{i + 1}</li>
-                        )
-                      })}
-                    </ul>
-                  )}
-                  </>
+                  <Carousel images={exhibition.heroImages} />
                 )}
               </div>
             </div>

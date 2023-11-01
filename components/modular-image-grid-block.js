@@ -58,8 +58,14 @@ export default function ModularImageGridBlock({ images, columns, width }) {
   
   columns == 'five' && (
     cols = 'col-span-1',
+    width == 'six' && (
+      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6'
+    ),
+    width == 'ten' && (
+      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6'
+    ),
     images.length > 1 ? (
-      sizes = '(max-width: 1024px) 100vw,20vw'
+      sizes = '(max-width: 1024px) 100vw,25vw'
      ) : (
       sizes = '(max-width: 1024px) 100vw,80vw'
      )

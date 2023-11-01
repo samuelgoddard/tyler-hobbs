@@ -12,7 +12,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
 	);
 
 	return image.vimeoVideoOverrideUrl ? (
-    <figure className={`block image w-full ${className ? className : ''}`}>
+    <figure className={`block image w-full relative overflow-hidden ${className ? className : ''}`}>
       <video loop={true} autoPlay="autoplay" playsInline={true} muted className={`object-cover object-center w-full h-full absolute inset-0 z-[10] transition ease-[cubic-bezier(0.65,0,0.35,1)] duration-[500ms] motion-safe:block hidden ${imageIsLoaded ? 'opacity-100' : 'opacity-0' }`}>
         <source src={ image.vimeoVideoOverrideUrl } type="video/mp4" />
 

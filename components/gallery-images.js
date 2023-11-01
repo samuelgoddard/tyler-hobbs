@@ -52,13 +52,13 @@ export default function GalleryImages({ layout1, layout2, layout3, layout4, layo
                 { fill ? (
                   <SanityImage
                     image={img}
-                    sizes={`(max-width: 1024px) 90vw,30vw`}
+                    sizes={`(max-width: 1024px) 90vw,60vw`}
                     className="w-full h-full object-cover object-center absolute inset-0"
                   />
                 ) : (
                   <SanityImageResponsive
                     image={img}
-                    sizes={`(max-width: 1024px) 90vw,30vw`}
+                    sizes={`(max-width: 1024px) 90vw,60vw`}
                     className="w-full"
                   />
                 )}

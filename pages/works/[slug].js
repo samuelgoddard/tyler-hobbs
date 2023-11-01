@@ -289,7 +289,7 @@ export default function WorkSlug(initialData) {
                                   <button onClick={ ()=> goToSpecificIndex(index)} className="w-full block">
                                     <SanityImageResponsive
                                       image={img}
-                                      sizes={`(max-width: 1024px) 100vw,20vw`}
+                                      sizes={`(max-width: 1024px) 100vw,25vw`}
                                       />
                                   </button>
                                 </li>
