@@ -42,7 +42,7 @@ export default function GalleryImages({ layout1, layout2, layout3, layout4, layo
 
   return(
     <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
-      <div className="fixed top-0 left-0 bg-red-500 z-[10000]">{currentLayout}</div>
+      <div className="fixed bottom-0 left-0 bg-red-500 z-[10000] text-sm font-mono">Debug:{currentLayout}</div>
       
       {images && (
         <div className={`h-full flex flex-wrap space-x-6 ${centeredY && 'items-center'} ${centeredX && 'justify-center'}`}>

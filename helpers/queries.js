@@ -206,11 +206,33 @@ export const wordsQuery = `{
   ${firstWorksCatSlug}
 }`
 
+export const wordsCatQuery = `{
+  "words": *[_type == "words" && category->slug.current == $slug] | order(publishedDate desc) {
+    title,
+    publishedDate,
+    teaserImage {
+      ${image},
+    },
+    ${slug}
+  },
+  "currentCat": *[_type == "wordsCategories" && slug.current == $slug][0] {
+    title,
+    ${slug}
+  },
+  "cats": *[_type == "wordsCategories"] {
+    title,
+    ${slug}
+  },
+  ${contact},
+  ${firstWorksCatSlug}
+}`
+
 export const wordsSlugQuery = `{
   "article": *[_type == "words" && slug.current == $slug][0]{
     title,
     _updatedAt,
     publishedDate,
+    lastUpdatedDate,
     links[] {
       ...,
       internalLink->{
@@ -226,6 +248,10 @@ export const wordsSlugQuery = `{
     ${contentBlocks},
     author-> {
       name
+    },
+    category-> {
+      title,
+      ${slug}
     },
     ${slug},
     ${seo},

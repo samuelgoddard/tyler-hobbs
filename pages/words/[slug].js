@@ -20,12 +20,18 @@ export default function WordsSlug(initialData) {
   let mainPublishedYe = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(mainPublishedD);
   
   // Last Updated Date
-  let mainUpdatedD = new Date(article._updatedAt);
-  let mainUpdatedDa = new Intl.DateTimeFormat('en', { day: 'numeric' }).format(mainUpdatedD);
-  let mainUpdatedMo = new Intl.DateTimeFormat('en', { month: 'numeric' }).format(mainUpdatedD);
-  let mainUpdatedYe = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(mainUpdatedD);
+  let mainUpdatedD = ''
+  let mainUpdatedDa = ''
+  let mainUpdatedMo = ''
+  let mainUpdatedYe = ''
 
-
+  article.lastUpdatedDate && (
+    mainUpdatedD = new Date(article.lastUpdatedDate),
+    mainUpdatedDa = new Intl.DateTimeFormat('en', { day: 'numeric' }).format(mainUpdatedD),
+    mainUpdatedMo = new Intl.DateTimeFormat('en', { month: 'numeric' }).format(mainUpdatedD),
+    mainUpdatedYe = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(mainUpdatedD)
+  )
+  
   return (
     <Layout>
       <NextSeo title={article.title} />
@@ -48,6 +54,17 @@ export default function WordsSlug(initialData) {
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link href="/words">Words</Link></m.span>
+                </span>
+              </div>
+
+              <div className="col-span-2 lg:col-start-5 block">
+                <span className="block relative overflow-hidden">
+                  <m.span
+                    initial={{ y: '100%' }}
+                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    className="block leading-none"
+                  ><Link href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></m.span>
                 </span>
               </div>
             </div>
@@ -74,7 +91,7 @@ export default function WordsSlug(initialData) {
                     <span className="block">{mainPublishedYe}.{mainPublishedMo}.{mainPublishedDa}</span>
                   </div>
                 )}
-                {article._updatedAt && (
+                {article.lastUpdatedDate && (
                   <div className="mb-3 lg:mb-5">
                     <span className="block text-base/none mb-1">Last Updated</span>
                     <span className="block">{mainUpdatedYe}.{mainUpdatedMo}.{mainUpdatedDa}</span>

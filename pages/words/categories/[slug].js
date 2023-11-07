@@ -5,14 +5,14 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import Link from 'next/link'
 import { useState } from 'react'
-import { wordsQuery } from '@/helpers/queries'
+import { wordsCatQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImage from '@/components/sanity-image'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
-const pageService = new SanityPageService(wordsQuery)
+const pageService = new SanityPageService(wordsCatQuery)
 
-export default function Words(initialData) {
-  const { data: { words, cats, contact, firstWorksCatSlug } } = pageService.getPreviewHook(initialData)()
+export default function WordsCategoryIndex(initialData) {
+  const { data: { words, cats, contact, firstWorksCatSlug, currentCat } } = pageService.getPreviewHook(initialData)()
   const [imageActive, setImageActive] = useState(false)
   
   const imageToggle = () => {
@@ -21,7 +21,7 @@ export default function Words(initialData) {
 
   return (
     <Layout>
-      <NextSeo title="Words" />
+      <NextSeo title={`Words - ${currentCat.title}`} />
 
       <Header contact={contact} worksCats={firstWorksCatSlug} />
       
@@ -51,8 +51,8 @@ export default function Words(initialData) {
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none text-black dark:text-white"
-                  >All</m.span>
+                    className="block leading-none"
+                  ><Link className="hover:text-black dark:hover:text-white transition-colors ease-in-out duration-300" href="/words/">All</Link></m.span>
                 </span>
                 {cats.map((e,i) => {
                   return (
@@ -61,7 +61,7 @@ export default function Words(initialData) {
                         initial={{ y: '100%' }}
                         animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                        className="block leading-none"
+                        className={`block leading-none  ${e.slug.current == currentCat.slug.current ? 'text-black dark:text-white' : '' }`}
                       ><Link className="hover:text-black dark:hover:text-white transition-colors ease-in-out duration-300" href={`/words/categories/${e.slug.current}`}>{e.title}</Link></m.span>
                     </span>
                   )
@@ -94,7 +94,7 @@ export default function Words(initialData) {
                 <ul className="border-t border-gray">
                   {words.map((e, i) => {
                     return (
-                      <li className="block" key={i}><Link href={`words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(false)} className="block py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">{e.title}<span className="absolute top-2 lg:top-[13px] right-0 w-7 transition-opacity ease-in-out duration-300 opacity-0 lg:group-hover:opacity-100"><svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg></span></Link></li>
+                      <li className="block" key={i}><Link href={`/words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(false)} className="block py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">{e.title}<span className="absolute top-2 lg:top-[13px] right-0 w-7 transition-opacity ease-in-out duration-300 opacity-0 lg:group-hover:opacity-100"><svg className="w-full" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg></span></Link></li>
                     )
                   })}
                 </ul>
@@ -111,5 +111,13 @@ export async function getStaticProps(context) {
   const props = await pageService.fetchQuery(context)
   return { 
     props: props
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await pageService.fetchPaths('wordsCategories')
+  return {
+    paths: paths,
+    fallback: false,
   };
 }
