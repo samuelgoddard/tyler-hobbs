@@ -233,6 +233,7 @@ export default function WorkSlug(initialData) {
                               e?.internalLink?._type == 'work' && (route = '/works')
                               e?.internalLink?._type == 'words' && (route = '/words')
                               e?.internalLink?._type == 'exhibitions' && (route = '/exhibitions')
+                              e?.internalLink?._type == 'pages' && (route = '/pages')
 
                               return e.internal ? (
                                 <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>

@@ -14,6 +14,7 @@ export default function BodyRich({ content }) {
         value.type == 'work' && (prefix = '/works/')
         value.type == 'words' && (prefix = '/words/')
         value.type == 'exhibitions' && (prefix = '/exhibitions/')
+        value.type == 'pages' && (prefix = '/pages/')
 
         // HREF
         const href = `${prefix}${ slug ? slug.current : slugify(value.title, { lower: true })}`
