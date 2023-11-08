@@ -13,10 +13,11 @@ export default function ModularListBlock({ heading, listItems }) {
           e?.internalLink?._type == 'work' && (route = '/works')
           e?.internalLink?._type == 'words' && (route = '/words')
           e?.internalLink?._type == 'exhibitions' && (route = '/exhibitions')
+          e?.internalLink?._type == 'pages' && (route = '/pages')
 
           return e.internal ? (
             <li className="block" key={i}>
-              <Link href={`${route}/${e.internalLink.slug.current}`} className="flex items-start py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">
+              <Link href={`${route}/${e.internalLink?.slug.current}`} className="flex items-start py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-in-out duration-300 lg:hover:pl-1 relative group">
                 {e.year && (
                   <span className="block pr-3 tabular-nums w-[60px] lg:w-[80px]">{e.year}</span>
                 )}
