@@ -1,17 +1,23 @@
 import Layout from '@/components/layout'
 import Header from '@/components/header'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation, m, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import BodyRenderer from '@/components/body-renderer'
 import { wordsSlugQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
 import Link from 'next/link'
+import useDetectScroll from "@smakss/react-scroll-direction";
+import { useRef, useState } from 'react'
+
 const pageService = new SanityPageService(wordsSlugQuery)
 
 export default function WordsSlug(initialData) {
   const { data: { article, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
+  const [headerShown, setHeaderShown] = useState(false)
+  const { scrollY } = useScroll()
+  const scrollDir = useDetectScroll();
 
   // Published Date
   let mainPublishedD = new Date(article.publishedDate);
@@ -32,6 +38,10 @@ export default function WordsSlug(initialData) {
     mainUpdatedYe = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(mainUpdatedD)
   )
 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    (latest > 500 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
+  })
+
   return (
     <Layout>
       <NextSeo title={article.title} />
@@ -44,20 +54,20 @@ export default function WordsSlug(initialData) {
           animate="enter"
           exit="exit"
         >
-          <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
+          <div className="p-4 lg:p-8 lg:fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
-                <span className="block relative overflow-hidden">
+                <span className={`hidden lg:block relative overflow-hidden transition-opacity ease-in-out duration-300 ${headerShown ? 'opacity-100' : 'opacity-0' }`}>
                   <m.span
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
-                  ><Link href="/words">Words</Link></m.span>
+                  >{article.title}</m.span>
                 </span>
               </div>
 
-              <div className="col-span-2 lg:col-start-5 block">
+              {/* <div className="col-span-2 lg:col-start-5 block">
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
@@ -66,12 +76,12 @@ export default function WordsSlug(initialData) {
                     className="block leading-none"
                   ><Link href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></m.span>
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80 mb-4 lg:mb-8">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0">{article.title}</h1>
               </div>
@@ -79,6 +89,10 @@ export default function WordsSlug(initialData) {
             
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
               <div className="col-span-12 lg:col-span-2 order-2 lg:order-1">
+                <div className="mb-3 lg:mb-5">
+                  <span className="block text-base/none mb-1">Back To</span>
+                  <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/words">Words</Link>{article.category && (<>: <Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></>)}</span>
+                </div>
                 {article.author && (
                   <div className="mb-3 lg:mb-5">
                     <span className="block text-base/none mb-1">By</span>
@@ -130,7 +144,7 @@ export default function WordsSlug(initialData) {
               )}
             </div>
 
-            <div className="">
+            <div className="" id="content">
               <div className="">
                 <BodyRenderer body={article.contentBlocks} />
                   

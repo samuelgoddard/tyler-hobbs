@@ -70,7 +70,7 @@ export default function Words(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8 h-full min-h-[100vh] flex">
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 h-full min-h-[100vh] flex items-start">
             <div className="grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 fixed bottom-4 lg:bottom-8 left-0 hidden lg:grid pointer-events-none">
               <div className={`col-span-4 transition-opacity ease-in-out duration-[300ms] ${imageActive !== false ? 'opacity-100' : 'opacity-0' }`}>
                 <div className="bg-gray bg-opacity-30 relative overflow-hidden max-w-[550px]">
@@ -89,7 +89,7 @@ export default function Words(initialData) {
               </div>
             </div>
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64 items-end">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64">
               <div className="col-span-12 lg:col-span-8 lg:col-start-5">
                 <ul className="border-t border-gray">
                   {words.map((e, i) => {

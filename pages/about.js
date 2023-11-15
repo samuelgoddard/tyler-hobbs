@@ -26,7 +26,7 @@ export default function About(initialData) {
         >
           <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 lg:col-start-3 block">
+              {/* <div className="col-span-2 lg:col-start-3 block">
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
@@ -35,9 +35,9 @@ export default function About(initialData) {
                     className="block leading-none"
                   >About</m.span>
                 </span>
-              </div>
+              </div> */}
 
-              <div className="col-span-2 block leading-[0.9] text-gray">
+              <div className="col-span-2 lg:col-start-3 block leading-[0.9] text-gray">
                 <span className="block relative overflow-hidden">
                   <m.span
                     href="#artist-statement"

@@ -136,11 +136,7 @@ export const worksSlugQuery = `{
       images[] {
         ${image}
       },
-      layout1,
-      layout2,
-      layout3,
-      layout4,
-      layout5,
+      containerWidth,
     },
     _createdAt,
     _id,

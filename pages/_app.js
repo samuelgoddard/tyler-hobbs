@@ -4,10 +4,17 @@ import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
 import SEO from '@/helpers/seo';
 import { PolySans } from '@/helpers/fonts';
+import useKeypress from 'react-use-keypress'
 import { ThemeProvider } from 'next-themes'
+import { useState } from 'react';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()
+  const [grid, setGrid] = useState(false);
+  
+  useKeypress('g', () => {
+    setGrid(!grid)
+  })
 
   return (
     <ThemeProvider attribute="class">
@@ -20,6 +27,23 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} key={router.asPath} />
         </AnimatePresence>
       </div>
+
+      { grid && (
+          <div className="p-2 fixed inset-0 w-full h-full z-[50] pointer-events-none grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 px-4 lg:px-8">
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+            <div className="bg-gray bg-opacity-[15%] col-span-1"></div>
+          </div>
+        )}
     </ThemeProvider>
   )
 }

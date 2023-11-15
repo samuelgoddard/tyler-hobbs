@@ -25,7 +25,7 @@ export default function ExhibitionsSlug(initialData) {
           animate="enter"
           exit="exit"
         >
-          <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
+          {/* <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
                 <Link href="/exhibitions" className="block relative overflow-hidden a11y-focus">
@@ -38,10 +38,10 @@ export default function ExhibitionsSlug(initialData) {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-80 mb-4 lg:mb-8">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0">{exhibition.title}</h1>
               </div>
@@ -49,6 +49,10 @@ export default function ExhibitionsSlug(initialData) {
             
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24">
               <div className="col-span-12 lg:col-span-2 order-2 lg:order-1">
+                <div className="mb-3 lg:mb-5">
+                  <span className="block text-base/none mb-1">Back To</span>
+                  <span className="block leading-none"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/exhibitions">Exhibitions</Link></span>
+                </div>
                 {exhibition.gallery && (
                   <div className="mb-3 lg:mb-5">
                     <span className="block text-base/none mb-1">Gallery</span>

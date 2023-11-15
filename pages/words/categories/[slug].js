@@ -89,7 +89,7 @@ export default function WordsCategoryIndex(initialData) {
               </div>
             </div>
 
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64 items-end">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-20 lg:pt-64 items-start">
               <div className="col-span-12 lg:col-span-8 lg:col-start-5">
                 <ul className="border-t border-gray">
                   {words.map((e, i) => {

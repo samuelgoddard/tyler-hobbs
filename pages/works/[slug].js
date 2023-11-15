@@ -21,8 +21,8 @@ export default function WorkSlug(initialData) {
   const [mode, setMode] = useState(work.gallerySlides?.length > 0 ? 'gallery' : 'info' )
 
   const [textExpanded, setTextExpanded] = useState(false)
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
+  // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
+  // const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(0)
   
   const textExpandToggle = () => {
@@ -45,6 +45,14 @@ export default function WorkSlug(initialData) {
   const goToSpecificIndex = (index) => {
     setMode('gallery')
     setSelectedIndex(index)
+  }
+
+  let mobileSlides = []
+
+  for (let slide of work.gallerySlides) {
+    for (let image of slide.images) {
+      mobileSlides.push(image);
+    }
   }
 
   return (
@@ -166,21 +174,35 @@ export default function WorkSlug(initialData) {
                       <div className={`overflow-hidden h-full`}>
                         <div className="w-full h-full">
                           <div className="h-full w-full relative">
-                            {work.gallerySlides.map((e, i) => {
-                              return (
-                                <GalleryImages
-                                  layout1={e.layout1}
-                                  layout2={e.layout2}
-                                  layout3={e.layout3}
-                                  layout4={e.layout4}
-                                  layout5={e.layout5}
-                                  images={e.images}
-                                  key={i}
-                                  i={i}
-                                  selectedIndex={selectedIndex}
-                                />
-                              )
-                            })}
+                            <div className="hidden lg:block">
+                              {work.gallerySlides.map((e, i) => {
+                                return (
+                                  <GalleryImages
+                                    containerWidth={e.containerWidth}
+                                    images={e.images}
+                                    key={i}
+                                    i={i}
+                                    selectedIndex={selectedIndex}
+                                  />
+                                )
+                              })}
+                            </div>
+
+                            <div className="flex gap-4 lg:hidden">
+                              {mobileSlides.map((e, i) => {
+                                return (
+                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                                    <div className={`w-full relative overflow-hidden`}>
+                                      <SanityImageResponsive
+                                        image={e}
+                                        sizes={`(max-width: 1024px) 90vw,60vw`}
+                                        className="w-1/2"
+                                      />
+                                    </div>
+                                  </div>
+                                )
+                              })}
+                            </div>
 
                             <Link href={`/works/${work.next ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
@@ -212,6 +234,11 @@ export default function WorkSlug(initialData) {
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
                       <div className="col-span-1 lg:col-span-2">
+                        <div className="mb-3 lg:mb-5">
+                          <span className="block text-base/none mb-1">Back To</span>
+                          <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/works">Works</Link></span>
+                        </div>
+
                         {work.year && (
                           <div className="mb-3 lg:mb-5">
                             <span className="block text-base/none mb-1">Year</span>
