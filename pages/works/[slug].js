@@ -315,7 +315,7 @@ export default function WorkSlug(initialData) {
                             {e.images.map((img, i) => {
                               return (
                                 <li key={i} className="block col-span-1">
-                                  <button onClick={ ()=> goToSpecificIndex(index)} className="w-full block">
+                                  <button onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
                                     <SanityImageResponsive
                                       image={img}
                                       sizes={`(max-width: 1024px) 100vw,25vw`}
