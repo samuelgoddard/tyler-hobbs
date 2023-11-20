@@ -14,21 +14,39 @@
   }
 
   & > ul {
-    @apply list-item list-inside my-6;
+    @apply list-item list-inside my-6 ml-4;
     li {
-      @apply relative pl-5;
+      @apply relative pl-5 pb-1 lg:pb-3;
       
       &::after {
         content: ' ';
-        @apply absolute top-[12px] left-0 w-[6px] h-[6px] rounded-full bg-current;
+        @apply absolute top-[12px] left-0 w-[7px] h-[7px] rounded-full bg-current;
+      }
+
+      ul {
+        @apply pt-1 lg:pt-3;
+
+        li {
+          @apply pb-1 lg:pb-3;
+          
+          &::after {
+            content: ' ';
+            @apply absolute top-[12px] left-0 w-[7px] h-[7px] rounded-full bg-transparent border border-current;
+          }
+
+          &:last-of-type {
+            @apply pb-0 lg:pb-0;
+          }
+        }
       }
     }
   }
 
   & > ol {
-    @apply list-decimal list-inside my-6;
+    @apply list-decimal my-6 ml-8 lg:ml-10;
+    
     li {
-      @apply relative pl-0;
+      @apply relative pl-0 pb-1 lg:pb-3;
     }
   }
 
