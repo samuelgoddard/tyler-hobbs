@@ -48,10 +48,11 @@ export default function WorkSlug(initialData) {
   }
 
   let mobileSlides = []
-
-  for (let slide of work.gallerySlides) {
-    for (let image of slide.images) {
-      mobileSlides.push(image);
+  if (work.gallerySlides) {
+    for (let slide of work.gallerySlides) {
+      for (let image of slide.images) {
+        mobileSlides.push(image);
+      }
     }
   }
 
