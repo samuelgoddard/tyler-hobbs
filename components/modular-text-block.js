@@ -4,7 +4,7 @@ export default function ModularTextBlock({ text, annotationNotesRich }) {
   return (
     <>
       {annotationNotesRich && (
-        <div className="col-span-12 lg:col-span-4 xl:col-span-3 content order-2 lg:order-1 pt-12 lg:pt-0">
+        <div className="col-span-12 lg:col-span-3 lg:col-start-4 content order-2 lg:order-1 pt-12 lg:pt-0 lg:pr-12">
           {annotationNotesRich.map((e, i) => {
             return (
               <div key={i} className={i+1 < annotationNotesRich.length ? 'mb-6' : '' }>
@@ -21,7 +21,7 @@ export default function ModularTextBlock({ text, annotationNotesRich }) {
       )}
 
       { text && (
-        <div className="col-span-12 lg:col-span-7 lg:col-start-6 content order-1 lg:order-2">
+        <div className="col-span-12 lg:col-span-6 lg:col-start-7 content order-1 lg:order-2">
           <BodyRich content={text} />
         </div>
       )}

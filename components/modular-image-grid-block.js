@@ -2,7 +2,7 @@ import SanityImageResponsive from "./sanity-image-responsive"
 
 export default function ModularImageGridBlock({ images, columns, width }) {
   let containerWidth = 'col-span-12 lg:col-span-6 lg:col-start-7'
-  let innerGridCols = 'grid-cols-12 gap-4 lg:gap-6'
+  let innerGridCols = 'grid-cols-12 gap-4 lg:gap-8'
 
   width == 'six' && (
     containerWidth = 'col-span-12 lg:col-span-6 lg:col-start-7'
@@ -59,10 +59,10 @@ export default function ModularImageGridBlock({ images, columns, width }) {
   columns == 'five' && (
     cols = 'col-span-1',
     width == 'six' && (
-      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6'
+      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-8'
     ),
     width == 'ten' && (
-      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6'
+      innerGridCols = 'grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-8'
     ),
     images.length > 1 ? (
       sizes = '(max-width: 1024px) 100vw,25vw'
@@ -72,7 +72,7 @@ export default function ModularImageGridBlock({ images, columns, width }) {
   )
 
   return images && (
-    <div className={`${containerWidth} grid ${innerGridCols} px-0 lg:px-[0.25vw] xl:px-[0.45vw] 3xl:px-[0.65vw]`}>
+    <div className={`${containerWidth} grid ${innerGridCols} px-0`}>
       {images.map((e,i) => {
         return (
           <div className={cols} key={i}>

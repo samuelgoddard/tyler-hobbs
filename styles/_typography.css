@@ -77,3 +77,28 @@ h1, .h1, h2, .h2, h3, .h3 {
 iframe {
   @apply w-full h-auto aspect-[10/6.7] !important;
 }
+
+#print-request-table {
+  table {
+    @apply w-full;
+    
+    tr {
+      @apply border-b border-current;
+
+      td, th {
+        @apply mr-auto last-of-type:ml-auto p-3 font-normal;
+      }
+
+      td {
+        @apply lg:first-of-type:w-[40.1%];
+      }
+
+      &:nth-of-type(even) {
+        td {
+          @apply bg-gray bg-opacity-[0.1];
+        }
+      }
+
+    }
+  }
+}

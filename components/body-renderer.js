@@ -21,12 +21,8 @@ let bodySerializers = {
   textBlock: {
     component: ModularTextBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-0 lg:gap-0 mb-16 lg:mb-20">
-      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-        <div className="grid grid-cols-12 items-end gap-0 lg:gap-0">
-          {children}
-        </div>
-      </div>
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-20 items-end">
+      {children}
     </div>
   },
   headingBlock: {
@@ -67,9 +63,7 @@ let bodySerializers = {
     component: ModularEmbedBlock,
     wrapper: ({ children }) => 
     <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
-      <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
-      </div>
     </div>
   },
   codeBlock: {
