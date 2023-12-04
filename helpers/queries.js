@@ -2,6 +2,13 @@
 const seo = `seo { ..., shareGraphic { asset-> } }`
 const image = `
   asset-> { ... },
+  linksTo-> {
+    _type,
+    slug {
+      current
+    }
+  },
+  fullScreenToggle,
   vimeoVideoOverrideUrl,
   caption[] {
     ...,
@@ -22,6 +29,7 @@ const contentBlocks = `
     ...,
     annotationNotes[],
     annotationNotesRich[] {
+      number,
       content[] {
         ...,
         markDefs[] {
@@ -136,6 +144,8 @@ export const worksSlugQuery = `{
       images[] {
         ${image}
       },
+      videoEmbed,
+      alignment,
       containerWidth,
     },
     _createdAt,

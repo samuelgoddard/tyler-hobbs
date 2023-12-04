@@ -50,8 +50,10 @@ export default function WorkSlug(initialData) {
   let mobileSlides = []
   if (work.gallerySlides) {
     for (let slide of work.gallerySlides) {
-      for (let image of slide.images) {
-        mobileSlides.push(image);
+      if (!slide.videoEmbed) {
+        for (let image of slide.images) {
+          mobileSlides.push(image);
+        }
       }
     }
   }
@@ -160,13 +162,13 @@ export default function WorkSlug(initialData) {
                     className="w-full h-screen pt-52 lg:pt-16"
                   >
                     {(selectedIndex !== 0 && selectedIndex !== work.gallerySlides.length) && (
-                      <button onClick={scrollPrev} className={`absolute bottom-3 lg:bottom-0 lg:top-24 left-3 lg:left-0 lg:pl-6 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-start hover:text-black dark:hover:text-white`}>
+                      <button onClick={scrollPrev} className={`absolute bottom-3 lg:bottom-0 lg:top-24 left-3 lg:left-0 lg:pl-6 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-start hover:text-black dark:hover:text-white focus:border-none focus:outline-none`}>
                         <svg className="w-8 lg:w-10 rotate-180" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
                     {(selectedIndex !== work.gallerySlides.length) && (
-                      <button onClick={scrollNext} className={`absolute bottom-3 lg:bottom-0 lg:top-24 right-3 lg:right-0 lg:pr-8 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-end hover:text-black dark:hover:text-white`}>
+                      <button onClick={scrollNext} className={`absolute bottom-3 lg:bottom-0 lg:top-24 right-3 lg:right-0 lg:pr-8 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-end hover:text-black dark:hover:text-white focus:border-none focus:outline-none`}>
                         <svg className="w-8 lg:w-10" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
@@ -180,9 +182,11 @@ export default function WorkSlug(initialData) {
                                 return (
                                   <GalleryImages
                                     containerWidth={e.containerWidth}
+                                    alignment={e.alignment}
                                     images={e.images}
                                     key={i}
                                     i={i}
+                                    video={e.videoEmbed}
                                     selectedIndex={selectedIndex}
                                   />
                                 )
@@ -263,7 +267,7 @@ export default function WorkSlug(initialData) {
                               e?.internalLink?._type == 'exhibitions' && (route = '/exhibitions')
                               e?.internalLink?._type == 'pages' && (route = '/pages')
 
-                              return e.internal ? (
+                              return e.internalLink ? (
                                 <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
                               ) : (
                                 <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
@@ -307,7 +311,7 @@ export default function WorkSlug(initialData) {
                       </div>
                     </div>
                     
-                    {work.gallerySlides && (
+                    {/* {work.gallerySlides && (
                       <ul className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32">
                         {work.gallerySlides.map((e, index) => {
                           return (
@@ -328,7 +332,7 @@ export default function WorkSlug(initialData) {
                           )
                         })}
                       </ul>
-                    )}
+                    )} */}
                   </m.div>
                 )}
               </AnimatePresence>

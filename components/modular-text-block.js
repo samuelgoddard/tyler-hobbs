@@ -8,7 +8,7 @@ export default function ModularTextBlock({ text, annotationNotesRich }) {
           {annotationNotesRich.map((e, i) => {
             return (
               <div key={i} className={i+1 < annotationNotesRich.length ? 'mb-6' : '' }>
-                <span className="w-7 h-7 bg-gray/30 flex items-center justify-center text-xs/none lg:text-sm/none rounded-full mb-3">{i + 1}</span>
+                <span className="w-7 h-7 bg-gray/30 flex items-center justify-center text-xs/none lg:text-sm/none rounded-full mb-3">{e.number ? e.number : i + 1}</span>
                 {e && (
                   <div className="text-sm/normal lg:text-base/normal">
                     <BodyRich content={e.content} />

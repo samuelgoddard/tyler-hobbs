@@ -78,6 +78,12 @@ iframe {
   @apply w-full h-auto aspect-[10/6.7] !important;
 }
 
+.slideIframe {
+  iframe {
+    @apply relative w-full h-full max-h-[70vh] !important;
+  }
+}
+
 #print-request-table {
   table {
     @apply w-full;

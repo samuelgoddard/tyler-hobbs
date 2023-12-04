@@ -51,6 +51,7 @@ export default function SanityImage({ image, className, priority, widthOverride,
           }}
         />
       </figure>
+      
       {image.caption && (
         <figcaption className="block text-sm lg:text-base text-gray py-2">
           <BodyRich content={image.caption} />
