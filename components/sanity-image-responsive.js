@@ -37,7 +37,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
       )}
     >
       <figure className={`block relative image w-full ${className ? className : ''}`}>
-        <div className={`w-full ${imageProps.src.includes('.png') ? '' : 'bg-black/10'}`}>
+        <div className={`w-full ${imageProps?.src.includes('.png') ? '' : 'bg-black/10'}`}>
           <Image
             src={imageProps?.src}
             sizes={sizes ? sizes : `(max-width: 1024px) 100vw,80vw`}

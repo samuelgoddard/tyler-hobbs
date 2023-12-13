@@ -1,14 +1,16 @@
 import SanityImage from "./sanity-image"
 import SanityImageResponsive from "./sanity-image-responsive"
 
-export default function GalleryImages({ containerWidth, images, i, selectedIndex, alignment, video }) {
+export default function GalleryImages({ containerWidth, images, i, selectedIndex, alignment, type, video, layout }) {
   
   let innerCols = 'col-span-6'
   let alignClass = 'justify-center'
 
   let fill = false
-  let centeredX = true
   let centeredY = true
+
+  let image1Width = 'w-auto'
+  let image2Width = 'w-auto'
   
   alignment == 'left' && (alignClass = 'justify-start')
   alignment == 'right' && (alignClass = 'justify-end')
@@ -29,13 +31,27 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
     innerCols = 'w-[100%]',
     fill = images.length == 1 ? true : false
   )
+  layout == '5050' && (
+    image1Width = 'w-[50%]',
+    image2Width = 'w-[50%]'
+  )
+  layout == '7030' && (
+    image1Width = 'w-[70%]',
+    image2Width = 'w-[30%]'
+  )
+  layout == '3070' && (
+    image1Width = 'w-[70%]',
+    image2Width = 'w-[30%]'
+  )
 
   return(
     <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{containerWidth}</div> */}
+
+      {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{layout}</div> */}
       
       <div className={`h-full flex flex-wrap items-center ${alignClass}`}>
-        {images && (
+        {(type == 'item' && images) && (
           <div className={`h-full ${innerCols}`}>
             <div className={`flex h-full space-x-6 ${centeredY && 'items-center'} ${alignClass}`}>
               <div className={`flex w-full items-start space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
@@ -64,7 +80,55 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
           </div>
         )}
 
-        {video && (
+        {type == 'itemCustomizable' && (
+          <div className={`h-full w-full`}>
+            <div className={`flex w-full space-x-6 h-full`}>
+              {images.map((img, i) => {
+                let imageW = 'w-auto'
+
+                if (i == 0 && layout == '5050') {
+                  imageW = 'w-[50%]'
+                }
+                if (i == 1 && layout == '5050') {
+                  imageW = 'w-[50%]'
+                }
+
+                if (i == 0 && layout == '7030') {
+                  imageW = 'w-[70%]'
+                }
+                if (i == 1 && layout == '7030') {
+                  imageW = 'w-[30%]'
+                }
+
+                if (i == 0 && layout == '3070') {
+                  imageW = 'w-[30%]'
+                }
+                if (i == 1 && layout == '3070') {
+                  imageW = 'w-[70%]'
+                }
+                return (
+                  <div className={`${img.fillMode ? 'h-full' : '' } relative overflow-hidden ${imageW}`} key={i}>
+                    { img.fillMode ? (
+                      <SanityImage
+                        image={img.image}
+                        sizes={`(max-width: 1024px) 90vw,60vw`}
+                        className="w-full h-full object-cover object-center absolute inset-0"
+                      />
+                    ) : (
+                      <SanityImageResponsive
+                        image={img.image}
+                        sizes={`(max-width: 1024px) 90vw,60vw`}
+                        className="w-full"
+                      />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {type == 'itemVideo' && (
           <div className={`h-full ${innerCols}`}>
             <div className={`flex h-full space-x-6 ${centeredY && 'items-center'} ${alignClass}`}>
               <div className="slideIframe w-full relative z-[999]">

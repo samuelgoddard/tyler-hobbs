@@ -99,6 +99,7 @@ export const worksQuery = `{
       ${image},
     },
     gallerySlides[] {
+      _type,
       images[] {
         ${image}
       },
@@ -141,9 +142,15 @@ export const worksSlugQuery = `{
       }
     },
     gallerySlides[] {
+      _type,
       images[] {
-        ${image}
+        ${image},
+        fillMode,
+        image {
+          ${image}
+        }
       },
+      layout,
       videoEmbed,
       alignment,
       containerWidth,

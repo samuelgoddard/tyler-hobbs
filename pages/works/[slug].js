@@ -18,7 +18,7 @@ const pageService = new SanityPageService(worksSlugQuery)
 
 export default function WorkSlug(initialData) {
   const { data: { work, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
-  const [mode, setMode] = useState(work.gallerySlides?.length > 0 ? 'gallery' : 'info' )
+  const [mode, setMode] = useState('info' )
 
   const [textExpanded, setTextExpanded] = useState(false)
   // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
@@ -186,7 +186,9 @@ export default function WorkSlug(initialData) {
                                     images={e.images}
                                     key={i}
                                     i={i}
+                                    type={e._type}
                                     video={e.videoEmbed}
+                                    layout={e.layout}
                                     selectedIndex={selectedIndex}
                                   />
                                 )
@@ -311,17 +313,17 @@ export default function WorkSlug(initialData) {
                       </div>
                     </div>
                     
-                    {/* {work.gallerySlides && (
+                    {work.gallerySlides && (
                       <ul className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32">
                         {work.gallerySlides.map((e, index) => {
                           return (
                             <>
-                            {e.images.map((img, i) => {
+                            {e.images?.map((img, i) => {
                               return (
                                 <li key={i} className="block col-span-1">
                                   <button onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
                                     <SanityImageResponsive
-                                      image={img}
+                                      image={img.image ? img.image : img}
                                       sizes={`(max-width: 1024px) 100vw,25vw`}
                                       />
                                   </button>
@@ -332,7 +334,7 @@ export default function WorkSlug(initialData) {
                           )
                         })}
                       </ul>
-                    )} */}
+                    )}
                   </m.div>
                 )}
               </AnimatePresence>
