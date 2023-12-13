@@ -97,7 +97,7 @@ export default function Works(initialData) {
                               <Link href={`/works/${e.slug.current}`} className="block w-full a11y-focus group">
                                 <div className="block">
                                   <SanityImageResponsive
-                                    image={eee}
+                                    image={eee.image ? eee.image : eee}
                                     className="w-full mb-3"
                                     sizes={`(max-width: 1024px) 100vw, 15vw`}
                                   />

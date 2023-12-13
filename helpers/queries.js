@@ -101,7 +101,11 @@ export const worksQuery = `{
     gallerySlides[] {
       _type,
       images[] {
-        ${image}
+        ${image},
+        fillMode,
+        image {
+          ${image}
+        }
       },
     },
     ${slug}
