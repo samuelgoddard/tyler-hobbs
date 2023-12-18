@@ -11,6 +11,8 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
 
   let image1Width = 'w-auto'
   let image2Width = 'w-auto'
+
+  let maxW = ''
   
   alignment == 'left' && (alignClass = 'justify-start')
   alignment == 'right' && (alignClass = 'justify-end')
@@ -22,7 +24,11 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
     innerCols = 'w-[49.33%]'
   )
   containerWidth == 8 && (
-    innerCols = 'w-[66.11%]'
+    innerCols = 'w-[66.11%]',
+
+    images?.length == 2 && (
+      maxW = 'max-w-[50vh]'
+    )
   )
   containerWidth == 10 && (
     innerCols = 'w-[83%]'
@@ -30,6 +36,10 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   containerWidth == 12 && (
     innerCols = 'w-[100%]',
     fill = images.length == 1 ? true : false
+
+    // images?.length == 2 && (
+    //   maxW = 'max-w-[90ch]'
+    // )
   )
   layout == '5050' && (
     image1Width = 'w-[50%]',
@@ -45,7 +55,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   )
 
   return(
-    <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
+    <div className={`absolute inset-0 bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{containerWidth}</div> */}
 
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{layout}</div> */}
@@ -54,11 +64,11 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
         {(type == 'item' && images) && (
           <div className={`h-full ${innerCols}`}>
             <div className={`flex h-full space-x-6 ${centeredY && 'items-center'} ${alignClass}`}>
-              <div className={`flex w-full items-start space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
+              <div className={`flex w-full items-start justify-start space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
                 {images.map((img, i) => {
                   // let portrait = (img.asset.metadata.dimensions.height > img.asset.metadata.dimensions.width)
                   return (
-                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden`} key={i}>
+                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden ${maxW}`} key={i}>
                       { fill ? (
                         <SanityImage
                           image={img}
@@ -69,7 +79,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                         <SanityImageResponsive
                           image={img}
                           sizes={`(max-width: 1024px) 90vw,60vw`}
-                          className="w-1/2"
+                          className="w-full"
                         />
                       )}
                     </div>

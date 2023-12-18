@@ -8,6 +8,7 @@ import { worksQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImage from '@/components/sanity-image'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
+import { Fragment } from 'react'
 const pageService = new SanityPageService(worksQuery)
 
 export default function Works(initialData) {
@@ -87,10 +88,10 @@ export default function Works(initialData) {
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-5 pt-28 lg:pt-80">
               {works.map((e, i) => {
                 return (
-                  <>
+                  <Fragment key={i}>
                   {e.gallerySlides?.map((ee, i) => {
                     return (
-                      <>
+                      <Fragment key={i}>
                         {ee.images?.map((eee, i) => {
                           return !eee.vimeoVideoOverrideUrl && (
                             <div className="col-span-6 lg:col-span-2" key={i}>
@@ -111,10 +112,10 @@ export default function Works(initialData) {
                             </div>
                           )
                         })}
-                      </>
+                      </Fragment>
                       )
                     })}
-                  </>
+                  </Fragment>
                 )
               })}
             </div>

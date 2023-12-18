@@ -14,23 +14,26 @@ import BodyRich from '@/components/body-rich'
 import Link from 'next/link'
 import ConditionalWrap from 'conditional-wrap';
 import GalleryImages from '@/components/gallery-images'
+import { useMousePosition } from '@/helpers/mousePosition'
 const pageService = new SanityPageService(worksSlugQuery)
 
 export default function WorkSlug(initialData) {
   const { data: { work, contact, firstWorksCatSlug }  } = pageService.getPreviewHook(initialData)()
-  const [mode, setMode] = useState('info' )
 
+  const [mode, setMode] = useState('info' )
+  const mousePosition = useMousePosition();
   const [textExpanded, setTextExpanded] = useState(false)
   // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   // const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const [selectedIndex, setSelectedIndex] = useState(0)
   
+
   const textExpandToggle = () => {
     textExpanded ? setTextExpanded(false) : setTextExpanded(true)
   }
 
   const scrollNext = () => {
-    selectedIndex != work.gallerySlides.length && setSelectedIndex(selectedIndex + 1)
+    selectedIndex != (work.gallerySlides.length - 1) && setSelectedIndex(selectedIndex + 1)
   }
 
   const scrollPrev = () => {
@@ -47,7 +50,9 @@ export default function WorkSlug(initialData) {
     setSelectedIndex(index)
   }
 
+  let dimsArray = work.dims.split("(")
   let mobileSlides = []
+
   if (work.gallerySlides) {
     for (let slide of work.gallerySlides) {
       if (!slide.videoEmbed) {
@@ -159,24 +164,26 @@ export default function WorkSlug(initialData) {
                     initial={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
                     animate={{ opacity: 1, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
                     exit={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
-                    className="w-full h-screen pt-52 lg:pt-16"
+                    className="w-full h-[calc(100vh-208px)] lg:h-[calc(100vh-128px)] mt-52 lg:mt-32"
                   >
                     {(selectedIndex !== 0 && selectedIndex !== work.gallerySlides.length) && (
-                      <button onClick={scrollPrev} className={`absolute bottom-3 lg:bottom-0 lg:top-24 left-3 lg:left-0 lg:pl-6 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-start hover:text-black dark:hover:text-white focus:border-none focus:outline-none`}>
-                        <svg className="w-8 lg:w-10 rotate-180" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group cursor-none overflow-hidden`}>
+                        <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 rotate-180 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                        <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
-                    {(selectedIndex !== work.gallerySlides.length) && (
-                      <button onClick={scrollNext} className={`absolute bottom-3 lg:bottom-0 lg:top-24 right-3 lg:right-0 lg:pr-8 w-8 lg:w-1/2 text-gray z-[100] flex items-center justify-end hover:text-black dark:hover:text-white focus:border-none focus:outline-none`}>
-                        <svg className="w-8 lg:w-10" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                    {(selectedIndex !== work.gallerySlides.length - 1) && (
+                      <button onClick={scrollNext} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group cursor-none`}>
+                        <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                        <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
 
                     {work.gallerySlides && (
                       <div className={`overflow-hidden h-full`}>
                         <div className="w-full h-full">
-                          <div className="h-full w-full relative">
+                          <div className="h-full w-full relative ">
                             <div className="hidden lg:block">
                               {work.gallerySlides.map((e, i) => {
                                 return (
@@ -211,7 +218,7 @@ export default function WorkSlug(initialData) {
                               })}
                             </div>
 
-                            <Link href={`/works/${work.next ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            {/* <Link href={`/works/${work.next ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[15%] max-w-[80%] lg:max-w-[65%]">
                                   <span className="grey block mb-3">Next</span>
@@ -225,7 +232,7 @@ export default function WorkSlug(initialData) {
                                   </span>
                                 </div>
                               </div>    
-                            </Link>
+                            </Link> */}
                           </div>
                         </div>
                       </div>
@@ -255,7 +262,7 @@ export default function WorkSlug(initialData) {
                         {work.dims && (
                           <div className="mb-3 lg:mb-5">
                             <span className="block text-base/none mb-1">Dimensions</span>
-                            <span className="block leading-[1.2]">{work.dims}</span>
+                            <span className="block leading-[1.2]">{dimsArray[0]}<br/>({dimsArray[1]}</span>
                           </div>
                         )}
                         {work.links && (
@@ -298,14 +305,14 @@ export default function WorkSlug(initialData) {
                         {work.text && (
                           <>
                             <div className={`content mb-4 lg:mb-6 w-[90%] lg:w-full`}>
-                              {work.text.length > 1 && !textExpanded ? (
-                                <BodyRich content={work.text[0]} />
+                              {work.text.length > 2 && !textExpanded ? (
+                                <BodyRich content={work.text?.slice(0,2)} />
                               ) : (
                                 <BodyRich content={work.text} />
                               )}
                             </div>
 
-                            {work.text.length > 1 && (
+                            {work.text.length > 2 && (
                               <button onClick={textExpandToggle} className="text-gray block">{textExpanded ? '- Read Less' : '+ Read more'}</button>
                             )}
                           </>
