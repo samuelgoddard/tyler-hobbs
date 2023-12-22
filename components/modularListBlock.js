@@ -4,7 +4,7 @@ export default function ModularListBlock({ heading, listItems }) {
   return listItems && (
     <>
       {heading && (
-        <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0">{heading}</h2>
+        <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0 tracking-[-0.015em] lg:tracking-[-0.015em]">{heading}</h2>
       )}
 
       <ul className="border-t border-gray">

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  @apply font-sans antialiased text-black bg-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black text-xl lg:text-2xl dark:bg-black dark:text-white;
+  @apply font-sans antialiased text-black bg-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black text-xl lg:text-2xl lg:leading-[1.35] dark:bg-black dark:text-white;
   overscroll-behavior: none!important;
   overflow-y: scroll !important;
 }

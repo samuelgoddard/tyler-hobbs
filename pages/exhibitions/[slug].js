@@ -43,7 +43,7 @@ export default function ExhibitionsSlug(initialData) {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0">{exhibition.title}</h1>
+                <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em]">{exhibition.title}</h1>
               </div>
             </div>
             
@@ -83,9 +83,9 @@ export default function ExhibitionsSlug(initialData) {
                       e?.internalLink?._type == 'pages' && (route = '/pages')
 
                       return e.internal ? (
-                        <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                        <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-2 a11y-focus" key={i}>{e.linkText}</Link>
                       ) : (
-                        <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                        <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-2 a11y-focus" key={i}>{e.linkText}</a>
                       )
                     })}
                   </div>

@@ -74,6 +74,8 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                           image={img}
                           sizes={`(max-width: 1024px) 90vw,60vw`}
                           className="w-full h-full object-cover object-center absolute inset-0"
+                          focalPoint={img.hotspot}
+                          crop={img.crop}
                         />
                       ) : (
                         <SanityImageResponsive
@@ -123,6 +125,8 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                         image={img.image}
                         sizes={`(max-width: 1024px) 90vw,60vw`}
                         className="w-full h-full object-cover object-center absolute inset-0"
+                        focalPoint={img.image.hotspot}
+                        crop={img.image.crop}
                       />
                     ) : (
                       <SanityImageResponsive

@@ -16,6 +16,10 @@ module.exports = {
       "3xl": "1920px"
     },
     extend: {
+      fontSize: {
+        '2xl': '1.375001rem',
+      
+      },
       colors: {
         'black': '#1D1917',
         'white': '#FFFDF8',

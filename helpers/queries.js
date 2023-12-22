@@ -2,6 +2,8 @@
 const seo = `seo { ..., shareGraphic { asset-> } }`
 const image = `
   asset-> { ... },
+  hotspot { ... },
+  crop { ... },
   linksTo-> {
     _type,
     slug {
