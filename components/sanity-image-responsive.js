@@ -22,14 +22,14 @@ export default function SanityImageResponsive({ image, className, alt, priority,
   
   let route = '/'
 
-  image.linksTo?._type == 'work' && (route = '/works')
-  image.linksTo?._type == 'words' && (route = '/words')
-  image.linksTo?._type == 'exhibitions' && (route = '/exhibitions')
-  image.linksTo?._type == 'pages' && (route = '/pages')
+  image?.linksTo?._type == 'work' && (route = '/works')
+  image?.linksTo?._type == 'words' && (route = '/words')
+  image?.linksTo?._type == 'exhibitions' && (route = '/exhibitions')
+  image?.linksTo?._type == 'pages' && (route = '/pages')
 
 	return (
     <ConditionalWrap
-      condition={image.linksTo}
+      condition={image?.linksTo}
       wrap={children => (
         <Link href={`${route}/${image.linksTo?.slug.current}`}>
           {children}

@@ -141,15 +141,17 @@ export default function WordsSlug(initialData) {
                     </div>
                   )}
                 </div>
-
-                <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-5">
-                  <SanityImageResponsive
-                    priority={true}
-                    image={article.heroImage}
-                    sizes={`(max-width: 1024px) 100vw,90vw`}
-                    className={`w-full`}
-                  />
-                </div>
+                
+                {article.heroImage && (
+                  <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-5">
+                    <SanityImageResponsive
+                      priority={true}
+                      image={article.heroImage}
+                      sizes={`(max-width: 1024px) 100vw,90vw`}
+                      className={`w-full`}
+                    />
+                  </div>
+                )}
 
                 <div className="col-span-12 order-3 lg:order-3" id="content">
                   <div className="-mx-3 lg:-mx-8">
