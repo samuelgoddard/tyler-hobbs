@@ -50,9 +50,9 @@ export default function SanityImage({ image, className, priority, widthOverride,
       <figure className={`image bg-black/10 ${className} cover-image absolute inset-0 w-full h-full object-cover object-center overflow-hidden`}>
         <div
           // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
-          className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${imageIsLoaded ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
+          className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${(imageIsLoaded || priority) ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
         >
-          <img src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
+          <img width="100" height="100" src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
         </div>
 
         <Image

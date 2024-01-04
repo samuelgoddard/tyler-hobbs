@@ -8,7 +8,8 @@ import ConditionalWrap from 'conditional-wrap';
 import Link from 'next/link';
 
 export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes }) {
-  const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
+  const [imageIsLoaded, setImageIsLoaded] = useState(false)
+  // const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   
   const lightboxToggle = () => {
@@ -41,9 +42,9 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           {/* LQIP */}
           <div
             // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
-            className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${imageIsLoaded ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
+            className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
           >
-            <img src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
+            <img width="100" height="100" src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
           </div>
           {/* LQIP */}
 
