@@ -172,7 +172,7 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                className="md:hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 1.1, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
@@ -184,7 +184,7 @@ export default function Home(initialData) {
                 />
               </m.div>
               
-              <div className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
+              <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
                 className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent"
