@@ -55,7 +55,7 @@ export default function WordsCategoryIndex(initialData) {
               </div>
 
 
-              <div className="col-span-2 block leading-[0.9] text-gray">
+              <div className="col-span-3 block leading-[0.9] text-gray">
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
@@ -104,7 +104,7 @@ export default function WordsCategoryIndex(initialData) {
               </div>
 
 
-              <div className="col-span-2 block leading-[0.9] text-gray">
+              <div className="col-span-3 block leading-[0.9] text-gray">
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
