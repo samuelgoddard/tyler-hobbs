@@ -71,8 +71,10 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           {image.fullScreenToggle && (
             <>
               <button onClick={()=>lightboxToggle()} className="absolute inset-0 w-full h-full z-10 group a11y-focus">
-                <div className="rotate-45 transition-transform ease-in-out duration-300 group-hover:rotate-0 group-focus:ouline-none a11y-focus w-6 absolute bottom-6 right-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-full" viewBox="0 0 14 14"><path fill="currentColor" fill-rule="evenodd" d="M2 9H0v5h5v-2H2V9ZM0 5h2V2h3V0H0v5Zm12 7H9v2h5V9h-2v3ZM9 0v2h3v3h2V0H9Z"/></svg>
+                <div className="group-focus:ouline-none a11y-focus absolute p-2 lg:p-2 bg-white dark:bg-black bottom-2 lg:bottom-4 right-2 lg:right-4">
+                  <div className="w-4 lg:w-[21px] transition-transform ease-in-out duration-[450ms] group-hover:scale-[1.15] leading-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fillRule="evenodd" fill="currentColor" d="M11 2v9H2v2h9v9h2v-9h9v-2h-9V2Z"/></svg>
+                  </div>
                 </div>
               </button>
 
@@ -82,14 +84,14 @@ export default function SanityImageResponsive({ image, className, alt, priority,
                     initial={{ opacity: 0}}
                     animate={{ opacity: 1, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     exit={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]} }}
-                    className="fixed inset-0 z-[100] bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-[6px] flex flex-col items-center justify-center p-3"
+                    className="fixed inset-0 z-[1000] bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-[6px] flex flex-col items-center justify-center p-3"
                     onClick={()=>lightboxToggle()}
                   >
                     <button onClick={()=>lightboxToggle()} className="absolute p-2 top-5 right-5 transition-transform ease-in-out duration-300 lg:hover:-translate-x-1">
                       Close
                     </button>
 
-                    <div className="w-full lg:w-full max-w-[100vh]">
+                    <div className="w-full lg:w-full max-w-[85vh]">
                       <Image
                         src={imageProps?.src}
                         sizes={`(max-width: 1024px) 100vw,90vw`}
