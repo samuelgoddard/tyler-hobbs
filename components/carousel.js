@@ -2,6 +2,7 @@ import SanityImageResponsive from "./sanity-image-responsive"
 import React, { useState, useEffect, useCallback } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import SanityImage from "./sanity-image"
+import SanityImageCarousel from "./sanity-image-carousel"
 
 export default function Carousel({ images }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 33 })
@@ -46,13 +47,18 @@ export default function Carousel({ images }) {
           <div className="embla__container">
             {images.map((e,i) => {
               return (
-                <div className="embla__slide relative w-full h-[53vw]" key={i}>
-                  <SanityImage
-                    image={e}
-                    sizes={`(max-width: 1024px) 100vw,80vw`}
-                    className="w-full h-full absolute inset-0"
-                    priority={i == 0 ? true : false}
-                  />
+                <div className="embla__slide relative w-full max-h-[53vw] bg-gray/10" key={i}>
+                  <div className="w-full h-full flex justify-center items-center">
+                      <div className="w-auto h-[65vw] lg:h-[55vw] inline-block">
+                        {/* <img src={e.asset.url} className="w-auto h-full" /> */}
+                        <SanityImageCarousel
+                          image={e}
+                          sizes={`(max-width: 1024px) 100vw,80vw`}
+                          className="h-full w-auto inline-block"
+                          priority={i == 0 ? true : false}
+                        />
+                      </div>
+                    </div>
                 </div>
               )
             })}
