@@ -127,6 +127,10 @@ export const worksSlugQuery = `{
     dims,
     media,
     iterations,
+    category-> {
+      title,
+      ${slug}
+    },
     links[] {
       ...,
       internalLink->{

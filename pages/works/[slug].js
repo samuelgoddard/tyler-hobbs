@@ -265,7 +265,8 @@ export default function WorkSlug(initialData) {
                       <div className="col-span-1 lg:col-span-2">
                         <div className="mb-3 lg:mb-5">
                           <span className="block text-base/none mb-1">Back To</span>
-                          <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/works">Works</Link></span>
+                          <span className="block leading-none text-gray mb-1"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/works">Works</Link></span>
+                          <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href={`/works/categories/${work.category?.slug.current}`}>{work.category?.title}</Link></span>
                         </div>
 
                         {work.year && (
