@@ -64,11 +64,11 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
         {(type == 'item' && images) && (
           <div className={`h-full ${innerCols}`}>
             <div className={`flex h-full space-x-6 ${centeredY && 'items-center'} ${alignClass}`}>
-              <div className={`flex w-full items-start justify-start space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
+              <div className={`flex w-full items-start justify-center space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
                 {images.map((img, i) => {
                   // let portrait = (img.asset.metadata.dimensions.height > img.asset.metadata.dimensions.width)
                   return (
-                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden ${maxW}`} key={i}>
+                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden max-w-[45vh] ${maxW}`} key={i}>
                       { fill ? (
                         <SanityImage
                           image={img}

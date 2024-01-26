@@ -57,7 +57,7 @@ export default function Works(initialData) {
                         animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
-                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug.current}`}>{e.title}</Link></m.span>
+                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
                   )
                 })}
@@ -128,7 +128,7 @@ export default function Works(initialData) {
                         animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
-                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug.current}`}>{e.title}</Link></m.span>
+                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
                   )
                 })}
@@ -175,12 +175,12 @@ export default function Works(initialData) {
                         {ee.images?.map((eee, i) => {
                           return !eee.vimeoVideoOverrideUrl && (
                             <div className="col-span-6 lg:col-span-2" key={i}>
-                              <Link href={`/works/${e.slug.current}`} className="block w-full a11y-focus group">
+                              <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
                                 <div className="block">
                                   <SanityImageResponsive
                                     image={eee.image ? eee.image : eee}
                                     className="w-full mb-3"
-                                    sizes={`(max-width: 1024px) 100vw, 15vw`}
+                                    sizes={`(max-width: 1024px) 100vw, 5vw`}
                                   />
                                   <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">
                                     <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>

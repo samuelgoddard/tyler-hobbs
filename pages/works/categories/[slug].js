@@ -57,7 +57,7 @@ export default function WorksCatSlug(initialData) {
                         animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
-                      ><Link className={`a11y-focus inline-block ${cat.slug.current == e.slug.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug.current}`}>{e.title}</Link></m.span>
+                      ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
                   )
                 })}
@@ -107,7 +107,7 @@ export default function WorksCatSlug(initialData) {
                         animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
-                      ><Link className={`a11y-focus inline-block ${cat.slug.current == e.slug.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug.current}`}>{e.title}</Link></m.span>
+                      ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
                   )
                 })}
@@ -128,7 +128,7 @@ export default function WorksCatSlug(initialData) {
               {works.map((e,i) => {
                 return (
                   <div className="works-teaser" key={i}>
-                    <TeaserWorks image={e.teaserImage} href={`/works/${e.slug.current}`} heading={`${e.title}, ${e.year}`} series={e.series} />
+                    <TeaserWorks image={e.teaserImage} href={`/works/${e.slug?.current}`} heading={`${e.title}, ${e.year}`} series={e.series} />
                   </div>
                 )
               })}
