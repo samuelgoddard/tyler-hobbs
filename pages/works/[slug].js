@@ -233,7 +233,7 @@ export default function WorkSlug(initialData) {
                               })}
                             </div>
 
-                            <Link href={`/works/${work.next.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[15%] max-w-[80%] lg:max-w-[65%]">
                                   <span className="grey block mb-3">Next</span>
