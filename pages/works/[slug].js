@@ -278,7 +278,11 @@ export default function WorkSlug(initialData) {
                         {work.dims && (
                           <div className="mb-3 lg:mb-5">
                             <span className="block text-base/none mb-1">Dimensions</span>
-                            <span className="block leading-[1.2]">{dimsArray[0]}<br/>({dimsArray[1]}</span>
+                            {dimsArray.length > 1 ? (
+                              <span className="block leading-[1.2]">{dimsArray[0]}<br/>({dimsArray[1]}</span>
+                            ) : (
+                              <span className="block leading-[1.2]">{dimsArray[0]}</span>
+                            )}
                           </div>
                         )}
                         {work.links && (
