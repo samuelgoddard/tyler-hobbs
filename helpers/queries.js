@@ -11,6 +11,7 @@ const image = `
     }
   },
   fullScreenToggle,
+  removeFromIndex,
   vimeoVideoOverrideUrl,
   caption[] {
     ...,

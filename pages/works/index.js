@@ -173,7 +173,7 @@ export default function Works(initialData) {
                     return (
                       <Fragment key={i}>
                         {ee.images?.map((eee, i) => {
-                          return !eee.vimeoVideoOverrideUrl && (
+                          return !eee.vimeoVideoOverrideUrl && (!eee.removeFromIndex && !eee.image?.removeFromIndex) && (
                             <div className="col-span-6 lg:col-span-2" key={i}>
                               <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
                                 <div className="block">
