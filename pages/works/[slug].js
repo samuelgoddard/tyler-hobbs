@@ -168,13 +168,15 @@ export default function WorkSlug(initialData) {
               </div>
               
               <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity ease-in-out duration-[330ms] delay-[330ms] ${ mode == 'info' && 'opacity-0 delay-[0ms]' }`}>
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none text-black dark:text-white"
-                  >{work.gallerySlides && (`${selectedIndex + 1} — ${work.gallerySlides?.length + 1}`)}</m.span>
+                <span className={`block relative overflow-hidden`}>
+                  <span className={`block transition-transform ease-in-out duration-[330ms] ${ selectedIndex + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                    <m.span
+                      initial={{ y: '100%' }}
+                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      className="block leading-none text-black dark:text-white"
+                    >{work.gallerySlides && (`${selectedIndex + 1 > work.gallerySlides?.length ? selectedIndex : selectedIndex + 1} — ${work.gallerySlides?.length}`)}</m.span>
+                  </span>
                 </span>
               </div>
             </div>
