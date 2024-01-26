@@ -17,6 +17,8 @@ import GalleryImages from '@/components/gallery-images'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useMousePosition } from '@/helpers/mousePosition'
 import { useRouter } from 'next/router'
+import useKeypress from 'react-use-keypress';
+
 const pageService = new SanityPageService(worksSlugQuery)
 
 export default function WorkSlug(initialData) {
@@ -38,12 +40,20 @@ export default function WorkSlug(initialData) {
   }
 
   const scrollNext = () => {
-    selectedIndex != (work.gallerySlides?.length + 1) && setSelectedIndex(selectedIndex + 1)
+    selectedIndex != (work.gallerySlides?.length) && setSelectedIndex(selectedIndex + 1)
   }
 
   const scrollPrev = () => {
     selectedIndex != 0 && setSelectedIndex(selectedIndex - 1)
   }
+
+  useKeypress('ArrowLeft', () => {
+    scrollPrev();
+  });
+
+  useKeypress('ArrowRight', () => {
+    scrollNext();
+  });
 
   const createQueryString = useCallback(
     (name, value) => {
