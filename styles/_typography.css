@@ -75,7 +75,7 @@ h1, .h1, h2, .h2, h3, .h3 {
 }
 
 iframe {
-  @apply w-full h-auto aspect-[10/6.7] !important;
+  @apply w-full h-auto aspect-[10/5.6] !important;
 }
 
 .slideIframe {
