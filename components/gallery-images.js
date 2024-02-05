@@ -67,8 +67,9 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
               <div className={`flex w-full items-start justify-center space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
                 {images.map((img, i) => {
                   // let portrait = (img.asset.metadata.dimensions.height > img.asset.metadata.dimensions.width)
+                  // max-w-[45vh]
                   return (
-                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden max-w-[45vh] ${maxW}`} key={i}>
+                    <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden  ${maxW}`} key={i}>
                       { fill ? (
                         <SanityImage
                           image={img}
