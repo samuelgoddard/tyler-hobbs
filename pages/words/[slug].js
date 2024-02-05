@@ -133,7 +133,7 @@ export default function WordsSlug(initialData) {
                         e?.internalLink?._type == 'pages' && (route = '/pages')
 
                         return e.internal ? (
-                          <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-2 a11y-focus" key={i}>{e.linkText}</Link>
+                          <Link href={`${route}/${e.internalLink?.slug?.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-2 a11y-focus" key={i}>{e.linkText}</Link>
                         ) : (
                           <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
                         )
