@@ -11,7 +11,6 @@ import slugify from 'slugify'
 import useDetectScroll from '@smakss/react-scroll-direction'
 import { useState } from 'react'
 const pageService = new SanityPageService(aboutQuery)
-import { useRouter } from 'next/router'
 import handleViewport from 'react-in-viewport';
 
 const Block = ({ inViewport, forwardedRef } ) => {
@@ -95,9 +94,9 @@ export default function About(initialData) {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-28 lg:pt-80">
             {about.contentSections.map((e, i)=> {
               return (
-                <div id={slugify(e.title)} className="scroll-mt-6">
+                <div id={slugify(e.title)} className="scroll-mt-6" key={i}>
                   <ViewportBlock onEnterViewport={() => setCurrent(e.title)} />
-                  <BodyRenderer body={e.contentBlocks} key={i} />
+                  <BodyRenderer body={e.contentBlocks} />
                 </div>
               )
             })}

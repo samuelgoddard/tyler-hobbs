@@ -96,10 +96,10 @@ export default function Page(initialData) {
             <>
               {page.contentSections.map((e, i)=> {
                 return (
-                  <div id={slugify(e.title)} className="scroll-mt-6">
+                  <div id={slugify(e.title)} className="scroll-mt-6" key={i}>
                     <ViewportBlock onEnterViewport={() => setCurrent(e.title)} />
 
-                    <BodyRenderer body={e.contentBlocks} key={i} />
+                    <BodyRenderer body={e.contentBlocks} />
                   </div>
                 )
               })}
