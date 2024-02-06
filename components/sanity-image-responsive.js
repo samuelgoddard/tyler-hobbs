@@ -48,7 +48,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           </div>
           {/* LQIP */}
 
-          <div className={`w-full ${imageProps?.src.includes('.png') ? '' : 'bg-black/10'}`}>
+          <div className={`w-full ${imageProps?.src.includes('.png') ? 'dark:bg-white' : 'bg-black/10'}`}>
             <Image
               src={imageProps?.src}
               sizes={sizes ? sizes : `(max-width: 1024px) 100vw,80vw`}
