@@ -180,6 +180,7 @@ export default function Works(initialData) {
                                   <SanityImageResponsive
                                     image={eee.image ? eee.image : eee}
                                     className="w-full mb-3"
+                                    noCaption
                                     sizes={`(max-width: 1024px) 100vw, 5vw`}
                                   />
                                   <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">

@@ -7,7 +7,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import ConditionalWrap from 'conditional-wrap';
 import Link from 'next/link';
 
-export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes }) {
+export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes, noCaption }) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   // const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -108,11 +108,14 @@ export default function SanityImageResponsive({ image, className, alt, priority,
             </>
           )}
         </div>
-        
-        {image.caption && (
-          <figcaption className="block text-sm/snug lg:text-base/snug text-gray py-2">
-            <BodyRich content={image.caption} />
-          </figcaption>
+        {!noCaption && (
+          <>
+            {image.caption && (
+              <figcaption className="block text-sm/snug lg:text-base/snug text-gray py-2">
+                <BodyRich content={image.caption} />
+              </figcaption>
+            )}
+          </>
         )}
       </figure> 
     </ConditionalWrap>

@@ -80,6 +80,7 @@ export default function ModularImageGridBlock({ images, columns, width }) {
               <SanityImageResponsive
                 image={e}
                 sizes={sizes}
+                noCaption={images.length > 8}
                 className={`w-full`}
               />
             </div>
