@@ -27,6 +27,7 @@ const image = `
 `
 const slug = `slug { current }`
 const firstWorksCatSlug = `"firstWorksCatSlug": *[_type == "workCategories"][0]{ slug {current}}`
+
 const contentBlocks = `
   contentBlocks[] {
     ...,
@@ -64,6 +65,17 @@ const contentBlocks = `
     },
     listItems[] {
       ...,
+      textRich[] {
+        ...,
+        markDefs[] {
+          ...,
+          _type == "internalLink" => {
+            "slug": @.reference->slug,
+            "type": @.reference->_type,
+            "title": @.reference->title
+          }
+        }
+      },
       internalLink->{
         _type,
         slug {
@@ -71,6 +83,13 @@ const contentBlocks = `
         }
       }
     }
+  }
+`
+
+const contentSections = `
+  contentSections[] {
+    title,
+    ${contentBlocks}
   }
 `
 const contact = `"contact": *[_type == "contact"][0]{ emailAddress, socials[] { platform, url }}`
@@ -341,7 +360,7 @@ export const exhibitionsSlugQuery = `{
 export const aboutQuery = `{
   "about": *[_type == "about"][0]{
     title,
-    ${contentBlocks},
+    ${contentSections},
     ${seo}
   },
   ${contact},
@@ -351,6 +370,7 @@ export const aboutQuery = `{
 export const pagesSlugQuery = `{
   "page": *[_type == "pages" && slug.current == $slug][0]{
     title,
+    ${contentSections},
     ${contentBlocks},
     ${seo}
   },
