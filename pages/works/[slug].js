@@ -82,13 +82,10 @@ export default function WorkSlug(initialData) {
     for (let slide of work.gallerySlides) {
       if (!slide.videoEmbed && slide.images) {
         if (slide._type == 'itemCustomizable') {
-          console.log(test)
           for (let image of slide.images) {
-            console.log(test)
             mobileSlides.push(image.image);
           }
         } else if (slide._type == 'defaultImage') {
-          console.log(test)
           for (let image of slide.images) {
             mobileSlides.push(image);
           }
