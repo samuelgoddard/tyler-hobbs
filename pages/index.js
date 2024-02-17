@@ -62,11 +62,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.5, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
+                <Link href="/works/categories/digital" className="block">
                 <SanityImage
                   image={home.randomisedImagesBucket[randomisedArray[1]]}
                   className="w-full h-full object-cover object-center"
                   sizes={`(max-width: 1024px) 80vw,25vw`}
                 />
+                </Link>
               </m.div>
 
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -105,15 +107,15 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent"
+                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent relative overflow-hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/about" className="block">
                   <SanityImage
-                    image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
-                    className="w-full h-full object-cover object-center lg:hidden"
+                    image={home.randomisedImagesBucket[randomisedArray[4]]}
+                    className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
                 </Link>
@@ -130,7 +132,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[4]]}
+                    image={home.randomisedImagesBucket[randomisedArray[5]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -145,7 +147,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[5]]}
+                    image={home.randomisedImagesBucket[randomisedArray[6]]}
                     className="w-full h-full object-cover object-center lg:hidden"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -160,7 +162,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[6]]}
+                    image={home.randomisedImagesBucket[randomisedArray[7]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -181,7 +183,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[7]]}
+                    image={home.randomisedImagesBucket[randomisedArray[8]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -196,7 +198,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[8]]}
+                    image={home.randomisedImagesBucket[randomisedArray[9]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -231,7 +233,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[9]]}
+                    image={home.randomisedImagesBucket[randomisedArray[10]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -266,7 +268,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[10]]}
+                    image={home.randomisedImagesBucket[randomisedArray[11]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -289,7 +291,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[11]]}
+                    image={home.randomisedImagesBucket[randomisedArray[12]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />
@@ -305,7 +307,7 @@ export default function Home(initialData) {
               >
                 <Link href="/works/categories/digital" className="block">
                   <SanityImage
-                    image={home.randomisedImagesBucket[randomisedArray[12]]}
+                    image={home.randomisedImagesBucket[randomisedArray[13]]}
                     className="w-full h-full object-cover object-center"
                     sizes={`(max-width: 1024px) 80vw,25vw`}
                   />

@@ -33,7 +33,8 @@ export default function WorkSlug(initialData) {
   // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   // const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const searchParams = useSearchParams();
-  const [galleryContext, setGalleryContext] = useContext(GalleryContext)  
+  const [galleryContext, setGalleryContext] = useState(0)  
+  const [modeState, setModeState] = useState('gallery')
   const mode = searchParams.get('mode')
 
   const textExpandToggle = () => {
@@ -71,8 +72,8 @@ export default function WorkSlug(initialData) {
   )
 
   const goToSpecificIndex = (index) => {
+    setModeState('gallery')
     setGalleryContext(index)
-    router.replace('/works/' + work.slug.current + '?' + 'mode=gallery')
   }
 
   let dimsArray = work.dims.split("(")
@@ -103,7 +104,6 @@ export default function WorkSlug(initialData) {
       <NextSeo title={work.title} />
 
       <Header contact={contact} worksCats={firstWorksCatSlug} />
-      
       <LazyMotion features={domAnimation}>
         <m.main
           initial="initial"
@@ -202,31 +202,29 @@ export default function WorkSlug(initialData) {
                   <span className="block relative overflow-hidden">
                     <m.button
                       onClick={()=> {
-                        router.push('/works/' + work.slug.current + '?' + 'mode=gallery')
-                        setGalleryContext(0)
+                        setModeState('gallery')
                       }}
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                      className={`block leading-none a11y-focus ${(mode == 'gallery' || mode == null) && 'text-black dark:text-white'}`}
+                      className={`block leading-none a11y-focus ${(modeState == 'gallery') && 'text-black dark:text-white'}`}
                     >Gallery</m.button>
                   </span>
                 )}
                 <span className="block relative overflow-hidden">
                   <m.button
                     onClick={()=> {
-                      router.push('/works/' + work.slug.current + '?' + 'mode=info')
-                      setGalleryContext(0)
+                      setModeState('info')
                     }}
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className={`block leading-none a11y-focus ${mode == 'info' && 'text-black dark:text-white'}`}
+                    className={`block leading-none a11y-focus ${modeState == 'info' && 'text-black dark:text-white'}`}
                   >Info</m.button>
                 </span>
               </div>
               
-              <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity ease-in-out duration-[330ms] delay-[330ms] ${ mode == 'info' && 'opacity-0 delay-[0ms]' }`}>
+              <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity ease-in-out duration-[330ms] delay-[330ms] ${ modeState == 'info' && 'opacity-0 delay-[0ms]' }`}>
                 <span className={`block relative overflow-hidden`}>
                   <span className={`hidden lg:block transition-transform ease-in-out duration-[330ms] ${ galleryContext + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
                     <m.span
@@ -253,7 +251,7 @@ export default function WorkSlug(initialData) {
           <m.article variants={fade} className="w-full">
             <div className="w-full">
               <AnimatePresence mode="wait">
-                {mode == 'gallery' || mode == null ? (
+                {modeState == 'gallery' ? (
                   <m.div
                     key="gallery"
                     initial={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
