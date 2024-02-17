@@ -7,7 +7,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import ConditionalWrap from 'conditional-wrap';
 import Link from 'next/link';
 
-export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes, noCaption }) {
+export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes, noCaption, widthOverride, focalPoint, layout }) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   // const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -16,10 +16,27 @@ export default function SanityImageResponsive({ image, className, alt, priority,
     lightboxOpen ? setLightboxOpen(false) : setLightboxOpen(true)
   }
 
-  const imageProps = useNextSanityImage(
-		sanity.config,
-		image
-	);
+  const myCustomImageBuilder = (imageUrlBuilder, options) => {
+    return imageUrlBuilder
+      .width((widthOverride ? widthOverride : options.width) || Math.min(( widthOverride ? widthOverride : options.originalImageDimensions.width), 800))
+      .quality(quality ? quality : 75)
+      .fit('clip')
+  };
+  
+  // Generate actual URL
+	const imageProps = useNextSanityImage(sanity.config, image.asset, { imageBuilder: myCustomImageBuilder });
+
+  // Generate attributes for Img component
+  const attributes = {};
+
+  if (focalPoint?.x && focalPoint?.y) {
+    const { x, y } = focalPoint;
+    attributes.objectPosition = `${x * 100}% ${y * 100}%`;
+  }
+
+  if (image.alt) { attributes.alt = image.alt } else { attributes.alt = 'MISSING ALT TEXT' }
+  if (priority) { attributes.priority = true } else { attributes.priority = false }
+  if (sizes) { attributes.sizes = sizes }
   
   let route = '/'
 
@@ -40,24 +57,24 @@ export default function SanityImageResponsive({ image, className, alt, priority,
       <figure className={`block relative overflow-hidden image w-full ${className ? className : ''}`}>
         <div className="relative overflow-hidden">
           {/* LQIP */}
-          <div
-            // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
-            className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
-          >
-            <img width="100" height="100" src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
-          </div>
+          {!priority && (
+            <div
+              // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
+              className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[750ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
+            >
+              <Image src={image.asset?.metadata?.lqip} loading="lazy" fill role="presentation" alt="Placeholder" className="w-full h-full absolute inset-0 object-cover object-center" />
+            </div>
+          )}
           {/* LQIP */}
 
           <div className={`w-full ${imageProps?.src.includes('.png') ? 'dark:bg-white' : 'bg-black/10'}`}>
             <Image
-              src={imageProps?.src}
-              sizes={sizes ? sizes : `(max-width: 1024px) 100vw,80vw`}
               className={`${className ? className : '' } w-full`}
-              quality={quality ? quality : 90}
-              width={image?.asset?.metadata.dimensions.width / 2}
-              height={image?.asset?.metadata.dimensions.height / 2}
-              {...(priority ? {priority: true} : {})}
-              alt={image.alt ? image.alt : 'MISSING ALT TEXT'}
+              {...imageProps}
+              {...attributes}
+              {...(priority ? {
+                priority: true} : {}
+              )}
               onLoad={event => {
                 const target = event.target;
                 if (target.src.indexOf('data:image/gif;base64') < 0) {
@@ -93,13 +110,10 @@ export default function SanityImageResponsive({ image, className, alt, priority,
 
                     <div className="w-full lg:w-full max-w-[85vh]">
                       <Image
-                        src={imageProps?.src}
-                        sizes={`(max-width: 1024px) 100vw,90vw`}
+                        {...imageProps}
+                        {...attributes}
                         className={`w-full`}
                         quality={90}
-                        width={image?.asset?.metadata.dimensions.width / 2}
-                        height={image?.asset?.metadata.dimensions.height / 2}
-                        alt={image.alt ? image.alt : 'MISSING ALT TEXT'}
                       />
                     </div>
                   </m.div>

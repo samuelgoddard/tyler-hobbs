@@ -4,7 +4,7 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { SplitText } from '@/components/splitText'
-import { Fragment, useCallback, useEffect, useState } from 'react'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import ClassNames from 'embla-carousel-class-names'
 import { worksSlugQuery } from '@/helpers/queries'
@@ -18,6 +18,7 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import { useMousePosition } from '@/helpers/mousePosition'
 import { useRouter } from 'next/router'
 import useKeypress from 'react-use-keypress';
+import { GalleryContext } from '@/context/gallery'
 
 const pageService = new SanityPageService(worksSlugQuery)
 
@@ -32,7 +33,7 @@ export default function WorkSlug(initialData) {
   // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   // const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const searchParams = useSearchParams();
-  const [selectedIndex, setSelectedIndex] = useState(0)  
+  const [galleryContext, setGalleryContext] = useContext(GalleryContext)  
   const mode = searchParams.get('mode')
 
   const textExpandToggle = () => {
@@ -40,11 +41,15 @@ export default function WorkSlug(initialData) {
   }
 
   const scrollNext = () => {
-    selectedIndex != (work.gallerySlides?.length) && setSelectedIndex(selectedIndex + 1)
+    galleryContext != (work.gallerySlides?.length) && setGalleryContext(galleryContext + 1)
+  }
+
+  const scrollNextMob = () => {
+    galleryContext != (mobileSlides?.length) && setGalleryContext(galleryContext + 1)
   }
 
   const scrollPrev = () => {
-    selectedIndex != 0 && setSelectedIndex(selectedIndex - 1)
+    galleryContext != 0 && setGalleryContext(galleryContext - 1)
   }
 
   useKeypress('ArrowLeft', () => {
@@ -65,24 +70,32 @@ export default function WorkSlug(initialData) {
     [searchParams]
   )
 
-  const resetSelectedIndex = () => {
-    router.push(pathname + '?' + 'mode=info')
-    setSelectedIndex(0)
-  }
-
   const goToSpecificIndex = (index) => {
-    router.push('/works/' + work.slug.current + '?' + 'mode=gallery')
-    setSelectedIndex(index)
+    setGalleryContext(index)
+    router.replace('/works/' + work.slug.current + '?' + 'mode=gallery')
   }
 
   let dimsArray = work.dims.split("(")
   let mobileSlides = []
-
+  
   if (work.gallerySlides) {
     for (let slide of work.gallerySlides) {
-      if (!slide.videoEmbed) {
-        for (let image of slide.images) {
-          mobileSlides.push(image);
+      if (!slide.videoEmbed && slide.images) {
+        if (slide._type == 'itemCustomizable') {
+          console.log(test)
+          for (let image of slide.images) {
+            console.log(test)
+            mobileSlides.push(image.image);
+          }
+        } else if (slide._type == 'defaultImage') {
+          console.log(test)
+          for (let image of slide.images) {
+            mobileSlides.push(image);
+          }
+        } else if (slide._type == 'item') {
+          for (let image of slide.images) {
+            mobileSlides.push(image);
+          }
         }
       }
     }
@@ -103,44 +116,87 @@ export default function WorkSlug(initialData) {
           <div className="p-4 lg:p-8 absolute top-0 left-0 right-0 w-full z-[10]">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
-              <ConditionalWrap
-                condition={selectedIndex == work.gallerySlides?.length}
-                wrap={children => (
-                  <button className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
-                    {children}
-                  </button>
-                )}
-              >
-                  <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
-                    {selectedIndex == work.gallerySlides?.length && (<>
-                      <SplitText
-                        animate="enter"
-                        exit="exit"
-                        initial={{ y: '100%' }}
-                        transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
-                        variants={{
-                          enter: i => ({ y: 0 }),
-                          exit: i => ({ y: '100%' })
-                        }}
-                      >
-                        Back To&nbsp;
-                      </SplitText></>)}
-                    <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${selectedIndex == work.gallerySlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
-                      <SplitText
-                        animate="enter"
-                        exit="exit"
-                        initial={{ y: '100%' }}
-                        transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
-                        variants={{
-                          enter: i => ({ y: 0 }),
-                          exit: i => ({ y: '100%' })
-                        }}
-                      >
-                        {work.title}
-                      </SplitText>
+                <div className="hidden lg:block">
+                  <ConditionalWrap
+                    condition={galleryContext == work.gallerySlides?.length}
+                    wrap={children => (
+                      <button className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
+                        {children}
+                      </button>
+                    )}
+                  >
+                    <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
+                      {galleryContext == work.gallerySlides?.length && (<>
+                        <SplitText
+                          animate="enter"
+                          exit="exit"
+                          initial={{ y: '100%' }}
+                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          variants={{
+                            enter: i => ({ y: 0 }),
+                            exit: i => ({ y: '100%' })
+                          }}
+                        >
+                          Back To&nbsp;
+                        </SplitText></>)}
+                      <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${galleryContext == work.gallerySlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
+                        <SplitText
+                          animate="enter"
+                          exit="exit"
+                          initial={{ y: '100%' }}
+                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          variants={{
+                            enter: i => ({ y: 0 }),
+                            exit: i => ({ y: '100%' })
+                          }}
+                        >
+                          {work.title}
+                        </SplitText>
+                      </span>
                     </span>
-                  </span>
-                </ConditionalWrap>
+                  </ConditionalWrap>
+                </div>
+
+                <div className="block lg:hidden">
+                  <ConditionalWrap
+                    condition={galleryContext == mobileSlides?.length}
+                    wrap={children => (
+                      <button className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
+                        {children}
+                      </button>
+                    )}
+                  >
+                    <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
+                      {galleryContext == mobileSlides?.length && (<>
+                        <SplitText
+                          animate="enter"
+                          exit="exit"
+                          initial={{ y: '100%' }}
+                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          variants={{
+                            enter: i => ({ y: 0 }),
+                            exit: i => ({ y: '100%' })
+                          }}
+                        >
+                          Back To&nbsp;
+                        </SplitText></>)}
+                      <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${galleryContext == mobileSlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
+                        <SplitText
+                          animate="enter"
+                          exit="exit"
+                          initial={{ y: '100%' }}
+                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          variants={{
+                            enter: i => ({ y: 0 }),
+                            exit: i => ({ y: '100%' })
+                          }}
+                        >
+                          {work.title}
+                        </SplitText>
+                      </span>
+                    </span>
+                  </ConditionalWrap>
+                </div>
               </div>
 
 
@@ -148,7 +204,10 @@ export default function WorkSlug(initialData) {
                 { work.gallerySlides && (
                   <span className="block relative overflow-hidden">
                     <m.button
-                      onClick={()=> { router.push('/works/' + work.slug.current + '?' + 'mode=gallery') }}
+                      onClick={()=> {
+                        router.push('/works/' + work.slug.current + '?' + 'mode=gallery')
+                        setGalleryContext(0)
+                      }}
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
@@ -158,7 +217,10 @@ export default function WorkSlug(initialData) {
                 )}
                 <span className="block relative overflow-hidden">
                   <m.button
-                    onClick={()=> { router.push('/works/' + work.slug.current + '?' + 'mode=info') }}
+                    onClick={()=> {
+                      router.push('/works/' + work.slug.current + '?' + 'mode=info')
+                      setGalleryContext(0)
+                    }}
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
@@ -169,13 +231,22 @@ export default function WorkSlug(initialData) {
               
               <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity ease-in-out duration-[330ms] delay-[330ms] ${ mode == 'info' && 'opacity-0 delay-[0ms]' }`}>
                 <span className={`block relative overflow-hidden`}>
-                  <span className={`block transition-transform ease-in-out duration-[330ms] ${ selectedIndex + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                  <span className={`hidden lg:block transition-transform ease-in-out duration-[330ms] ${ galleryContext + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
                     <m.span
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                       className="block leading-none text-black dark:text-white"
-                    >{work.gallerySlides && (`${selectedIndex + 1 > work.gallerySlides?.length ? selectedIndex : selectedIndex + 1} — ${work.gallerySlides?.length}`)}</m.span>
+                    >{work.gallerySlides && (`${galleryContext + 1 > work.gallerySlides?.length ? galleryContext : galleryContext + 1} — ${work.gallerySlides?.length}`)}</m.span>
+                  </span>
+
+                  <span className={`block lg:hidden transition-transform ease-in-out duration-[330ms] ${ galleryContext + 1 > mobileSlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                    <m.span
+                      initial={{ y: '100%' }}
+                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      className="block leading-none text-black dark:text-white"
+                    >{mobileSlides && (`${galleryContext + 1 > mobileSlides?.length ? galleryContext : galleryContext + 1} — ${mobileSlides?.length}`)}</m.span>
                   </span>
                 </span>
               </div>
@@ -193,16 +264,28 @@ export default function WorkSlug(initialData) {
                     exit={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
                     className="w-full h-[calc(100vh-208px)] lg:h-[calc(100vh-128px)] mt-52 lg:mt-32"
                   >
-                    {(selectedIndex !== 0 && selectedIndex !== work.gallerySlides?.length) && (
-                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group cursor-none overflow-hidden`}>
+                    {(galleryContext !== 0 && galleryContext !== work.gallerySlides?.length) && (
+                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden hidden lg:block`}>
                         <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 rotate-180 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                         <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
-                    {(selectedIndex !== work.gallerySlides?.length) && (
-                      <button onClick={scrollNext} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group cursor-none`}>
+                    {(galleryContext !== work.gallerySlides?.length) && (
+                      <button onClick={scrollNext} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none hidden lg:block`}>
                         <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                        <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      </button>
+                    )}
+
+                    {(galleryContext !== 0 && galleryContext !== mobileSlides?.length) && (
+                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden block lg:hidden`}>
+                        <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      </button>
+                    )}
+                    
+                    {(galleryContext !== mobileSlides?.length) && (
+                      <button onClick={scrollNextMob} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none block lg:hidden`}>
                         <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
@@ -223,7 +306,7 @@ export default function WorkSlug(initialData) {
                                     type={e._type}
                                     video={e.videoEmbed}
                                     layout={e.layout}
-                                    selectedIndex={selectedIndex}
+                                    selectedIndex={galleryContext}
                                   />
                                 )
                               })}
@@ -232,7 +315,7 @@ export default function WorkSlug(initialData) {
                             <div className="flex gap-4 lg:hidden">
                               {mobileSlides.map((e, i) => {
                                 return (
-                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == galleryContext ? 'opacity-100' : 'opacity-0' }`} key={i}>
                                     <div className={`w-full relative overflow-hidden`}>
                                       <SanityImageResponsive
                                         image={e}
@@ -245,7 +328,23 @@ export default function WorkSlug(initialData) {
                               })}
                             </div>
 
-                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 ${ selectedIndex == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                              <div className="flex h-full items-end justify-start">
+                                <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
+                                  <span className="grey block mb-3">Next</span>
+
+                                  <span className="block text-4xl/none lg:text-7xl">
+                                    {work.next ? (
+                                      <>{work.next.title} <span className="text-gray"> — {work.next.year}, {work.next.media}, {work.next.dims}</span></>
+                                    ) : (
+                                      <>{work.first.title} <span className="text-gray"> — {work.first.year}, {work.first.media}, {work.first.dims}</span></>
+                                    )}
+                                  </span>
+                                </div>
+                              </div>    
+                            </Link>
+
+                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
                                   <span className="grey block mb-3">Next</span>
@@ -353,26 +452,43 @@ export default function WorkSlug(initialData) {
                     </div>
                     
                     {work.gallerySlides && (
-                      <ul className="grid grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32">
-                        {work.gallerySlides.map((e, index) => {
+                      <>
+                        <ul className="grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32 hidden lg:grid">
+                          {work.gallerySlides.map((e, index) => {
+                            return (
+                              <Fragment key={index}>
+                              {e.images?.map((img, i) => {
+                                return (
+                                  <li key={i} className="block col-span-1">
+                                    <button onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
+                                      <SanityImageResponsive
+                                        image={img.image ? img.image : img}
+                                        sizes={`(max-width: 1024px) 100vw,25vw`}
+                                        />
+                                    </button>
+                                  </li>
+                                  )
+                                })}
+                              </Fragment>
+                            )
+                          })}
+                        </ul>
+
+                        <ul className="grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-8 lg:gap-y-12 mt-16 lg:mt-28 mb-4 lg:mb-32 grid lg:hidden">
+                        {mobileSlides.map((e, i) => {
                           return (
-                            <Fragment key={index}>
-                            {e.images?.map((img, i) => {
-                              return (
-                                <li key={i} className="block col-span-1">
-                                  <button onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
-                                    <SanityImageResponsive
-                                      image={img.image ? img.image : img}
-                                      sizes={`(max-width: 1024px) 100vw,25vw`}
-                                      />
-                                  </button>
-                                </li>
-                                )
-                              })}
-                            </Fragment>
-                          )
+                            <li key={i} className="block col-span-1">
+                              <button onClick={ ()=> goToSpecificIndex(i)} className="w-full text-left block">
+                                <SanityImageResponsive
+                                  image={e}
+                                  sizes={`(max-width: 1024px) 100vw,25vw`}
+                                  />
+                              </button>
+                            </li>
+                            )
                         })}
-                      </ul>
+                        </ul>
+                      </>
                     )}
                   </m.div>
                 )}

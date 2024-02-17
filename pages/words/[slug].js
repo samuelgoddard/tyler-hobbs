@@ -144,12 +144,10 @@ export default function WordsSlug(initialData) {
                 
                 {article.heroImage && (
                   <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-5">
-
-                    {/* {JSON.stringify(article.heroImage.asset.metadata.palette.dominant.background)} */}
                     <SanityImageResponsive
                       priority={true}
                       image={article.heroImage}
-                      sizes={`(max-width: 1024px) 100vw,90vw`}
+                      sizes={`(max-width: 1024px) 100vw,80vw`}
                       className={`w-full`}
                     />
                   </div>

@@ -169,19 +169,20 @@ export default function Works(initialData) {
               {works.map((e, i) => {
                 return (
                   <Fragment key={i}>
-                  {e.gallerySlides?.map((ee, i) => {
+                  {e.gallerySlides?.map((ee, ii) => {
                     return (
-                      <Fragment key={i}>
-                        {ee.images?.map((eee, i) => {
+                      <Fragment key={ii}>
+                        {ee.images?.map((eee, iii) => {
                           return !eee.vimeoVideoOverrideUrl && (!eee.removeFromIndex && !eee.image?.removeFromIndex) && (
-                            <div className="col-span-6 lg:col-span-2" key={i}>
+                            <div className="col-span-6 lg:col-span-2" key={iii}>
                               <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
                                 <div className="block">
                                   <SanityImageResponsive
                                     image={eee.image ? eee.image : eee}
                                     className="w-full mb-3"
                                     noCaption
-                                    sizes={`(max-width: 1024px) 100vw, 5vw`}
+                                    sizes={`(max-width: 1024px) 66vw, 20vw`}
+                                    priority={i == 0 || i == 1 || i == 7 || i == 9 || i == 11 || i == 12}
                                   />
                                   <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">
                                     <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>

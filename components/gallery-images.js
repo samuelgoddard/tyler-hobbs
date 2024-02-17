@@ -9,8 +9,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   let fill = false
   let centeredY = true
 
-  let image1Width = 'w-auto'
-  let image2Width = 'w-auto'
+  let sizes = `(max-width: 1024px) 90vw,66vw`
 
   let maxW = ''
   
@@ -35,23 +34,12 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   )
   containerWidth == 12 && (
     innerCols = 'w-[100%]',
-    fill = images.length == 1 ? true : false
+    fill = images.length == 1 ? true : false,
+    sizes = `(max-width: 1024px) 90vw,99vw`
 
     // images?.length == 2 && (
     //   maxW = 'max-w-[90ch]'
     // )
-  )
-  layout == '5050' && (
-    image1Width = 'w-[50%]',
-    image2Width = 'w-[50%]'
-  )
-  layout == '7030' && (
-    image1Width = 'w-[70%]',
-    image2Width = 'w-[30%]'
-  )
-  layout == '3070' && (
-    image1Width = 'w-[70%]',
-    image2Width = 'w-[30%]'
   )
 
   return(
@@ -68,12 +56,13 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                 {images.map((img, i) => {
                   // let portrait = (img.asset.metadata.dimensions.height > img.asset.metadata.dimensions.width)
                   // max-w-[45vh]
+
                   return (
                     <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden  ${maxW}`} key={i}>
                       { fill ? (
                         <SanityImage
                           image={img}
-                          sizes={`(max-width: 1024px) 90vw,60vw`}
+                          sizes={sizes}
                           className="w-full h-full object-cover object-center absolute inset-0"
                           focalPoint={img.hotspot}
                           crop={img.crop}
@@ -81,7 +70,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                       ) : (
                         <SanityImageResponsive
                           image={img}
-                          sizes={`(max-width: 1024px) 90vw,60vw`}
+                          sizes={`(max-width: 1024px) 90vw,2vw`}
                           className="w-full"
                         />
                       )}
@@ -124,7 +113,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                     { img.fillMode ? (
                       <SanityImage
                         image={img.image}
-                        sizes={`(max-width: 1024px) 90vw,60vw`}
+                        sizes={`(max-width: 1024px) 90vw,80vw`}
                         className="w-full h-full object-cover object-center absolute inset-0"
                         focalPoint={img.image.hotspot}
                         crop={img.image.crop}
@@ -132,7 +121,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                     ) : (
                       <SanityImageResponsive
                         image={img.image}
-                        sizes={`(max-width: 1024px) 90vw,60vw`}
+                        sizes={`(max-width: 1024px) 90vw,66vw`}
                         className="w-full"
                       />
                     )}

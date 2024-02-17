@@ -7,6 +7,7 @@ import { NextSeo } from 'next-seo'
 import { homeQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import SanityImage from '@/components/sanity-image'
+import Link from 'next/link'
 const pageService = new SanityPageService(homeQuery)
 
 export default function Home(initialData) {  
@@ -46,11 +47,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.1, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[0]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[0]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
 
               <m.div
@@ -62,7 +65,7 @@ export default function Home(initialData) {
                 <SanityImage
                   image={home.randomisedImagesBucket[randomisedArray[1]]}
                   className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
+                  sizes={`(max-width: 1024px) 80vw,25vw`}
                 />
               </m.div>
 
@@ -75,11 +78,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.3, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[2]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[2]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
 
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -90,11 +95,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.6, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[3]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[3]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <m.div
@@ -103,11 +110,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
-                  className="w-full h-full object-cover object-center lg:hidden"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/about" className="block">
+                  <SanityImage
+                    image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                    className="w-full h-full object-cover object-center lg:hidden"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -119,11 +128,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.4, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[4]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[4]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <m.div
@@ -132,11 +143,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.7, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[5]]}
-                  className="w-full h-full object-cover object-center lg:hidden"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[5]]}
+                    className="w-full h-full object-cover object-center lg:hidden"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <m.div
@@ -145,11 +158,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 1, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[6]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[6]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -164,11 +179,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.8, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[7]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[7]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <m.div
@@ -177,11 +194,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 1.1, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[8]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[8]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -192,11 +211,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.9, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
-                  className="w-full h-full object-cover object-center lg:hidden"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/about" className="block">
+                  <SanityImage
+                    image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                    className="w-full h-full object-cover object-center lg:hidden"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
 
               <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -208,11 +229,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.65, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[9]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[9]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
 
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -223,11 +246,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 1.2, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/about" className="block">
+                  <SanityImage
+                    image={home.randomisedHeadshotsBucket[Math.floor(Math.random() * (home.randomisedHeadshotsBucket.length - 0) + 0)]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
@@ -239,11 +264,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.35, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[10]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[10]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent relative overflow-hidden">
@@ -260,11 +287,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.75, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[11]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[11]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               
               </m.div>
               
@@ -274,11 +303,13 @@ export default function Home(initialData) {
                 animate={{ opacity: 1, transition: { delay: 0.15, duration: 0.33, ease: [0.71,0,0.17,1]} }}
                 exit={{ opacity: 0, }}
               >
-                <SanityImage
-                  image={home.randomisedImagesBucket[randomisedArray[12]]}
-                  className="w-full h-full object-cover object-center"
-                  sizes={`(max-width: 1024px) 100vw,10vw`}
-                />
+                <Link href="/works/categories/digital" className="block">
+                  <SanityImage
+                    image={home.randomisedImagesBucket[randomisedArray[12]]}
+                    className="w-full h-full object-cover object-center"
+                    sizes={`(max-width: 1024px) 80vw,25vw`}
+                  />
+                </Link>
               </m.div>
             </div>
           </m.article>
