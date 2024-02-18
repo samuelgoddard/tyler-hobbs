@@ -64,7 +64,7 @@ export default function Header({ contact, worksCats }) {
             </div>
 
 
-            {!router.asPath == '/words' || !router.asPath.includes('/words/categories') && (
+            {!router.asPath == '/words' || router.asPath.includes('/works/') || !router.asPath.includes('/words/categories') && (
               <div className={`fixed bottom-4 lg:bottom-8 left-4 lg:left-8 z-[1000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block ${scrolltopShown && !menuOpen ? 'opacity-100' : 'opacity-0' }`}>
                 <div className="relative overflow-hidden pr-1">
                   <button aria-label="Scroll to top" onClick={scrollToTop} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-1 pointer-events-auto`}>

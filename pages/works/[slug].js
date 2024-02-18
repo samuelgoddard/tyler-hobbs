@@ -309,7 +309,7 @@ export default function WorkSlug(initialData) {
                     initial={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     animate={{ opacity: 1, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     exit={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="w-full h-[calc(100dvh-208px)] lg:h-[calc(100dvh-128px)] mt-52 lg:mt-32"
+                    className="w-full h-[100dvh] pt-40 lg:pt-32"
                   >
                     {(galleryContext !== 0 && galleryContext !== work.gallerySlides?.length) && (
                       <button onClick={scrollPrev} aria-label="Scroll to previoous slide" className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden hidden lg:block`}>
@@ -326,14 +326,14 @@ export default function WorkSlug(initialData) {
                     )}
 
                     {(galleryContext !== 0 && galleryContext !== mobileSlides?.length) && (
-                      <button onClick={scrollPrev} aria-label="Scroll to previous slide" className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden block lg:hidden`}>
-                        <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      <button onClick={scrollPrev} aria-label="Scroll to previous slide" className={`fixed bottom-3 lg:bottom-0 lg:top-28 left-4 lg:left-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden lg:hidden pointer-events-auto h-[65dvh] flex items-end`}>
+                        <svg className="pointer-events-auto w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
                     {(galleryContext !== mobileSlides?.length) && (
-                      <button onClick={scrollNextMob} aria-label="Scroll to next slide" className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none block lg:hidden`}>
-                        <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                      <button onClick={scrollNextMob} aria-label="Scroll to next slide" className={`absolute bottom-3 lg:bottom-0 lg:top-28 right-4 lg:right-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none lg:hidden h-[65dvh] flex pointer-events-auto items-end justify-end`}>
+                        <svg className="pointer-events-auto w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
 
@@ -362,7 +362,7 @@ export default function WorkSlug(initialData) {
                             <div className="flex gap-4 lg:hidden">
                               {mobileSlides.map((e, i) => {
                                 return (
-                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] overflow-hidden items-center ${ i == galleryContext ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                                  <div className={`absolute inset-0 top-auto bottom-4 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] overflow-hidden items-center ${ i == galleryContext ? 'opacity-100' : 'opacity-0' }`} key={i}>
                                     <div className={`w-full relative overflow-hidden`}>
                                       <SanityImageResponsive
                                         image={e}
@@ -433,7 +433,7 @@ export default function WorkSlug(initialData) {
 
                             <Link aria-label="Navigate to next project" href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
-                                <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
+                                <div className="mb-6 lg:mb-[10vh] max-w-[100%] lg:max-w-[65%]">
                                   <span className="block overflow-hidden">
                                     { galleryContext == mobileSlides?.length && (
                                       <m.span
@@ -445,7 +445,7 @@ export default function WorkSlug(initialData) {
                                     )}
                                   </span>
 
-                                  <span className={`flex flex-wrap text-4xl/none lg:text-7xl text-gray ${ work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
+                                  <span className={`flex flex-wrap text-[32px]/none lg:text-7xl text-gray ${ work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
                                     {work.next ? (
                                       <>
                                         { galleryContext == mobileSlides?.length && (
