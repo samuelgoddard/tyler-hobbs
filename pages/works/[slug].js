@@ -128,7 +128,7 @@ export default function WorkSlug(initialData) {
                   <ConditionalWrap
                     condition={galleryContext == work.gallerySlides?.length}
                     wrap={children => (
-                      <button className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
+                      <button aria-label="Scroll to previous slide" className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
                         {children}
                       </button>
                     )}
@@ -169,7 +169,7 @@ export default function WorkSlug(initialData) {
                   <ConditionalWrap
                     condition={galleryContext == mobileSlides?.length}
                     wrap={children => (
-                      <button className="a11y-focus text-left appearance-none leading-[1] mb-0 pb-0" onClick={scrollPrev}>
+                      <button aria-label="Scroll to previous slide" className="a11y-focus text-left appearance-none leading-[1] mb-0 pb-0" onClick={scrollPrev}>
                         {children}
                       </button>
                     )}
@@ -217,6 +217,7 @@ export default function WorkSlug(initialData) {
                         onClick={()=> {
                           setModeState('gallery')
                         }}
+                        aria-label="Change to gallery mode"
                         initial={{ y: '100%' }}
                         animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
@@ -231,6 +232,7 @@ export default function WorkSlug(initialData) {
                       onClick={()=> {
                         setModeState('info')
                       }}
+                      aria-label="Change to info mode"
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
@@ -248,6 +250,7 @@ export default function WorkSlug(initialData) {
                         onClick={()=> {
                           setModeState('gallery')
                         }}
+                        aria-label="Change to gallery mode"
                         initial={{ y: '100%' }}
                         animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
@@ -262,6 +265,7 @@ export default function WorkSlug(initialData) {
                       onClick={()=> {
                         setModeState('info')
                       }}
+                      aria-label="Change to info mode"
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
@@ -307,27 +311,27 @@ export default function WorkSlug(initialData) {
                     className="w-full h-[calc(100vh-208px)] lg:h-[calc(100vh-128px)] mt-52 lg:mt-32"
                   >
                     {(galleryContext !== 0 && galleryContext !== work.gallerySlides?.length) && (
-                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden hidden lg:block`}>
+                      <button onClick={scrollPrev} aria-label="Scroll to previoous slide" className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden hidden lg:block`}>
                         <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 rotate-180 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                         <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
                     {(galleryContext !== work.gallerySlides?.length) && (
-                      <button onClick={scrollNext} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none hidden lg:block`}>
+                      <button onClick={scrollNext} aria-label="Scroll to next slide" className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none hidden lg:block`}>
                         <svg style={{ left: mousePosition.x, top: mousePosition.y}} className="fixed w-8 lg:w-10 hidden lg:group-hover:block" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                         <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
 
                     {(galleryContext !== 0 && galleryContext !== mobileSlides?.length) && (
-                      <button onClick={scrollPrev} className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden block lg:hidden`}>
+                      <button onClick={scrollPrev} aria-label="Scroll to previous slide" className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden block lg:hidden`}>
                         <svg className="fixed w-8 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
                     
                     {(galleryContext !== mobileSlides?.length) && (
-                      <button onClick={scrollNextMob} className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none block lg:hidden`}>
+                      <button onClick={scrollNextMob} aria-label="Scroll to next slide" className={`absolute bottom-10 lg:bottom-0 lg:top-28 right-3 lg:right-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none block lg:hidden`}>
                         <svg className="fixed w-8 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                       </button>
                     )}
@@ -370,7 +374,7 @@ export default function WorkSlug(initialData) {
                               })}
                             </div>
 
-                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link aria-label="Navigate to next project" href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[12vh] max-w-[75%] lg:max-w-[75%] xl:max-[65%] 2xl:max-w-[880px]">
                                   <span className="block overflow-hidden">
@@ -426,7 +430,7 @@ export default function WorkSlug(initialData) {
                               </div>    
                             </Link>
 
-                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link aria-label="Navigate to next project" href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
                                   <span className="block overflow-hidden">
@@ -568,7 +572,7 @@ export default function WorkSlug(initialData) {
                             </div>
 
                             {work.text?.length > 2 && (
-                              <button onClick={textExpandToggle} className="text-gray block">{textExpanded ? '- Read Less' : '+ Read more'}</button>
+                              <button aria-label="Expand text" onClick={textExpandToggle} className="text-gray block">{textExpanded ? '- Read Less' : '+ Read more'}</button>
                             )}
                           </>
                         )}
@@ -584,7 +588,7 @@ export default function WorkSlug(initialData) {
                               {e.images?.map((img, i) => {
                                 return (
                                   <li key={i} className="block col-span-1">
-                                    <button onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
+                                    <button aria-label="Scroll to specific slide" onClick={ ()=> goToSpecificIndex(index)} className="w-full text-left block">
                                       <SanityImageResponsive
                                         image={img.image ? img.image : img}
                                         sizes={`(max-width: 1024px) 100vw,25vw`}
@@ -602,7 +606,7 @@ export default function WorkSlug(initialData) {
                         {mobileSlides.map((e, i) => {
                           return (
                             <li key={i} className="block col-span-1">
-                              <button onClick={ ()=> goToSpecificIndex(i)} className="w-full text-left block">
+                              <button aria-label="Go to specific slide" onClick={ ()=> goToSpecificIndex(i)} className="w-full text-left block">
                                 <SanityImageResponsive
                                   image={e}
                                   sizes={`(max-width: 1024px) 100vw,25vw`}

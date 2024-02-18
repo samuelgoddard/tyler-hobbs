@@ -62,7 +62,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
               // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
               className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[750ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
             >
-              <Image src={image.asset?.metadata?.lqip} loading="lazy" fill role="presentation" alt="Placeholder" className="w-full h-full absolute inset-0 object-cover object-center" />
+              <Image src={image.asset?.metadata?.lqip} loading="lazy" fill alt="Placeholder" className="w-full h-full absolute inset-0 object-cover object-center" />
             </div>
           )}
           {/* LQIP */}

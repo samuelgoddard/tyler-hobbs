@@ -49,13 +49,13 @@ export default function Carousel({ images }) {
               return (
                 <div className="embla__slide relative w-full max-h-[53vw] bg-gray/10" key={i}>
                   <div className="w-full h-full flex justify-center items-center">
-                      <div className="w-auto h-[65vw] lg:h-[55vw] inline-block">
+                      <div className="w-auto h-[65vw] lg:h-[55vw] inline-block relative overflow-hidden">
                         {/* <img src={e.asset.url} className="w-auto h-full" /> */}
                         <SanityImageCarousel
                           image={e}
                           sizes={`(max-width: 1024px) 100vw,80vw`}
                           className="h-full w-auto inline-block"
-                          priority={i == 0 ? true : false}
+                          priority={i == 0}
                         />
                       </div>
                     </div>
@@ -69,6 +69,7 @@ export default function Carousel({ images }) {
           <button
             className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms]"
             type="button"
+            aria-label="Scroll to previous slide"
             onClick={scrollPrev}
           >
             <svg className="w-5 lg:w-6 ml-2 lg:ml-4" viewBox="0 0 532 532">
@@ -82,6 +83,7 @@ export default function Carousel({ images }) {
           <button
             className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms]"
             type="button"
+            aria-label="Scroll to next slide"
             onClick={scrollNext}
           >
             <svg className="w-5 lg:w-6 mr-2 lg:mr-4 rotate-180 ml-auto" viewBox="0 0 532 532">
@@ -99,7 +101,7 @@ export default function Carousel({ images }) {
       {images.length > 1 && (
         <div className="flex text-base/none lg:text-base/none text-gray space-x-2">
           {scrollSnaps.map((_, i) => (
-            <button className={'embla__dot'.concat(i === selectedIndex ? ' text-black dark:text-white' : '' )} key={i} onClick={() => scrollTo(i)} type="button">{i + 1}</button>
+            <button aria-label="Scroll to specific slide" className={'embla__dot'.concat(i === selectedIndex ? ' text-black dark:text-white' : '' )} key={i} onClick={() => scrollTo(i)} type="button">{i + 1}</button>
           ))}
         </div>
         // <ul className="flex text-base/none lg:text-base/none text-gray space-x-2">
