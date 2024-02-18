@@ -1,11 +1,12 @@
 import Link from "next/link";
 import SanityImage from "./sanity-image";
+import SanityImageResponsive from "./sanity-image-responsive";
 
 export default function TeaserExhibition({ href, heading, location, year, image, priority }) {
   return (
     <Link href={href} className="block w-full a11y-focus group">
-      <div className="aspect-[14/10] mb-2 lg:mb-4 relative overflow-hidden">
-        <SanityImage
+      <div className="mb-2 lg:mb-4 relative overflow-hidden">
+        <SanityImageResponsive
           image={image}
           priority={priority ? true : false}
         />

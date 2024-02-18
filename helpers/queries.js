@@ -6,6 +6,7 @@ const image = `
   crop { ... },
   linksTo-> {
     _type,
+    title,
     slug {
       current
     }

@@ -21,7 +21,7 @@ export default function ExhibitionsSlug(initialData) {
   const scrollDir = useDetectScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    (latest > 1 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
+    (latest > 300 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
   })
 
   return (
@@ -37,9 +37,9 @@ export default function ExhibitionsSlug(initialData) {
           exit="exit"
         >
 
-          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
-            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 hidden lg:block">
+          <div className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 lg:pt-0">
+              <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
                   <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 678 129">
                     <path fill="currentColor" d="M77.043 2.263v12.448H45.886v87.134h-14.73V14.711H0V2.263h77.043Z"/>
@@ -47,12 +47,12 @@ export default function ExhibitionsSlug(initialData) {
                   </svg>
                 </Link>
               </div>
-              <div className="col-span-2 lg:col-start-3 lg:col-span-3 block">
-                <span className={`hidden lg:block relative overflow-hidden`}>
+              <div className="col-span-2 lg:col-start-3 lg:col-span-3 hidden lg:block">
+                <span className={`block relative overflow-hidden`}>
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >{exhibition.title}</m.span>
                 </span>
@@ -62,8 +62,8 @@ export default function ExhibitionsSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></m.span>
                 </span>
@@ -76,8 +76,8 @@ export default function ExhibitionsSlug(initialData) {
                 <Link href="/exhibitions" className="block relative overflow-hidden a11y-focus">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Exhibitions</m.span>
                 </Link>

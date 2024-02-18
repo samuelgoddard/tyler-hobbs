@@ -82,6 +82,7 @@ export default function ModularImageGridBlock({ images, columns, width }) {
                 sizes={sizes}
                 noCaption={images.length > 8}
                 className={`w-full`}
+                fancyHover={true}
               />
             </div>
           </div>

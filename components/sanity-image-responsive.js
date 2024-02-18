@@ -7,7 +7,7 @@ import { AnimatePresence, m } from 'framer-motion';
 import ConditionalWrap from 'conditional-wrap';
 import Link from 'next/link';
 
-export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes, noCaption, widthOverride, focalPoint, layout }) {
+export default function SanityImageResponsive({ image, className, alt, priority, quality, sizes, noCaption, widthOverride, focalPoint, layout, fancyHover }) {
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
   // const [imageIsLoaded, setImageIsLoaded] = useState(priority ? priority : false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -49,7 +49,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
     <ConditionalWrap
       condition={image?.linksTo}
       wrap={children => (
-        <Link href={`${route}/${image.linksTo?.slug.current}`}>
+        <Link className="group" href={`${route}/${image.linksTo?.slug.current}`}>
           {children}
         </Link>
       )}
@@ -122,6 +122,9 @@ export default function SanityImageResponsive({ image, className, alt, priority,
             </>
           )}
         </div>
+        {image.linksTo && fancyHover && (
+          <div className="hidden lg:block lg:pt-[6px] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] opacity-0 group-hover:opacity-100">{image.linksTo.title}</div>
+        )}
         {!noCaption && (
           <>
             {image.caption && (

@@ -28,7 +28,7 @@ export default function Page(initialData) {
   const [current, setCurrent] = useState(page.contentSections ? page.contentSections[0].title : '')
   
   useMotionValueEvent(scrollY, "change", (latest) => {
-    (latest > 500 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
+    (latest > 300 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
   })
 
   return (
@@ -63,9 +63,9 @@ export default function Page(initialData) {
             </div>
           </div>
 
-          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
-            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 hidden lg:block">
+          <div className={`p-4 lg:p-8 fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
+              <div className="col-span-2">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
                   <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 678 129">
                     <path fill="currentColor" d="M77.043 2.263v12.448H45.886v87.134h-14.73V14.711H0V2.263h77.043Z"/>

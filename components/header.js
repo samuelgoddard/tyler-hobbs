@@ -9,6 +9,7 @@ export default function Header({ contact, worksCats }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuInstaOpen, setMenuInstaOpen] = useState(false)
   const [menuShown, setMenuShown] = useState(false)
+  const [scrolltopShown, setScrolltopShown] = useState(false)
   const { theme, setTheme, resolvedTheme } = useTheme()
   const router = useRouter()
   const { scrollY } = useScroll()
@@ -18,16 +19,21 @@ export default function Header({ contact, worksCats }) {
     menuOpen ? setMenuOpen(false) : setMenuOpen(true)
     menuInstaOpen ? setMenuInstaOpen(false) : setMenuInstaOpen(true)
   }
+  
+  const scrollToTop = () => {
+    window.scrollTo(0, 0)
+  }
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    (latest > 1 &&  scrollDir == 'up') ? (setMenuShown(true)) : (setMenuShown(false))
+    (latest > 300 &&  scrollDir == 'up') ? (setMenuShown(true)) : (setMenuShown(false)),
+    (latest > 1250) ? (setScrolltopShown(true)) : (setScrolltopShown(false))
   })
 
   return (
     <>
       <LazyMotion features={domAnimation}>
         <header className="">
-          <div className="absolute top-4 lg:top-8 left-0 leading-none w-full flex flex-wrap px-4 lg:px-8 z-[100] pointer-events-none">
+          <div className="absolute top-4 lg:top-8 left-0 leading-none w-full flex flex-wrap px-4 lg:px-8 z-[100000] pointer-events-none">
             <div className="block">
               <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0 z-[999] relative pointer-events-auto">
                 <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 678 129">
@@ -47,7 +53,7 @@ export default function Header({ contact, worksCats }) {
               </div>
             </div>
 
-            <div className={`fixed top-4 lg:top-8 right-4 lg:right-8 text-right z-[1000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:block ${menuShown ? 'opacity-100' : 'opacity-0' }`}>
+            <div className={`fixed top-4 lg:top-8 right-4 lg:right-8 text-right z-[10000000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block ${menuShown ? 'opacity-100' : 'opacity-0' }`}>
               <div className="relative overflow-hidden pl-1">
                 <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1 pointer-events-auto`}>
                   <div className={`transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]' }`}>
@@ -56,6 +62,17 @@ export default function Header({ contact, worksCats }) {
                 </button>
               </div>
             </div>
+
+
+            {!router.asPath == '/words' || !router.asPath.includes('/words/categories') && (
+              <div className={`fixed bottom-4 lg:bottom-8 left-4 lg:left-8 z-[1000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block ${scrolltopShown && !menuOpen ? 'opacity-100' : 'opacity-0' }`}>
+                <div className="relative overflow-hidden pr-1">
+                  <button aria-label="Scroll to top" onClick={scrollToTop} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-1 pointer-events-auto`}>
+                    Back to top
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </header>
 
