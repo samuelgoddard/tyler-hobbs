@@ -114,7 +114,7 @@ export const homeQuery = `{
 }`
 
 export const worksQuery = `{
-  "works": *[_type == "work"] | order(_createdAt desc) {
+  "works": *[_type == "work"] | order(year desc) {
     title,
     year,
     teaserImage {
@@ -144,6 +144,7 @@ export const worksSlugQuery = `{
   "work": *[_type == "work" && slug.current == $slug][0]{
     title,
     year,
+    yearFormatted,
     dims,
     media,
     iterations,
@@ -188,14 +189,14 @@ export const worksSlugQuery = `{
     _createdAt,
     _id,
     ${slug},
-    "next": *[_type == "work" && ^._createdAt < _createdAt] | order(_createdAt asc)[0] {
+    "next": *[_type == "work" && (lower(title) > lower(^.title) && year <= ^.year) && category->slug.current == ^.category->slug.current && slug.current != $slug] | order(year desc, lower(title) asc)[0] {
       title,
       year,
       media,
       dims,
       ${slug}
     },
-    "first": *[_type == "work"] | order(_createdAt asc)[0] {
+    "first": *[_type == "work" && category->slug.current == ^.category->slug.current && slug.current != $slug] | order(year desc, lower(title) asc)[0] {
       title,
       year,
       media,
@@ -208,7 +209,7 @@ export const worksSlugQuery = `{
 }`
 
 export const worksCatSlugQuery = `{
-  "works": *[_type == "work" && category->slug.current == $slug]{
+  "works": *[_type == "work" && category->slug.current == $slug] | order(year desc, lower(title) asc){
     title,
     year,
     series,

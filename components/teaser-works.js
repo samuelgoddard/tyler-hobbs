@@ -18,10 +18,10 @@ export default function TeaserWorks({ href, heading, series, image, priority }) 
         )}
       </div>
       <div className="flex flex-wrap text-base/tight text-gray">
-        <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white lg:group-hover:translate-x-1">{heading}</span>
+        <span className="block w-full lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white lg:group-hover:translate-x-1">{heading}</span>
         
         {series && (
-          <span className="block w-full lg:w-auto transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white lg:group-hover:-translate-x-1">[Series]</span>
+          <span className="block w-full lg:w-auto transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white lg:group-hover:-translate-x-1">[Series]</span>
         )}
       </div>
     </Link>

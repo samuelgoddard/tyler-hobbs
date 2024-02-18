@@ -1,7 +1,7 @@
 import Layout from '@/components/layout'
 import Header from '@/components/header'
 import { fade } from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
+import { LazyMotion, domAnimation, m, AnimatePresence, LayoutGroup } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 import { SplitText } from '@/components/splitText'
 import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
@@ -58,7 +58,15 @@ export default function WorkSlug(initialData) {
   });
 
   useKeypress('ArrowRight', () => {
-    scrollNext();
+    if (galleryContext == work.gallerySlides?.length) {
+      if (work.next) {
+        router.push(`/works/${work.next.slug.current}`)
+      } else {
+        router.push(`/works/${work.first.slug.current}`)
+      }
+    } else {
+      scrollNext();
+    }
   });
 
   const createQueryString = useCallback(
@@ -99,6 +107,9 @@ export default function WorkSlug(initialData) {
     }
   }
 
+  const splitNextTitle = work.next?.title.split(' ')
+  const splitFirstTitle = work.first?.title.split(' ')
+
   return (
     <Layout>
       <NextSeo title={work.title} />
@@ -113,7 +124,7 @@ export default function WorkSlug(initialData) {
           <div className="p-4 lg:p-8 absolute top-0 left-0 right-0 w-full z-[10]">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
-                <div className="hidden lg:block">
+                <div className="hidden lg:block leading-[1]">
                   <ConditionalWrap
                     condition={galleryContext == work.gallerySlides?.length}
                     wrap={children => (
@@ -122,13 +133,13 @@ export default function WorkSlug(initialData) {
                       </button>
                     )}
                   >
-                    <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
+                    <span className="flex flex-wrap overflow-hidden relative xl:pr-[20%] leading-[1]">
                       {galleryContext == work.gallerySlides?.length && (<>
                         <SplitText
                           animate="enter"
                           exit="exit"
                           initial={{ y: '100%' }}
-                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
                           variants={{
                             enter: i => ({ y: 0 }),
                             exit: i => ({ y: '100%' })
@@ -136,12 +147,12 @@ export default function WorkSlug(initialData) {
                         >
                           Back To&nbsp;
                         </SplitText></>)}
-                      <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${galleryContext == work.gallerySlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
+                      <span className={`flex flex-wrap transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${galleryContext == work.gallerySlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
                         <SplitText
                           animate="enter"
                           exit="exit"
                           initial={{ y: '100%' }}
-                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
                           variants={{
                             enter: i => ({ y: 0 }),
                             exit: i => ({ y: '100%' })
@@ -158,18 +169,19 @@ export default function WorkSlug(initialData) {
                   <ConditionalWrap
                     condition={galleryContext == mobileSlides?.length}
                     wrap={children => (
-                      <button className="a11y-focus text-left appearance-none" onClick={scrollPrev}>
+                      <button className="a11y-focus text-left appearance-none leading-[1] mb-0 pb-0" onClick={scrollPrev}>
                         {children}
                       </button>
                     )}
                   >
                     <span className="flex flex-wrap overflow-hidden relative xl:pr-[30%] leading-[1]">
+                      
                       {galleryContext == mobileSlides?.length && (<>
                         <SplitText
                           animate="enter"
                           exit="exit"
                           initial={{ y: '100%' }}
-                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
                           variants={{
                             enter: i => ({ y: 0 }),
                             exit: i => ({ y: '100%' })
@@ -177,12 +189,13 @@ export default function WorkSlug(initialData) {
                         >
                           Back To&nbsp;
                         </SplitText></>)}
-                      <span className={`flex flex-wrap transition-colors ease-in-out duration-300 ${galleryContext == mobileSlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
+                      </span>
+                      <span className={`flex flex-wrap transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] leading-[1] ${galleryContext == mobileSlides?.length ? 'text-gray' : 'text-black dark:text-white'}`}>
                         <SplitText
                           animate="enter"
                           exit="exit"
                           initial={{ y: '100%' }}
-                          transition={{ duration: 0.45, ease: [0.71,0,0.17,1]}}
+                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
                           variants={{
                             enter: i => ({ y: 0 }),
                             exit: i => ({ y: '100%' })
@@ -191,55 +204,89 @@ export default function WorkSlug(initialData) {
                           {work.title}
                         </SplitText>
                       </span>
-                    </span>
                   </ConditionalWrap>
                 </div>
               </div>
 
 
-              <div className="col-span-1 lg:col-span-2 block leading-[0.9] text-gray">
+              <div className="col-span-1 lg:col-span-2 leading-[0.9] text-gray hidden lg:block">
                 { work.gallerySlides && (
                   <span className="block relative overflow-hidden">
-                    <m.button
-                      onClick={()=> {
-                        setModeState('gallery')
-                      }}
-                      initial={{ y: '100%' }}
-                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                      className={`block leading-none a11y-focus ${(modeState == 'gallery') && 'text-black dark:text-white'}`}
-                    >Gallery</m.button>
+                    <span className={`block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ galleryContext + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                      <m.button
+                        onClick={()=> {
+                          setModeState('gallery')
+                        }}
+                        initial={{ y: '100%' }}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        className={`block leading-none a11y-focus ${(modeState == 'gallery') && 'text-black dark:text-white'}`}
+                      >Gallery</m.button>
+                    </span>
                   </span>
                 )}
                 <span className="block relative overflow-hidden">
-                  <m.button
-                    onClick={()=> {
-                      setModeState('info')
-                    }}
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    className={`block leading-none a11y-focus ${modeState == 'info' && 'text-black dark:text-white'}`}
-                  >Info</m.button>
+                  <span className={`block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ galleryContext + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                    <m.button
+                      onClick={()=> {
+                        setModeState('info')
+                      }}
+                      initial={{ y: '100%' }}
+                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      className={`block leading-none a11y-focus ${modeState == 'info' && 'text-black dark:text-white'}`}
+                    >Info</m.button>
+                  </span>
+                </span>
+              </div>
+
+              <div className="col-span-1 lg:col-span-2 block leading-[0.9] text-gray lg:hidden">
+                { work.gallerySlides && (
+                  <span className="block relative overflow-hidden">
+                    <span className={`block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ galleryContext + 1 > mobileSlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                      <m.button
+                        onClick={()=> {
+                          setModeState('gallery')
+                        }}
+                        initial={{ y: '100%' }}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        className={`block leading-none a11y-focus ${(modeState == 'gallery') && 'text-black dark:text-white'}`}
+                      >Gallery</m.button>
+                    </span>
+                  </span>
+                )}
+                <span className="block relative overflow-hidden">
+                  <span className={`block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ galleryContext + 1 > mobileSlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                    <m.button
+                      onClick={()=> {
+                        setModeState('info')
+                      }}
+                      initial={{ y: '100%' }}
+                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      className={`block leading-none a11y-focus ${modeState == 'info' && 'text-black dark:text-white'}`}
+                    >Info</m.button>
+                  </span>
                 </span>
               </div>
               
-              <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity ease-in-out duration-[330ms] delay-[330ms] ${ modeState == 'info' && 'opacity-0 delay-[0ms]' }`}>
+              <div className={`col-span-1 text-right lg:text-left lg:col-span-2 block leading-[0.9] text-gray transition-opacity`}>
                 <span className={`block relative overflow-hidden`}>
-                  <span className={`hidden lg:block transition-transform ease-in-out duration-[330ms] ${ galleryContext + 1 > work.gallerySlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                  <span className={`hidden lg:block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ (galleryContext + 1 > work.gallerySlides?.length || modeState == 'info') ? 'translate-y-full' : 'translate-y-0' }`}>
                     <m.span
                       initial={{ y: '100%' }}
-                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                       className="block leading-none text-black dark:text-white"
                     >{work.gallerySlides && (`${galleryContext + 1 > work.gallerySlides?.length ? galleryContext : galleryContext + 1} — ${work.gallerySlides?.length}`)}</m.span>
                   </span>
 
-                  <span className={`block lg:hidden transition-transform ease-in-out duration-[330ms] ${ galleryContext + 1 > mobileSlides?.length ? 'translate-y-full' : 'translate-y-0' }`}>
+                  <span className={`block lg:hidden transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${ (galleryContext + 1 > mobileSlides?.length || modeState == 'info') ? 'translate-y-full' : 'translate-y-0' }`}>
                     <m.span
                       initial={{ y: '100%' }}
-                      animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                      exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                       className="block leading-none text-black dark:text-white"
                     >{mobileSlides && (`${galleryContext + 1 > mobileSlides?.length ? galleryContext : galleryContext + 1} — ${mobileSlides?.length}`)}</m.span>
                   </span>
@@ -254,9 +301,9 @@ export default function WorkSlug(initialData) {
                 {modeState == 'gallery' ? (
                   <m.div
                     key="gallery"
-                    initial={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
-                    animate={{ opacity: 1, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
-                    exit={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
+                    initial={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ opacity: 1, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="w-full h-[calc(100vh-208px)] lg:h-[calc(100vh-128px)] mt-52 lg:mt-32"
                   >
                     {(galleryContext !== 0 && galleryContext !== work.gallerySlides?.length) && (
@@ -310,7 +357,7 @@ export default function WorkSlug(initialData) {
                             <div className="flex gap-4 lg:hidden">
                               {mobileSlides.map((e, i) => {
                                 return (
-                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-in-out duration-300 overflow-hidden items-center ${ i == galleryContext ? 'opacity-100' : 'opacity-0' }`} key={i}>
+                                  <div className={`absolute inset-0 top-[50px] bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] overflow-hidden items-center ${ i == galleryContext ? 'opacity-100' : 'opacity-0' }`} key={i}>
                                     <div className={`w-full relative overflow-hidden`}>
                                       <SanityImageResponsive
                                         image={e}
@@ -323,32 +370,111 @@ export default function WorkSlug(initialData) {
                               })}
                             </div>
 
-                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
-                                <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
-                                  <span className="grey block mb-3">Next</span>
-
-                                  <span className="block text-4xl/none lg:text-7xl">
-                                    {work.next ? (
-                                      <>{work.next.title} <span className="text-gray"> — {work.next.year}, {work.next.media}, {work.next.dims}</span></>
-                                    ) : (
-                                      <>{work.first.title} <span className="text-gray"> — {work.first.year}, {work.first.media}, {work.first.dims}</span></>
+                                <div className="mb-6 lg:mb-[12vh] max-w-[75%] lg:max-w-[75%] xl:max-[65%] 2xl:max-w-[880px]">
+                                  <span className="block overflow-hidden">
+                                    { galleryContext == work.gallerySlides?.length && (
+                                      <m.span
+                                        initial={{ y: '100%' }}
+                                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                                        className="grey block mb-3"
+                                      >Next</m.span>
                                     )}
                                   </span>
+                                  
+                                  <span className={`flex flex-wrap text-4xl/none lg:text-7xl text-gray ${work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
+                                    {work.next ? (
+                                      <>
+                                      { galleryContext == work.gallerySlides?.length && (
+                                        <SplitText
+                                          animate="enter"
+                                          exit="exit"
+                                          initial={{ y: '100%' }}
+                                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
+                                          variants={{
+                                            enter: i => ({ y: 0 }),
+                                            exit: i => ({ y: '100%' })
+                                          }}
+                                        >
+                                          {`${work.next.title + ' — ' + work.next.year + ', ' + work.next.media + ', ' + work.next.dims.replaceAll('x', '×').replaceAll('x', '×')}`}
+                                        </SplitText>
+                                      )}
+                                      </>
+                                    ) : (
+                                      <>
+                                      { galleryContext == work.gallerySlides?.length && (
+                                        <SplitText
+                                          animate="enter"
+                                          exit="exit"
+                                          initial={{ y: '100%' }}
+                                          transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
+                                          variants={{
+                                            enter: i => ({ y: 0 }),
+                                            exit: i => ({ y: '100%' })
+                                          }}
+                                        >
+                                          {`${work.first.title + ' — ' + work.first.year + ', ' + work.first.media + ', ' + work.first.dims.replaceAll('x', '×').replaceAll('x', '×')}`}
+                                        </SplitText>
+                                      )}
+                                      </>
+                                    )}
+                                  </span>
+
                                 </div>
                               </div>    
                             </Link>
 
-                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-in-out duration-300 block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
+                            <Link href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[10vh] max-w-[80%] lg:max-w-[65%]">
-                                  <span className="grey block mb-3">Next</span>
+                                  <span className="block overflow-hidden">
+                                    { galleryContext == mobileSlides?.length && (
+                                      <m.span
+                                        initial={{ y: '100%' }}
+                                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                                        className="grey block mb-3"
+                                      >Next</m.span>
+                                    )}
+                                  </span>
 
-                                  <span className="block text-4xl/none lg:text-7xl">
+                                  <span className={`flex flex-wrap text-4xl/none lg:text-7xl text-gray ${ work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
                                     {work.next ? (
-                                      <>{work.next.title} <span className="text-gray"> — {work.next.year}, {work.next.media}, {work.next.dims}</span></>
+                                      <>
+                                        { galleryContext == mobileSlides?.length && (
+                                          <SplitText
+                                            animate="enter"
+                                            exit="exit"
+                                            initial={{ y: '100%' }}
+                                            transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
+                                            variants={{
+                                              enter: i => ({ y: 0 }),
+                                              exit: i => ({ y: '100%' })
+                                            }}
+                                          >
+                                            {`${work.next.title + ' — ' + work.next.year + ', ' + work.next.media + ', ' + work.next.dims.replaceAll('x', '×')}`}
+                                          </SplitText>
+                                        )}
+                                      </>
                                     ) : (
-                                      <>{work.first.title} <span className="text-gray"> — {work.first.year}, {work.first.media}, {work.first.dims}</span></>
+                                      <>
+                                        { galleryContext == mobileSlides?.length && (
+                                          <SplitText
+                                            animate="enter"
+                                            exit="exit"
+                                            initial={{ y: '100%' }}
+                                            transition={{ duration: 0.35, ease: [0.71,0,0.17,1]}}
+                                            variants={{
+                                              enter: i => ({ y: 0 }),
+                                              exit: i => ({ y: '100%' })
+                                            }}
+                                          >
+                                            {`${work.first.title + ' — ' + work.first.year + ', ' + work.first.media + ', ' + work.first.dims.replaceAll('x', '×')}`}
+                                          </SplitText>
+                                        )}
+                                      </>
                                     )}
                                   </span>
                                 </div>
@@ -362,37 +488,35 @@ export default function WorkSlug(initialData) {
                 ) : (
                   <m.div
                     key="info"
-                    initial={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
-                    animate={{ opacity: 1, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
-                    exit={{ opacity: 0, transition: { duration: 0.33, ease: [0.71,0,0.17,1]}}}
+                    initial={{ opacity: 0, transition: { duration: 0.175, ease: [0.71,0,0.17,1]}}}
+                    animate={{ opacity: 1, transition: { duration: 0.175, ease: [0.71,0,0.17,1]}}}
+                    exit={{ opacity: 0, transition: { duration: 0.175, ease: [0.71,0,0.17,1]}}}
                     className="w-full min-h-screen pt-64 lg:pt-80 px-4 lg:px-8"
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
                       <div className="col-span-1 lg:col-span-2">
-                        <div className="mb-3 lg:mb-5">
-                          <span className="block text-base/none mb-1">Back To</span>
-                          <span className="block leading-none text-gray mb-1"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/works">Works</Link></span>
-                          <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href={`/works/categories/${work.category?.slug.current}`}>{work.category?.title}</Link></span>
-                        </div>
-
-                        {work.year && (
+                        {work.yearFormatted && (
                           <div className="mb-3 lg:mb-5">
                             <span className="block text-base/none mb-1">Year</span>
-                            <span className="block">{work.year}</span>
+                            {work.yearFormatted ? (
+                              <span className="block">{new Intl.DateTimeFormat('en-GB', {year: 'numeric'}).format(new Date(work.yearFormatted))}</span>
+                            ) : (
+                              <span className="block">{work.year}</span>
+                            )}
                           </div>
                         )}
                         {work.dims && (
-                          <div className="mb-3 lg:mb-5">
+                          <div className="mb-3 lg:mb-5 math">
                             <span className="block text-base/none mb-1">Dimensions</span>
                             {dimsArray.length > 1 ? (
-                              <span className="block leading-[1.2]">{dimsArray[0]}<br/>({dimsArray[1]}</span>
+                              <span className="block leading-[1.2]">{dimsArray[0].replaceAll('x', '×')}<br/>({dimsArray[1].replaceAll('x', '×')}</span>
                             ) : (
-                              <span className="block leading-[1.2]">{dimsArray[0]}</span>
+                              <span className="block leading-[1.2]">{dimsArray[0].replaceAll('x', '×')}</span>
                             )}
                           </div>
                         )}
                         {work.links && (
-                          <div className="">
+                          <div className="mb-3 lg:mb-5">
                             <span className="block text-base/none mb-1">Links</span>
                             
                             {work.links.map((e,i) => {
@@ -403,13 +527,18 @@ export default function WorkSlug(initialData) {
                               e?.internalLink?._type == 'pages' && (route = '/pages')
 
                               return e.internalLink ? (
-                                <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                                <Link href={`${route}/${e.internalLink.slug.current}`} className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
                               ) : (
-                                <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                                <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
                               )
                             })}
                           </div>
                         )}
+
+                        <div className="">
+                          <span className="block text-base/none mb-1">Back To</span>
+                          <span className="block leading-none text-gray"><Link className="text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href={`/works/categories/${work.category?.slug.current}/#${work.slug?.current}`} scroll={false}>{work.category?.title}</Link></span>
+                        </div>
                       </div>
 
                       <div className="col-span-1 lg:col-span-2">

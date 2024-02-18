@@ -40,8 +40,8 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -54,8 +54,8 @@ export default function Works(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -65,8 +65,8 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
@@ -76,16 +76,16 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   >Chronological</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Random</m.span>
                 </span>
@@ -95,7 +95,7 @@ export default function Works(initialData) {
 
           {/* Fixed Header Reveal */}
 
-          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-in-out duration-[500ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
 
             <div className="col-span-2 hidden lg:block">
@@ -111,8 +111,8 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -125,8 +125,8 @@ export default function Works(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -136,8 +136,8 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
@@ -147,16 +147,16 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   >Chronological</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Random</m.span>
                 </span>
@@ -179,15 +179,15 @@ export default function Works(initialData) {
                                 <div className="block">
                                   <SanityImageResponsive
                                     image={eee.image ? eee.image : eee}
-                                    className="w-full mb-3"
+                                    className="w-full mb-0 pb-0 lg:mb-[5px]"
                                     noCaption
                                     sizes={`(max-width: 1024px) 66vw, 20vw`}
                                     priority={i == 0 || i == 1 || i == 7 || i == 9 || i == 11 || i == 12}
                                   />
-                                  <div className="flex flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-in-out duration-300">
-                                    <span className="block w-full lg:flex-1 transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
+                                  <div className="flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:flex">
+                                    <span className="block w-full lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
                                     
-                                    {/* <span className="block w-full lg:w-auto transition-all ease-in-out duration-300 lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
+                                    {/* <span className="block w-full lg:w-auto transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
                                   </div>
                                 </div>
                               </Link>

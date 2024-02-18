@@ -9,7 +9,7 @@ export default function SanityImageCarousel({ image, className, alt, priority, q
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder
       .width((widthOverride ? widthOverride : options.width) || Math.min(( widthOverride ? widthOverride : options.originalImageDimensions.width), 800))
-      .quality(quality ? quality : 75)
+      .quality(quality ? quality : 85)
       .fit('clip')
   };
   
@@ -33,7 +33,7 @@ export default function SanityImageCarousel({ image, className, alt, priority, q
       {/* LQIP */}
       <div
         // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
-        className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[1500ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
+        className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[700ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
       >
         <img width="100" height="100" src={image.asset?.metadata?.lqip} className="w-full h-full absolute inset-0 object-cover object-center" />
       </div>

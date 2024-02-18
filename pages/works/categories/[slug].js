@@ -8,7 +8,9 @@ import TeaserWorks from '@/components/teaser-works'
 import { worksCatSlugQuery } from '@/helpers/queries'
 import SanityPageService from '@/services/sanityPageService'
 import useDetectScroll from "@smakss/react-scroll-direction";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 const pageService = new SanityPageService(worksCatSlugQuery)
 
 export default function WorksCatSlug(initialData) {
@@ -17,9 +19,19 @@ export default function WorksCatSlug(initialData) {
   const [headerShown, setHeaderShown] = useState(false)
   const { scrollY } = useScroll()
   const scrollDir = useDetectScroll();
+  const router = useRouter();
+  const params = useParams();
+
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     (latest > 1 &&  scrollDir == 'up') ? (setHeaderShown(true)) : (setHeaderShown(false))
+  })
+
+  useEffect(() => { 
+    if (window.location.hash) {
+        document.getElementById(window.location.hash.replace('#','')).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+        console.log(document.getElementById(window.location.hash.replace('#','')))
+      }
   })
 
   return (
@@ -40,8 +52,8 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -54,8 +66,8 @@ export default function WorksCatSlug(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -64,8 +76,8 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
@@ -74,7 +86,7 @@ export default function WorksCatSlug(initialData) {
           </div>
 
           {/* Fixed Header Reveal */}
-          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-in-out duration-[500ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
 
               <div className="col-span-2 hidden lg:block">
@@ -90,8 +102,8 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -104,8 +116,8 @@ export default function WorksCatSlug(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -114,8 +126,8 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
@@ -127,7 +139,7 @@ export default function WorksCatSlug(initialData) {
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8 items-start">
               {works.map((e,i) => {
                 return (
-                  <div className="works-teaser" key={i}>
+                  <div className="works-teaser" id={e.slug?.current} key={i}>
                     <TeaserWorks image={e.teaserImage} href={`/works/${e.slug?.current}`} heading={`${e.title}, ${e.year}`} series={e.series} priority={i == 0 || i == 1 || i == 2} />
                   </div>
                 )

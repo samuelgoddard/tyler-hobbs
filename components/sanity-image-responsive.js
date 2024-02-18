@@ -19,7 +19,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
   const myCustomImageBuilder = (imageUrlBuilder, options) => {
     return imageUrlBuilder
       .width((widthOverride ? widthOverride : options.width) || Math.min(( widthOverride ? widthOverride : options.originalImageDimensions.width), 800))
-      .quality(quality ? quality : 75)
+      .quality(quality ? quality : 85)
       .fit('clip')
   };
   
@@ -60,7 +60,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           {!priority && (
             <div
               // style={{ backgroundColor: image.asset.metadata.palette ? image.asset.metadata.palette.dominant.background : '#000'  }}
-              className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-in-out duration-[750ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
+              className={`absolute inset-0 bg-black z-[10] scale-[1.025] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[750ms] ${imageIsLoaded  ? 'opacity-0 delay-[350ms]' : 'opacity-100' }`}
             >
               <Image src={image.asset?.metadata?.lqip} loading="lazy" fill role="presentation" alt="Placeholder" className="w-full h-full absolute inset-0 object-cover object-center" />
             </div>
@@ -89,7 +89,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
             <>
               <button onClick={()=>lightboxToggle()} className="absolute inset-0 w-full h-full z-10 group a11y-focus">
                 <div className="group-focus:ouline-none a11y-focus absolute p-2 lg:p-2 bg-white dark:bg-black bottom-2 lg:bottom-4 right-2 lg:right-4">
-                  <div className="w-4 lg:w-[21px] transition-transform ease-in-out duration-[450ms] group-hover:scale-[1.15] leading-none">
+                  <div className="w-4 lg:w-[21px] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] group-hover:scale-[1.15] leading-none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fillRule="evenodd" fill="currentColor" d="M11 2v9H2v2h9v9h2v-9h9v-2h-9V2Z"/></svg>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
                     className="fixed inset-0 z-[1000] bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-[6px] flex flex-col items-center justify-center p-3"
                     onClick={()=>lightboxToggle()}
                   >
-                    <button onClick={()=>lightboxToggle()} className="absolute p-2 top-5 right-5 transition-transform ease-in-out duration-300 lg:hover:-translate-x-1">
+                    <button onClick={()=>lightboxToggle()} className="absolute p-2 top-5 right-5 transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1">
                       Close
                     </button>
 

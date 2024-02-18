@@ -10,7 +10,7 @@ export default function TeaserExhibition({ href, heading, location, year, image,
           priority={priority ? true : false}
         />
       </div>
-      <div className="flex flex-wrap text-base/tight text-gray transition-all ease-in-out duration-300 group-hover:translate-x-2 group-hover:text-black dark:group-hover:white">
+      <div className="flex flex-wrap text-base/tight text-gray transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] group-hover:translate-x-2 group-hover:text-black dark:group-hover:white">
         <span className="block w-full mb-1">{heading}</span>
         <span className="block w-full mb-1">{location}</span>
         <span className="block w-full mb-1">{year}</span>

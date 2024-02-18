@@ -37,7 +37,7 @@ export default function ExhibitionsSlug(initialData) {
           exit="exit"
         >
 
-          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-in-out duration-[500ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <div className={`p-4 lg:p-8 hidden lg:block lg:fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'lg:translate-y-0' : 'lg:-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 hidden lg:block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
@@ -51,8 +51,8 @@ export default function ExhibitionsSlug(initialData) {
                 <span className={`hidden lg:block relative overflow-hidden`}>
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >{exhibition.title}</m.span>
                 </span>
@@ -62,8 +62,8 @@ export default function ExhibitionsSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></m.span>
                 </span>
@@ -76,8 +76,8 @@ export default function ExhibitionsSlug(initialData) {
                 <Link href="/exhibitions" className="block relative overflow-hidden a11y-focus">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Exhibitions</m.span>
                 </Link>
@@ -94,10 +94,6 @@ export default function ExhibitionsSlug(initialData) {
             <div className="relative">
               <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24 relative">
                 <div className="col-span-12 lg:col-span-2 order-2 lg:order-1  lg:sticky lg:top-32">
-                  <div className="mb-3 lg:mb-5">
-                    <span className="block text-base/none mb-1">Back To</span>
-                    <span className="block leading-none"><Link className="text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/exhibitions">Exhibitions</Link></span>
-                  </div>
                   {exhibition.gallery && (
                     <div className="mb-3 lg:mb-5">
                       <span className="block text-base/none mb-1">Gallery</span>
@@ -117,7 +113,7 @@ export default function ExhibitionsSlug(initialData) {
                     </div>
                   )}
                   {exhibition.links && (
-                    <div className="">
+                    <div className="mb-3 lg:mb-5">
                       <span className="block text-base/none mb-1">Links</span>
                       
                       {exhibition.links.map((e,i) => {
@@ -128,13 +124,18 @@ export default function ExhibitionsSlug(initialData) {
                         e?.internalLink?._type == 'pages' && (route = '/pages')
 
                         return e.internal ? (
-                          <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                          <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
                         ) : (
-                          <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-in-out duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                          <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
                         )
                       })}
                     </div>
                   )}
+
+                  <div className="">
+                    <span className="block text-base/none mb-1">Back To</span>
+                    <span className="block leading-none"><Link className="text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/exhibitions">Exhibitions</Link></span>
+                  </div>
                   
                 </div>
                 

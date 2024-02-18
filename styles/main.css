@@ -6,6 +6,7 @@
 @import 'tailwindcss/utilities';
 
 html {
+  --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
 }
 
@@ -32,7 +33,7 @@ body {
 }
 
 .slide {
-  @apply w-full h-full inset-0 opacity-0 transition-all ease-in-out duration-[330ms] delay-[0ms];
+  @apply w-full h-full inset-0 opacity-0 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[330ms] delay-[0ms];
   flex: 0 0 auto;
   transform: none !important;
   counter-increment: embla;
@@ -46,13 +47,13 @@ body {
 }
 
 .slide.is-snapped {
-  @apply opacity-100 z-[1] transition-all ease-in-out duration-[330ms] delay-[330ms];
+  @apply opacity-100 z-[1] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[330ms] delay-[330ms];
 }
 
 .works-teaser:nth-child(4n+4) { @apply col-span-12 lg:col-span-4 lg:col-start-9; }
 .works-teaser:nth-child(4n+3) { @apply col-span-12 lg:col-span-4 lg:col-start-2 lg:pt-[25vw]; }
-.works-teaser:nth-child(4n+2) { @apply col-span-12 lg:col-span-4 lg:col-start-8; }
-.works-teaser:nth-child(4n+1) { @apply col-span-12 lg:col-span-4 lg:pt-[25vw] }
+.works-teaser:nth-child(4n+2) { @apply col-span-12 lg:col-span-4 }
+.works-teaser:nth-child(4n+1) { @apply col-span-12 lg:col-span-4 lg:col-start-8  }
 
 
 
@@ -407,4 +408,54 @@ pre[data-line] {
   flex: 0 0 100%;
   min-width: 0;
   position: relative;
+}
+
+.math {
+	/* font-variant-ligatures: none; */
+	/* font-variant-ligatures: common-ligatures; */
+	/* font-variant-ligatures: no-common-ligatures;  */
+	/* font-variant-ligatures: discretionary-ligatures; */
+	/* font-variant-ligatures: no-discretionary-ligatures; */
+}
+
+.next {
+	span {
+		@apply text-red-500;
+	}	
+}
+
+.text-1-highlight {
+	& > span:nth-child(1) {
+		@apply text-black dark:text-white;
+	}
+}
+
+.text-2-highlight {
+	& > span:nth-child(2) {
+		@apply text-black dark:text-white;
+	}
+}
+
+.text-3-highlight {
+	& > span:nth-child(3) {
+		@apply text-black dark:text-white;
+	}
+}
+
+.text-4-highlight {
+	& > span:nth-child(4) {
+		@apply text-black dark:text-white;
+	}
+}
+
+.text-5-highlight {
+	& > span:nth-child(5) {
+		@apply text-black dark:text-white;
+	}
+}
+
+.text-6-highlight {
+	& > span:nth-child(6) {
+		@apply text-black dark:text-white;
+	}
 }
