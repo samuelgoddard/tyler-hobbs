@@ -139,7 +139,7 @@ export default function WorksCatSlug(initialData) {
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-4 lg:mb-8 items-start">
               {works.map((e,i) => {
                 return (
-                  <div className="works-teaser" id={e.slug?.current} key={i}>
+                  <div className="works-teaser mb-6 lg:mb-0" id={e.slug?.current} key={i}>
                     <TeaserWorks image={e.teaserImage} href={`/works/${e.slug?.current}`} heading={`${e.title}, ${e.year}`} series={e.series} priority={i == 0 || i == 1 || i == 2} />
                   </div>
                 )

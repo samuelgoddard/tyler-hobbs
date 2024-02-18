@@ -29,7 +29,7 @@ export default function SanityImageCarousel({ image, className, alt, priority, q
   if (sizes) { attributes.sizes = sizes }
 
 	return (
-    <div className="relative overflow-hidden h-full">
+    <div className="relative overflow-hidden h-full w-auto">
       {/* LQIP */}
       {!priority && (
         <div
@@ -41,9 +41,9 @@ export default function SanityImageCarousel({ image, className, alt, priority, q
       )}
       {/* LQIP */}
 
-      <div className={`w-full h-full ${imageProps?.src.includes('.png') ? '' : 'bg-black/10'}`}>
+      <div className={`w-auto h-full ${imageProps?.src.includes('.png') ? '' : 'bg-black/10'}`}>
         <Image
-          className={`${className ? className : '' } w-full`}
+          className={`${className ? className : '' }`}
           quality={quality ? quality : 90}
           {...imageProps}
           {...attributes}

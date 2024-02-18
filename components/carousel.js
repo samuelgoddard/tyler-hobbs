@@ -49,16 +49,15 @@ export default function Carousel({ images }) {
               return (
                 <div className="embla__slide relative w-full max-h-[53vw] bg-gray/10" key={i}>
                   <div className="w-full h-full flex justify-center items-center">
-                      <div className="w-auto h-[65vw] lg:h-[55vw] inline-block relative overflow-hidden">
-                        {/* <img src={e.asset.url} className="w-auto h-full" /> */}
-                        <SanityImageCarousel
-                          image={e}
-                          sizes={`(max-width: 1024px) 100vw,80vw`}
-                          className="h-full w-auto inline-block"
-                          priority={i == 0}
-                        />
-                      </div>
+                    <div className="w-auto h-[65vw] lg:h-[55vw] inline-block relative overflow-hidden">
+                      <SanityImageCarousel
+                        image={e}
+                        sizes={`(max-width: 1024px) 100vw,80vw`}
+                        className="h-full w-auto"
+                        priority={i == 0}
+                      />
                     </div>
+                  </div>
                 </div>
               )
             })}

@@ -19,6 +19,7 @@ import { useMousePosition } from '@/helpers/mousePosition'
 import { useRouter } from 'next/router'
 import useKeypress from 'react-use-keypress';
 import { GalleryContext } from '@/context/gallery'
+import Div100vh, { use100vh } from 'react-div-100vh'
 
 const pageService = new SanityPageService(worksSlugQuery)
 
@@ -106,7 +107,7 @@ export default function WorkSlug(initialData) {
       }
     }
   }
-
+  const screenHeight = use100vh()
   const splitNextTitle = work.next?.title.split(' ')
   const splitFirstTitle = work.first?.title.split(' ')
 
@@ -308,7 +309,7 @@ export default function WorkSlug(initialData) {
                     initial={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     animate={{ opacity: 1, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
                     exit={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="w-full h-[calc(100vh-208px)] lg:h-[calc(100vh-128px)] mt-52 lg:mt-32"
+                    className="w-full h-[calc(100dvh-208px)] lg:h-[calc(100dvh-128px)] mt-52 lg:mt-32"
                   >
                     {(galleryContext !== 0 && galleryContext !== work.gallerySlides?.length) && (
                       <button onClick={scrollPrev} aria-label="Scroll to previoous slide" className={`fixed bottom-10 lg:bottom-0 lg:top-28 left-3 lg:left-0 w-8 lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden hidden lg:block`}>
