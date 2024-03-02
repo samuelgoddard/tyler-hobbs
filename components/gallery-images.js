@@ -45,7 +45,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   )
 
   return(
-    <div className={`absolute inset-0 bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
+    <div className={`absolute inset-0 bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{containerWidth}</div> */}
 
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{layout}</div> */}

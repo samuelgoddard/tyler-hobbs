@@ -45,18 +45,18 @@ export default function Header({ contact, worksCats }) {
 
             <div className="text-right ml-auto">
               <div className="relative overflow-hidden pl-1">
-                <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1 pointer-events-auto`}>
-                  <div className={`transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]' }`}>
+                <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:-translate-x-1 pointer-events-auto`}>
+                  <div className={`transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]' }`}>
                     Menu
                   </div>
                 </button>
               </div>
             </div>
 
-            <div className={`fixed top-4 lg:top-8 right-4 lg:right-8 text-right z-[10000000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block ${menuShown ? 'opacity-100' : 'opacity-0' }`}>
+            <div className={`fixed top-4 lg:top-8 right-4 lg:right-8 text-right z-[10000000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] block ${menuShown ? 'opacity-100' : 'opacity-0' }`}>
               <div className="relative overflow-hidden pl-1">
-                <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1 pointer-events-auto`}>
-                  <div className={`transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]' }`}>
+                <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={menuToggle} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:-translate-x-1 pointer-events-auto`}>
+                  <div className={`transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]' }`}>
                     Menu
                   </div>
                 </button>
@@ -65,10 +65,12 @@ export default function Header({ contact, worksCats }) {
 
 
             {!router.asPath == '/words' || router.asPath.includes('/works/') || !router.asPath.includes('/words/categories') && (
-              <div className={`fixed bottom-4 lg:bottom-8 left-4 lg:left-8 z-[1000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] block ${scrolltopShown && !menuOpen ? 'opacity-100' : 'opacity-0' }`}>
-                <div className="relative overflow-hidden pr-1">
-                  <button aria-label="Scroll to top" onClick={scrollToTop} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-1 pointer-events-auto`}>
-                    Back to top
+              <div className={`fixed bottom-4 lg:bottom-8 right-4 lg:right-auto left-auto lg:left-8 z-[1000] transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] block ${scrolltopShown && !menuOpen ? 'opacity-100' : 'opacity-0' }`}>
+                <div className="relative overflow-hidden pt-3">
+                  <button aria-label="Scroll to top" onClick={scrollToTop} className={`a11y-focus  leading-none lg:leading-none block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:-translate-y-1 pointer-events-auto`}>
+                    <div className="w-[32px] h-[32px] rounded-full border-[2px] bg-white dark:bg-black border-black dark:border-white text-dark dark:text-white flex items-center justify-center">
+                    <svg className="-rotate-90 w-[80%]" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -84,9 +86,9 @@ export default function Header({ contact, worksCats }) {
           ></button>
         )}
         
-        <button aria-label="Close Menu" onClick={menuToggle} className={`fixed top-4 lg:top-[30px] right-4 lg:right-8 a11y-focus block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1 z-[100000] leading-none lg:leading-none pointer-events-auto ${!menuOpen ? 'pointer-events-none' : ''}`}>
+        <button aria-label="Close Menu" onClick={menuToggle} className={`fixed top-4 lg:top-[30px] right-4 lg:right-8 a11y-focus block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:-translate-x-1 z-[100000] leading-none lg:leading-none pointer-events-auto ${!menuOpen ? 'pointer-events-none' : ''}`}>
           <span className="relative overflow-hidden block">
-            <span className={`block transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${!menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]'}`}>
+            <span className={`block transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${!menuOpen ? 'translate-y-full' : 'translate-y-0 delay-[350ms]'}`}>
               Close
             </span>
           </span>
@@ -97,53 +99,101 @@ export default function Header({ contact, worksCats }) {
             <>
               <m.div
                 initial={{ x: '100%'}}
-                animate={{ x: 0, transition: { duration: 0.35, delay: 0.1725, ease: [0.71,0,0.17,1]}}}
-                exit={{ x: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                animate={{ x: 0, transition: { duration: 0.66, delay: 0.1725, ease: [0.71,0,0.17,1]}}}
+                exit={{ x: '100%', transition: { duration: 0.66, ease: [0.71,0,0.17,1]} }}
 
-                className="fixed top-0 right-0 bottom-0 w-full lg:w-[33vw] lg:max-w-2xl h-full bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 lg:border-l lg:border-black dark:lg:border-white backdrop-blur-[6px] z-[1000] p-4 lg:p-8 flex flex-col"
-              >                
-                <nav className="pt-20 text-[12vw]/[0.7] lg:text-[4.3vw]/[0.7] w-full tracking-[-0.025em] lg:tracking-[-0.025em]">
-                  <ul>
-                    <li className="block mb-4 lg:mb-3 xl:mb-4">
-                      <Link
-                        onClick={menuToggle}
-                        className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/works') ? 'border-b-2' : '' }`}
-                        href={`/works/categories/${worksCats.slug.current}`}
-                      >
-                        Works
-                      </Link>
-                    </li>
-                    <li className="block mb-4 lg:mb-3 xl:mb-4">
-                      <Link
-                        onClick={menuToggle}
-                        className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/words') ? 'border-b-2' : '' }`}
-                        href="/words"
-                      >
-                        Words
-                      </Link>
-                    </li>
-                    <li className="block mb-4 lg:mb-3 xl:mb-4">
-                      <Link
-                        onClick={menuToggle}
-                        className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/exhibitions') ? 'border-b-2' : '' }`}
-                        href="/exhibitions"
-                      >Exhibitions</Link>
-                    </li>
-                    <li className="block mb-4 lg:mb-3 xl:mb-4">
-                      <Link
-                        onClick={menuToggle}
-                        className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/about') ? 'border-b-2' : '' }`}
-                        href="/about"
-                      >
-                        About
-                      </Link>
-                    </li>
-                  </ul>
-                </nav>
+                className="fixed top-0 right-0 bottom-0 w-full lg:w-[33vw] lg:max-w-2xl h-full bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 lg:border-l lg:border-black dark:lg:border-white backdrop-blur-[6px] z-[1000] p-4 lg:p-8 flex flex-col will-change-transform"
+              >       
+                <AnimatePresence>
+                  <nav className="pt-20 text-[12vw]/[0.8] lg:text-[4.3vw]/[0.8] w-full tracking-[-0.025em] lg:tracking-[-0.025em]">
+                    <ul>
+                      <li className="block mb-2 lg:mb-2">
+                        <Link
+                          onClick={menuToggle}
+                          className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/works') ? 'border-b-2' : '' }`}
+                          href={`/works/categories/${worksCats.slug.current}`}
+                        >
+                          <span className="block relative overflow-hidden">
+                            <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.4, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
+                                Works
+                              </m.span>
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="block mb-2 lg:mb-2">
+                        <Link
+                          onClick={menuToggle}
+                          className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/words') ? 'border-b-2' : '' }`}
+                          href="/words"
+                        >
+                          <span className="block relative overflow-hidden">
+                            <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.45, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
+                                Words
+                              </m.span>
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="block mb-2 lg:mb-2">
+                        <Link
+                          onClick={menuToggle}
+                          className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/exhibitions') ? 'border-b-2' : '' }`}
+                          href="/exhibitions"
+                        >
+                          <span className="block relative overflow-hidden">
+                            <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.5, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
+                                Exhibitions
+                              </m.span>
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="block mb-2 lg:mb-2">
+                        <Link
+                          onClick={menuToggle}
+                          className={`inline-block a11y-focus transition-translate ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:translate-x-2 pb-1 lg:pb-1 pointer-events-auto ${router.asPath.includes('/about') ? 'border-b-2' : '' }`}
+                          href="/about"
+                        >
+                          <span className="block relative overflow-hidden">
+                            <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
+                                About
+                              </m.span>
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                </AnimatePresence>
 
                 <div className="mt-auto">
                   <form className="text-base/tight mb-[9vh] relative block w-9/12">
-                    <span className="block mb-3">Newsletter:</span>
+                    <span className="block mb-2">Newsletter:</span>
                     <input className="appearance-none text-2xl/tight placeholder:text-gray border-b border-gray w-full focus-visible:border-b focus-visible:outline-none focus-visible:border-black dark:focus-visible:border-white bg-transparent dark:bg-transparent pr-12" type="email" required placeholder="Email address"></input>
 
                     <button type="submit" className="block absolute bottom-0 right-0 text-lg w-7 mb-[2px] text-gray a11y-focus lg:hover:text-black focus-visible:text-black dark:lg:hover:text-white dark:focus-visible:text-white pointer-events-auto">
@@ -154,33 +204,55 @@ export default function Header({ contact, worksCats }) {
                   <div className="flex flex-wrap items-end">
                     <div className="w-1/2">
                       {contact?.socials && (
-                        <nav className="text-base/tight">
+                        <nav className="text-base/tight mb-5">
                           <ul>
                             {contact.socials.map((e,i) => { 
                               return (
                                 <li className="block mb-1" key={i}>
                                   <a
-                                    className="a11y-focus lg:hover:text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] pointer-events-auto"
+                                    className="a11y-focus lg:hover:text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] pointer-events-auto"
                                     href={e.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
-                                    {e.platform}
+                                    <span className="block relative overflow-hidden">
+                                      <m.span
+                                        className="block"
+                                        initial={{ y: '100%' }}
+                                        animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                        exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                                      >
+                                        {e.platform}
+                                      </m.span>
+                                    </span>
                                   </a>
-                                </li>    
+                                </li>
                               )
                             })}
                           </ul>
                         </nav>
                       )}
+                      
+                      <span className="text-base/tight block">
+                        <span className="block relative overflow-hidden ">
+                          <m.span
+                            className="block"
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                            exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                          >
+                            &copy; Tyler Hobbs - {new Date().getFullYear() }
+                          </m.span>
+                        </span>
+                      </span>
                     </div>
 
                     <div className="w-1/2">
                       <button className="ml-auto w-10 block group pointer-events-auto" onClick={()=> setTheme( resolvedTheme === 'dark' ? 'light' : 'dark' )}>
                         <svg className="w-full" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g>
-                            <path className="transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] group-hover:translate-x-[-50%] group-hover:translate-y-[25%]" d="M16.9943 0L34 9.99709V30.0029L16.9943 19.9942V0Z" fill="currentColor"/>
-                            <path className="transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] group-hover:translate-x-[50%] group-hover:translate-y-[-25%]" d="M0 9.9971L16.9943 19.9942V40L0 30.0029V9.9971Z" fill="currentColor"/>
+                            <path className="transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] group-hover:translate-x-[-50%] group-hover:translate-y-[25%]" d="M16.9943 0L34 9.99709V30.0029L16.9943 19.9942V0Z" fill="currentColor"/>
+                            <path className="transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] group-hover:translate-x-[50%] group-hover:translate-y-[-25%]" d="M0 9.9971L16.9943 19.9942V40L0 30.0029V9.9971Z" fill="currentColor"/>
                           </g>
                         </svg>
 

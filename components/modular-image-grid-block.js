@@ -1,5 +1,5 @@
 import SanityImageResponsive from "./sanity-image-responsive"
-
+import { m } from "framer-motion"
 export default function ModularImageGridBlock({ images, columns, width }) {
   let containerWidth = 'col-span-12 lg:col-span-6 lg:col-start-7'
   let innerGridCols = 'grid-cols-12 gap-4 lg:gap-8'
@@ -77,13 +77,18 @@ export default function ModularImageGridBlock({ images, columns, width }) {
         return (
           <div className={cols} key={i}>
             <div className={`w-full relative overflow-hidden`}>
-              <SanityImageResponsive
-                image={e}
-                sizes={sizes}
-                noCaption={images.length > 8}
-                className={`w-full`}
-                fancyHover={true}
-              />
+              <m.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.2, type: "spring", stiffness: 250, damping: 45, mass: 1 }}}
+              >
+                <SanityImageResponsive
+                  image={e}
+                  sizes={sizes}
+                  noCaption={images.length > 8}
+                  className={`w-full`}
+                  fancyHover={true}
+                />
+              </m.div>
             </div>
           </div>
         )

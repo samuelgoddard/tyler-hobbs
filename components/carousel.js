@@ -66,7 +66,7 @@ export default function Carousel({ images }) {
 
         <div className="absolute inset-0 w-full h-full flex items-center z-10">
           <button
-            className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms]"
+            className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms]"
             type="button"
             aria-label="Scroll to previous slide"
             onClick={scrollPrev}
@@ -80,7 +80,7 @@ export default function Carousel({ images }) {
           </button>
 
           <button
-            className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms]"
+            className="w-1/2 h-full block lg:opacity-0 hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms]"
             type="button"
             aria-label="Scroll to next slide"
             onClick={scrollNext}

@@ -10,6 +10,7 @@ import SanityImage from '@/components/sanity-image'
 import SanityImageResponsive from '@/components/sanity-image-responsive'
 import useDetectScroll from "@smakss/react-scroll-direction";
 import { Fragment, useState } from 'react'
+import { TextReveal } from '@/components/text-reveal'
 const pageService = new SanityPageService(worksQuery)
 
 export default function Works(initialData) {
@@ -36,69 +37,42 @@ export default function Works(initialData) {
         >
           <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 lg:col-start-3 block">
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
-                </span>
+              <div className="col-span-2 lg:col-start-3 block leading-none">
+                <TextReveal delay={.1}><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></TextReveal>
               </div>
 
 
               <div className="col-span-2 block leading-[0.9] text-gray">
                 {cats.map((e,i) => {
                   return (
-                    <span className="block relative overflow-hidden" key={i}>
-                      <m.span
-                        initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        className="block leading-none"
-                      ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
-                    </span>
+                    <TextReveal delay={.2} key={i} className="leading-none">
+                      <Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link>
+                    </TextReveal>
                   )
                 })}
-                
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none text-black dark:text-white"
-                  ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
-                </span>
+                <TextReveal delay={.2} className="leading-none text-black dark:text-white">
+                  <Link className="a11y-focus inline-block" href="/works">Index</Link>
+                </TextReveal>
               </div>
 
               <div className="col-span-2 block leading-[0.9] text-gray">
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none text-black dark:text-white"
-                  >Chronological</m.span>
-                </span>
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  >Random</m.span>
-                </span>
+                <TextReveal delay={.3} className="leading-none text-black dark:text-white">
+                  Chronological
+                </TextReveal>
+
+                <TextReveal delay={.3} className="leading-none">
+                  Random
+                </TextReveal>
               </div>
             </div>
           </div>
 
           {/* Fixed Header Reveal */}
 
-          <div className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
-            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
+          <m.div variants={fade} className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+            <m.div variants={fade} className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
 
-            <div className="col-span-2 block">
+              <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
                   <svg className="w-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 678 129">
                     <path fill="currentColor" d="M77.043 2.263v12.448H45.886v87.134h-14.73V14.711H0V2.263h77.043Z"/>
@@ -111,8 +85,7 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -125,8 +98,7 @@ export default function Works(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className="a11y-focus inline-block" href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -136,8 +108,7 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
@@ -147,22 +118,20 @@ export default function Works(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none text-black dark:text-white"
                   >Chronological</m.span>
                 </span>
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Random</m.span>
                 </span>
               </div>
-            </div>
-          </div>
+            </m.div>
+          </m.div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-5 pt-28 lg:pt-80">
@@ -175,22 +144,27 @@ export default function Works(initialData) {
                         {ee.images?.map((eee, iii) => {
                           return !eee.vimeoVideoOverrideUrl && (!eee.removeFromIndex && !eee.image?.removeFromIndex) && (
                             <div className="col-span-6 lg:col-span-2" key={iii}>
-                              <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
-                                <div className="block">
-                                  <SanityImageResponsive
-                                    image={eee.image ? eee.image : eee}
-                                    className="w-full mb-0 pb-0 lg:mb-[5px]"
-                                    noCaption
-                                    sizes={`(max-width: 1024px) 66vw, 20vw`}
-                                    priority={i == 0 || i == 1 || i == 7 || i == 9 || i == 11 || i == 12}
-                                  />
-                                  <div className="flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hidden lg:flex">
-                                    <span className="block w-full lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
-                                    
-                                    {/* <span className="block w-full lg:w-auto transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
+                              <m.div
+                                initial={{ y: 45 }}
+                                animate={{ y: 0, transition: { delay: 0, type: "spring", stiffness: 250, damping: 75, mass: 1 }}}
+                              >
+                                <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
+                                  <div className="block">
+                                    <SanityImageResponsive
+                                      image={eee.image ? eee.image : eee}
+                                      className="w-full mb-0 pb-0 lg:mb-[5px]"
+                                      noCaption
+                                      sizes={`(max-width: 1024px) 66vw, 20vw`}
+                                      priority={i == 0 || i == 1 || i == 7 || i == 9 || i == 11 || i == 12}
+                                    />
+                                    <div className="flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hidden lg:flex">
+                                      <span className="block w-full lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
+                                      
+                                      {/* <span className="block w-full lg:w-auto transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
+                                    </div>
                                   </div>
-                                </div>
-                              </Link>
+                                </Link>
+                              </m.div>
                             </div>
                           )
                         })}

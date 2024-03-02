@@ -459,3 +459,9 @@ pre[data-line] {
 		@apply text-black dark:text-white;
 	}
 }
+
+
+
+.leading-none {
+	@apply leading-[1.03];
+}

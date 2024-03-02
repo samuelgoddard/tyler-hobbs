@@ -9,6 +9,7 @@ import SanityPageService from '@/services/sanityPageService'
 import useDetectScroll from "@smakss/react-scroll-direction";
 import { useState } from 'react'
 import Link from 'next/link'
+import { TextReveal } from '@/components/text-reveal'
 const pageService = new SanityPageService(exhibitionsQuery)
 
 export default function Exhibitions(initialData) {
@@ -34,7 +35,7 @@ export default function Exhibitions(initialData) {
           animate="enter"
           exit="exit"
         >
-          <div className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <m.div variants={fade} className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 lg:gap-8 lg:pt-0">
               <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
@@ -48,8 +49,8 @@ export default function Exhibitions(initialData) {
                 <span className={`hidden lg:block relative overflow-hidden`}>
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                    exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >Exhibitions</m.span>
                 </span>
@@ -59,25 +60,18 @@ export default function Exhibitions(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                    exit={{ y: '100%', transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link href={`/words/categories/${article.category.slug.current}`}>{article.category.title}</Link></m.span>
                 </span>
               </div> */}
             </div>
-          </div>
+          </m.div>
           <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 lg:col-start-3 block">
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  >Exhibitions</m.span>
-                </span>
+              <div className="col-span-2 lg:col-start-3 block leading-none">
+                <TextReveal delay={.1}>Exhibitions</TextReveal>
               </div>
             </div>
           </div>
@@ -85,11 +79,17 @@ export default function Exhibitions(initialData) {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80">
               {exhibitions.map((e, i) => {
+                let delay = 0.1
+                i == 0 && (delay = 0.1)
+                i == 1 && (delay = 0.2)
+                i == 2 && (delay = 0.1)
+                i == 3 && (delay = 0.2)
                 return (
                   <div className="col-span-12 lg:col-span-6 mb-4 lg:mb-8" key={i}>
                     <TeaserExhibition
                       href={`/exhibitions/${e.slug.current}`}
                       priority={i == 0 || i == 1 }
+                      delay={delay}
                       image={e.teaserImage}
                       heading={`${e.title}`}
                       location={`${e.gallery} ${e.location}`}

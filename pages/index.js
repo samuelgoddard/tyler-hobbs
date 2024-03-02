@@ -39,12 +39,12 @@ export default function Home(initialData) {
           animate="enter"
           exit="exit"
         >
-          <m.article variants={fade} className="w-full h-screen pb-4 lg:pb-8">
+          <m.article variants={fade} className="w-full h-screen overflow-hidden pb-4 lg:pb-8">
             <div className="grid grid-cols-10 md:grid-cols-9 lg:grid-cols-8 xl:grid-cols-10 md:grid-rows-4 w-full h-full px-4 lg:px-8 gap-4 md:gap-6 lg:gap-8 pt-28 lg:pt-40">
               <m.div
-                className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.1, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.1, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -58,9 +58,9 @@ export default function Home(initialData) {
               </m.div>
 
               <m.div
-                className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.5, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.5, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -77,9 +77,9 @@ export default function Home(initialData) {
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.3, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.3, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -95,9 +95,9 @@ export default function Home(initialData) {
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.6, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.6, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -111,9 +111,9 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent lg:bg-gray lg:bg-opacity-50 xl:bg-transparent relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.2, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/about" className="block">
@@ -130,9 +130,9 @@ export default function Home(initialData) {
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
               <m.div
-                className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.4, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.4, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -146,9 +146,9 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.7, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.7, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -162,9 +162,9 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 1, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 1, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -184,9 +184,9 @@ export default function Home(initialData) {
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.8, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.8, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -200,9 +200,9 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="md:hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 1.1, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform md:hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 1.1, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -218,9 +218,9 @@ export default function Home(initialData) {
               <div className="hidden md:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.9, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden lg:bg-transparent"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.9, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/about" className="block">
@@ -237,9 +237,9 @@ export default function Home(initialData) {
               <div className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.65, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden lg:block col-span-5 md:col-span-3 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.65, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -255,9 +255,9 @@ export default function Home(initialData) {
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative  overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 1.2, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative  overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 1.2, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/about" className="block">
@@ -274,9 +274,9 @@ export default function Home(initialData) {
               <div className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
 
               <m.div
-                className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.35, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.35, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -298,9 +298,9 @@ export default function Home(initialData) {
               <div className="hidden lg:block col-span-5 lg:col-span-1 row-span-1 bg-transparent"></div>
               
               <m.div
-                className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.75, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.75, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">
@@ -315,9 +315,9 @@ export default function Home(initialData) {
               </m.div>
               
               <m.div
-                className="hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.15, duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                className="will-change-transform hidden xl:block col-span-5 lg:col-span-1 row-span-1 bg-gray/30 relative overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: 0.15, type: "spring", stiffness: 250, damping: 100, mass: 1 }}}
                 exit={{ opacity: 0, }}
               >
                 <Link href="/works/categories/digital" className="block">

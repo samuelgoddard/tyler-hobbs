@@ -11,6 +11,8 @@ import useDetectScroll from "@smakss/react-scroll-direction";
 import BodyRenderer from '@/components/body-renderer'
 import Carousel from '@/components/carousel'
 import { useState } from 'react'
+import { TextReveal } from '@/components/text-reveal'
+import { SplitTextReveal } from '@/components/split-text-reveal'
 const pageService = new SanityPageService(exhibitionsSlugQuery)
 
 export default function ExhibitionsSlug(initialData) {
@@ -37,7 +39,7 @@ export default function ExhibitionsSlug(initialData) {
           exit="exit"
         >
 
-          <div className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <m.div variants={fade} className={`p-4 lg:p-8 block fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 lg:pt-0">
               <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
@@ -52,7 +54,7 @@ export default function ExhibitionsSlug(initialData) {
                   <m.span
                     initial={{ y: '100%' }}
                     animate={{ y: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
+                    exit={{ opacity: 0, transition: { duration: 0.45, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   >{exhibition.title}</m.span>
                 </span>
@@ -69,7 +71,7 @@ export default function ExhibitionsSlug(initialData) {
                 </span>
               </div> */}
             </div>
-          </div>
+          </m.div>
           {/* <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-2 lg:col-start-3 block">
@@ -88,7 +90,9 @@ export default function ExhibitionsSlug(initialData) {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <h1 className="text-5xl lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em]">{exhibition.title}</h1>
+                <h1 className="text-5xl/none lg:text-7xl/[1] w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] hidden lg:flex flex-wrap"><SplitTextReveal delay={.2}>{exhibition.title}</SplitTextReveal></h1>
+
+                <h1 className="text-5xl/[0.95] lg:text-7xl w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] flex lg:hidden flex-wrap"><SplitTextReveal delay={.1}>{exhibition.title}</SplitTextReveal></h1>
               </div>
             </div>
             <div className="relative">
@@ -96,25 +100,39 @@ export default function ExhibitionsSlug(initialData) {
                 <div className="col-span-12 lg:col-span-2 order-2 lg:order-1  lg:sticky lg:top-32">
                   {exhibition.gallery && (
                     <div className="mb-3 lg:mb-5">
-                      <span className="block text-base/none mb-1">Gallery</span>
-                      <span className="block leading-none">{exhibition.gallery}</span>
+                      <span className="block text-base/none mb-[5px]">
+                        <TextReveal delay={.1}>Gallery</TextReveal>
+                      </span>
+                      <span className="block leading-none">
+                        <TextReveal delay={.1}>{exhibition.gallery}</TextReveal>
+                      </span>
                     </div>
                   )}
                   {exhibition.location && (
                     <div className="mb-3 lg:mb-5">
-                      <span className="block text-base/none mb-1">Location</span>
-                      <span className="block leading-none">{exhibition.location}</span>
+                      <span className="block text-base/none mb-[5px]">
+                        <TextReveal delay={.1}>Location</TextReveal>
+                      </span>
+                      <span className="block leading-none">
+                        <TextReveal delay={.1}>{exhibition.location}</TextReveal>
+                      </span>
                     </div>
                   )}
                   {exhibition.year && (
                     <div className="mb-3 lg:mb-5">
-                      <span className="block text-base/none mb-1">Year</span>
-                      <span className="block leading-none">{exhibition.year}</span>
+                      <span className="block text-base/none mb-[5px]">
+                        <TextReveal delay={.1}>Year</TextReveal>
+                      </span>
+                      <span className="block leading-none">
+                        <TextReveal delay={.1}>{exhibition.year}</TextReveal>
+                      </span>
                     </div>
                   )}
                   {exhibition.links && (
                     <div className="mb-3 lg:mb-5">
-                      <span className="block text-base/none mb-1">Links</span>
+                      <span className="block text-base/none mb-[5px]">
+                        <TextReveal delay={.1}>Links</TextReveal>
+                      </span>
                       
                       {exhibition.links.map((e,i) => {
                         let route = '/'
@@ -124,25 +142,34 @@ export default function ExhibitionsSlug(initialData) {
                         e?.internalLink?._type == 'pages' && (route = '/pages')
 
                         return e.internal ? (
-                          <Link href={`${route}/${e.internalLink?.slug.current}`} className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</Link>
+                          <Link key={i} href={`${route}/${e.internalLink?.slug.current}`} className="flex mb-[5px] flex-wrap leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus"><SplitTextReveal className=" leading-none" delay={.1} key={i}>{e.linkText}</SplitTextReveal></Link>
                         ) : (
-                          <a href={e.externalLink} rel="noopener noreferrer" target="_blank" className="block leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white mb-1 a11y-focus" key={i}>{e.linkText}</a>
+                          <a key={i} href={e.externalLink} rel="noopener noreferrer" target="_blank" className="mb-[5px] flex flex-wrap leading-none text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus"><SplitTextReveal className="leading-none" delay={.1} key={i}>{e.linkText}</SplitTextReveal></a>
                         )
                       })}
                     </div>
                   )}
 
                   <div className="">
-                    <span className="block text-base/none mb-1">Back To</span>
-                    <span className="block leading-none"><Link className="text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/exhibitions">Exhibitions</Link></span>
+                    <span className="block text-base/none mb-[5px]">
+                      <TextReveal delay={.1}>Back To</TextReveal>
+                    </span>
+                    <span className="block leading-none"><Link className="text-gray transition-colors ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hover:text-black dark:hover:text-white focus-visible:text-black dark:focus-visible:text-white a11y-focus" href="/exhibitions">
+                      <TextReveal delay={.1}>Exhibitions</TextReveal></Link></span>
                   </div>
                   
                 </div>
                 
                 <div className="col-span-12 lg:col-span-10 lg:col-start-3 order-1 lg:order-2 mb-6 lg:mb-0">
-                  {exhibition.heroImages && (
-                    <Carousel images={exhibition.heroImages} />
-                  )}
+                  <m.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: 0.2, type: "spring", stiffness: 250, damping: 45, mass: 1 }}}
+                    exit={{ opacity: 0, }}
+                  >
+                    {exhibition.heroImages && (
+                      <Carousel images={exhibition.heroImages} />
+                    )}
+                  </m.div>
                 </div>
 
                 <div className="col-span-12 order-3 lg:order-3 mt-6 lg:mt-10">

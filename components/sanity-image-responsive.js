@@ -89,7 +89,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
             <>
               <button onClick={()=>lightboxToggle()} className="absolute inset-0 w-full h-full z-10 group a11y-focus">
                 <div className="group-focus:ouline-none a11y-focus absolute p-2 lg:p-2 bg-white dark:bg-black bottom-2 lg:bottom-4 right-2 lg:right-4">
-                  <div className="w-4 lg:w-[21px] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] group-hover:scale-[1.15] leading-none">
+                  <div className="w-4 lg:w-[21px] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] group-hover:scale-[1.15] leading-none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fillRule="evenodd" fill="currentColor" d="M11 2v9H2v2h9v9h2v-9h9v-2h-9V2Z"/></svg>
                   </div>
                 </div>
@@ -99,12 +99,12 @@ export default function SanityImageResponsive({ image, className, alt, priority,
                 { lightboxOpen && (
                   <m.div
                     initial={{ opacity: 0}}
-                    animate={{ opacity: 1, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ opacity: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]} }}
+                    animate={{ opacity: 1, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                    exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]} }}
                     className="fixed inset-0 z-[1000] bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 backdrop-blur-[6px] flex flex-col items-center justify-center p-3"
                     onClick={()=>lightboxToggle()}
                   >
-                    <button onClick={()=>lightboxToggle()} className="absolute p-2 top-5 right-5 transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] lg:hover:-translate-x-1">
+                    <button onClick={()=>lightboxToggle()} className="absolute p-2 top-5 right-5 transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:-translate-x-1">
                       Close
                     </button>
 
@@ -123,7 +123,7 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           )}
         </div>
         {image.linksTo && fancyHover && (
-          <div className="hidden lg:block lg:pt-[6px] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] opacity-0 group-hover:opacity-100">{image.linksTo.title}</div>
+          <div className="hidden lg:block lg:pt-[6px] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] opacity-0 group-hover:opacity-100">{image.linksTo.title}</div>
         )}
         {!noCaption && (
           <>

@@ -12,6 +12,7 @@ import useDetectScroll from '@smakss/react-scroll-direction'
 import { useState } from 'react'
 const pageService = new SanityPageService(aboutQuery)
 import handleViewport from 'react-in-viewport';
+import { SplitTextReveal } from '@/components/split-text-reveal'
 
 const Block = ({ inViewport, forwardedRef } ) => {
   return (<div className="viewport-block" ref={forwardedRef}></div>);
@@ -48,14 +49,8 @@ export default function About(initialData) {
               <div className="col-span-3 lg:col-start-3 block leading-[0.9] text-gray">
               {about.contentSections.map((e, i)=> {
                 return (
-                  <a href={`#${slugify(e.title)}`} className="block relative overflow-hidden" key={i}>
-                    <m.span
-                      href="#artist-statement"
-                      initial={{ y: '100%' }}
-                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                      className={`block leading-none text-black dark:text-white ${current == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}
-                    >{e.title}</m.span>
+                  <a href={`#${slugify(e.title)}`} className="flex flex-wrap relative overflow-hidden" key={i}>
+                    <SplitTextReveal className={`leading-none text-black dark:text-white ${current == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}>{e.title}</SplitTextReveal>
                   </a>
                   )
                 })}
@@ -63,7 +58,7 @@ export default function About(initialData) {
             </div>
           </div>
 
-          <div className={`p-4 lg:p-8 fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+          <div className={`p-4 lg:p-8 fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
               <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
@@ -80,8 +75,8 @@ export default function About(initialData) {
                     <m.span
                       href="#artist-statement"
                       initial={{ y: '100%' }}
-                      animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                      exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                      animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                      exit={{ y: '100%', transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                       className={`block leading-none text-black dark:text-white ${current == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}
                     >{e.title}</m.span>
                   </a>

@@ -11,6 +11,7 @@ import useDetectScroll from "@smakss/react-scroll-direction";
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useParams } from 'next/navigation'
+import { TextReveal } from '@/components/text-reveal'
 const pageService = new SanityPageService(worksCatSlugQuery)
 
 export default function WorksCatSlug(initialData) {
@@ -48,46 +49,29 @@ export default function WorksCatSlug(initialData) {
         >
           <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
-              <div className="col-span-2 lg:col-start-3 block">
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
-                </span>
+              <div className="col-span-2 lg:col-start-3 block leading-none">
+                <TextReveal delay={.1}><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></TextReveal>
               </div>
 
 
               <div className="col-span-2 block leading-[0.9] text-gray">
                 {cats.map((e,i) => {
                   return (
-                    <span className="block relative overflow-hidden" key={i}>
-                      <m.span
-                        initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        className="block leading-none"
-                      ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
-                    </span>
+                    <TextReveal delay={.2} key={i} className="leading-[1.03]">
+                      <Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link>
+                    </TextReveal>
                   )
                 })}
-                <span className="block relative overflow-hidden">
-                  <m.span
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    className="block leading-none"
-                  ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
-                </span>
+                <TextReveal delay={.2} className="leading-none">
+                  <Link className="a11y-focus inline-block" href="/works">Index</Link>
+                </TextReveal>
               </div>
             </div>
           </div>
 
           {/* Fixed Header Reveal */}
-          <div className={`p-4 lg:p-8 fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
-            <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
+          <div className={`p-4 lg:p-8 fixed top-0 left-0 right-0 w-full z-[999] transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] ${headerShown ? 'translate-y-0' : '-translate-y-full pointer-events-none' } bg-white dark:bg-black`}>
+            <m.div variants={fade} className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
 
               <div className="col-span-2 block">
                 <Link href="/" aria-label="Navigate to the home page" className="a11y-focus w-[98px] lg:w-[120px] block translate-y-[2px] lg:translate-y-0">
@@ -102,8 +86,7 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works/cat">Works</Link></m.span>
                 </span>
@@ -116,8 +99,7 @@ export default function WorksCatSlug(initialData) {
                     <span className="block relative overflow-hidden" key={i}>
                       <m.span
                         initial={{ y: '100%' }}
-                        animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                        exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                        animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                         className="block leading-none"
                       ><Link className={`a11y-focus inline-block ${cat.slug?.current == e.slug?.current ? 'text-black dark:text-white' : '' }`} href={`/works/categories/${e.slug?.current}`}>{e.title}</Link></m.span>
                     </span>
@@ -126,13 +108,12 @@ export default function WorksCatSlug(initialData) {
                 <span className="block relative overflow-hidden">
                   <m.span
                     initial={{ y: '100%' }}
-                    animate={{ y: 0, transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
-                    exit={{ y: '100%', transition: { duration: 0.35, ease: [0.71,0,0.17,1]}}}
+                    animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                     className="block leading-none"
                   ><Link className="a11y-focus inline-block" href="/works">Index</Link></m.span>
                 </span>
               </div>
-            </div>
+            </m.div>
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-64">
