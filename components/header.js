@@ -99,7 +99,7 @@ export default function Header({ contact, worksCats }) {
             <>
               <m.div
                 initial={{ x: '100%'}}
-                animate={{ x: 0, transition: { duration: 0.66, delay: 0.1725, ease: [0.71,0,0.17,1]}}}
+                animate={{ x: 0, transition: { duration: 0.66,  ease: [0.71,0,0.17,1]}}}
                 exit={{ x: '100%', transition: { duration: 0.66, ease: [0.71,0,0.17,1]} }}
 
                 className="fixed top-0 right-0 bottom-0 w-full lg:w-[33vw] lg:max-w-2xl h-full bg-white dark:bg-black bg-opacity-80 dark:bg-opacity-80 lg:border-l lg:border-black dark:lg:border-white backdrop-blur-[6px] z-[1000] p-4 lg:p-8 flex flex-col will-change-transform"
@@ -115,14 +115,7 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
-                              <m.span
-                                className="block will-change-transform"
-                                initial={{ y: '100%' }}
-                                animate={{ y: 0, transition: { delay: 0.4, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                              >
                                 Works
-                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -135,14 +128,7 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
-                              <m.span
-                                className="block will-change-transform"
-                                initial={{ y: '100%' }}
-                                animate={{ y: 0, transition: { delay: 0.45, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                              >
                                 Words
-                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -155,14 +141,7 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
-                              <m.span
-                                className="block will-change-transform"
-                                initial={{ y: '100%' }}
-                                animate={{ y: 0, transition: { delay: 0.5, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                              >
                                 Exhibitions
-                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -175,14 +154,7 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
-                              <m.span
-                                className="block will-change-transform"
-                                initial={{ y: '100%' }}
-                                animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                              >
                                 About
-                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -215,16 +187,7 @@ export default function Header({ contact, worksCats }) {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
-                                    <span className="block relative overflow-hidden">
-                                      <m.span
-                                        className="block"
-                                        initial={{ y: '100%' }}
-                                        animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                                        exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                                      >
-                                        {e.platform}
-                                      </m.span>
-                                    </span>
+                                    {e.platform}
                                   </a>
                                 </li>
                               )
@@ -234,16 +197,7 @@ export default function Header({ contact, worksCats }) {
                       )}
                       
                       <span className="text-base/tight block">
-                        <span className="block relative overflow-hidden ">
-                          <m.span
-                            className="block"
-                            initial={{ y: '100%' }}
-                            animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                            exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
-                          >
-                            &copy; Tyler Hobbs - {new Date().getFullYear() }
-                          </m.span>
-                        </span>
+                        &copy; Tyler Hobbs - {new Date().getFullYear() }
                       </span>
                     </div>
 

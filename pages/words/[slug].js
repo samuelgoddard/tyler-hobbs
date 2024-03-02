@@ -81,7 +81,7 @@ export default function WordsSlug(initialData) {
           <m.article variants={fade} className="w-full pb-4 lg:pb-8 relative">
             <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
-                <h1 className="text-5xl lg:text-7xl/[1.0125] w-[90%] lg:w-[80%] max-w-[80%] mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] flex flex-wrap">
+                <h1 className="text-4xl lg:text-7xl/[1.0125] w-[90%] lg:w-[80%] max-w-[80%] mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] flex flex-wrap">
                   <SplitTextReveal delay={.2}>{article.title}</SplitTextReveal></h1>
               </div>
             </div>
