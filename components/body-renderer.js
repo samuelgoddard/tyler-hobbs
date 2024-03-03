@@ -6,6 +6,7 @@ import ModularHeadingBlock from './modular-heading-block'
 import ModularImageBlock from './modular-image-block'
 import ModularImageGridBlock from './modular-image-grid-block'
 import ModularCodeBlock from './modularCodeBlock'
+import ModularJumpNavSectionBlock from './modular-jump-nav-section-block'
 import ModularListBlock from './modularListBlock'
 
 const notImplemented = ({ type }) => <h1>Not implemented {type}</h1>
@@ -24,6 +25,13 @@ let bodySerializers = {
     <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-12 lg:mb-20 items-end">
       {children}
     </div>
+  },
+  jumpNavSectionBlock: {
+    component: ModularJumpNavSectionBlock,
+    wrapper: ({ children }) => 
+    <>
+      {children}
+    </>
   },
   headingBlock: {
     component: ModularHeadingBlock,

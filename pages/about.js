@@ -9,10 +9,11 @@ import SanityPageService from '@/services/sanityPageService'
 import BodyRenderer from '@/components/body-renderer'
 import slugify from 'slugify'
 import useDetectScroll from '@smakss/react-scroll-direction'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 const pageService = new SanityPageService(aboutQuery)
 import handleViewport from 'react-in-viewport';
 import { SplitTextReveal } from '@/components/split-text-reveal'
+import { JumpNavContext } from '@/context/jumpNav'
 
 const Block = ({ inViewport, forwardedRef } ) => {
   return (<div className="viewport-block" ref={forwardedRef}></div>);
@@ -31,7 +32,21 @@ export default function About(initialData) {
 
   const { data: { about, contact , firstWorksCatSlug}  } = pageService.getPreviewHook(initialData)()
 
-  const [current, setCurrent] = useState(about.contentSections[0].title)
+  let jumpNavItems = []
+  
+  if (about.contentBlocks.some(e => e._type === 'jumpNavSectionBlock')) {
+    for (let block of about.contentBlocks) {
+      if (block._type == 'jumpNavSectionBlock') {
+        jumpNavItems.push(block);
+      }
+    }
+  }
+  const [jumpNavContext, setJumpNavContext] = useContext(JumpNavContext);
+  
+  useEffect(() => {
+    setJumpNavContext(jumpNavItems?.length > 0 ? jumpNavItems[0].title : null);
+  }, []);
+
   return (
     <Layout>
       <NextSeo title={about.title} />
@@ -47,12 +62,12 @@ export default function About(initialData) {
           <div className="p-4 lg:p-8 lg:absolute top-0 left-0 right-0 w-full">
             <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8 pt-12 lg:pt-0">
               <div className="col-span-3 lg:col-start-3 block leading-[0.9] text-gray">
-              {about.contentSections.map((e, i)=> {
-                return (
-                  <a href={`#${slugify(e.title)}`} className="flex flex-wrap relative overflow-hidden" key={i}>
-                    <SplitTextReveal className={`leading-none text-black dark:text-white ${current == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}>{e.title}</SplitTextReveal>
-                  </a>
-                  )
+                {jumpNavItems.map((e, i)=> {
+                  return (
+                    <a href={`#${slugify(e.title)}`} className="flex flex-wrap relative overflow-hidden" key={i}>
+                      <SplitTextReveal className={`leading-none text-black dark:text-white ${jumpNavContext == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}>{e.title}</SplitTextReveal>
+                    </a>
+                    )
                 })}
               </div>
             </div>
@@ -69,7 +84,7 @@ export default function About(initialData) {
                 </Link>
               </div>
               <div className="col-span-3 lg:col-start-3 block leading-[0.9] text-gray">
-              {about.contentSections.map((e, i)=> {
+              {jumpNavItems.map((e, i)=> {
                 return (
                   <a href={`#${slugify(e.title)}`} className="block relative overflow-hidden" key={i}>
                     <m.span
@@ -77,7 +92,7 @@ export default function About(initialData) {
                       initial={{ y: '100%' }}
                       animate={{ y: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                       exit={{ y: '100%', transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
-                      className={`block leading-none text-black dark:text-white ${current == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}
+                      className={`block leading-none text-black dark:text-white ${jumpNavContext == e.title ? 'text-opacity-100' : 'text-opacity-30 dark:text-opacity-30' }`}
                     >{e.title}</m.span>
                   </a>
                   )
@@ -87,14 +102,15 @@ export default function About(initialData) {
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-64">
-            {about.contentSections.map((e, i)=> {
+            {/* {about.contentSections.map((e, i)=> {
               return (
                 <div id={slugify(e.title)} className="scroll-mt-6" key={i}>
                   <ViewportBlock onEnterViewport={() => setCurrent(e.title)} />
                   <BodyRenderer body={e.contentBlocks} />
                 </div>
               )
-            })}
+            })} */}
+            <BodyRenderer body={about.contentBlocks} />
           </m.article>
         </m.main>
       </LazyMotion>

@@ -364,7 +364,7 @@ export const exhibitionsSlugQuery = `{
 export const aboutQuery = `{
   "about": *[_type == "about"][0]{
     title,
-    ${contentSections},
+    ${contentBlocks},
     ${seo}
   },
   ${contact},
@@ -374,7 +374,6 @@ export const aboutQuery = `{
 export const pagesSlugQuery = `{
   "page": *[_type == "pages" && slug.current == $slug][0]{
     title,
-    ${contentSections},
     ${contentBlocks},
     ${seo}
   },

@@ -67,17 +67,17 @@ export default function Error(initialData) {
           exit="exit"
         >
           <m.article variants={fade} className="w-full h-[100dvh] px-4 lg:px-8 flex flex-col items-center justify-center relative" ref={boxRef} onMouseMove={e => handleMouseMove(e)}>
-            <div className="w-[30dvh] lg:w-[40dvh] overflow-visible max-w-[140px] lg:max-w-[200px]">
+            <div className="w-[30dvh] lg:w-[40dvh] overflow-visible max-w-[140px] lg:max-w-[170px]">
               <svg className="w-full overflow-visible" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <m.path
-                    style={{ y: -mousePosition.centerY * 5, x: -mousePosition.centerX * 5 }}
+                    style={{ y: -mousePosition.centerY * 4, x: -mousePosition.centerX * 4 }}
                     className="transition-all ease-out duration-300"
                     d="M16.9943 0L34 9.99709V30.0029L16.9943 19.9942V0Z"
                     fill="currentColor"
                   />
                   <m.path
-                    style={{ y: mousePosition.centerY * 5, x: mousePosition.centerX * 5 }}
+                    style={{ y: mousePosition.centerY * 4, x: mousePosition.centerX * 4 }}
                     className="transition-all ease-out duration-300"
                     d="M0 9.9971L16.9943 19.9942V40L0 30.0029V9.9971Z"
                     fill="currentColor"
@@ -85,8 +85,8 @@ export default function Error(initialData) {
                 </g>
               </svg>
             </div>
-            <h1 className="absolute bottom-4 lg:bottom-8 left-4 lg:left-8 mb-0 pb-0">404 Error</h1>
-            <Link href="/" className="absolute bottom-4 lg:bottom-8 right-4 lg:right-8 mb-0 pb-0 underline">
+            <h1 className="absolute bottom-4 lg:bottom-8 left-4 lg:left-8 mb-0 pb-0">404 Error — <br/>Page Not Found</h1>
+            <Link href="/" className="absolute bottom-4 lg:bottom-8 right-4 lg:right-8 mb-0 pb-0 underline z-[100000]">
               Home</Link>
           </m.article>
         </m.main>
