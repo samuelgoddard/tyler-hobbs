@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SanityImage from "./sanity-image";
 import { m } from "framer-motion"
 import SanityImageResponsive from "./sanity-image-responsive";
 
@@ -9,7 +8,7 @@ export default function TeaserWorks({ href, heading, series, image, priority, de
       initial={{ y: 45 }}
       animate={{ y: 0, transition: { delay: delay ? delay : 0.1, type: "spring", stiffness: 250, damping: 75, mass: 1 }}}
     >
-      <Link href={href} className="block w-full a11y-focus group">
+      <Link scroll={false} href={href} className="block w-full a11y-focus group">
         <div className="bg-gray/30 mb-3 lg:mb-5 relative overflow-hidden">
           {image ? (
             <SanityImageResponsive

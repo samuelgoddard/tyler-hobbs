@@ -148,7 +148,7 @@ export default function Works(initialData) {
                                 initial={{ y: 45 }}
                                 animate={{ y: 0, transition: { delay: 0, type: "spring", stiffness: 250, damping: 75, mass: 1 }}}
                               >
-                                <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group mb-4 lg:mb-0">
+                                <Link scroll={false} href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group mb-4 lg:mb-0">
                                   <div className="block">
                                     <SanityImageResponsive
                                       image={eee.image ? eee.image : eee}

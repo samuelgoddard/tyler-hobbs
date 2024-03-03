@@ -623,15 +623,53 @@ export default function WorkSlug(initialData) {
                         {work.text && (
                           <>
                             <div className={`content mb-4 lg:mb-6 w-[90%] lg:w-full`}>
-                              {work.text?.length > 2 && !textExpanded ? (
+                              {/* {work.text?.length > 2 && !textExpanded ? (
                                 <BodyRich content={work.text?.slice(0,2)} />
                               ) : (
                                 <BodyRich content={work.text} />
-                              )}
+                              )} */}
+                              
+                              <div className="block lg:hidden">
+                                <m.div
+                                  initial={{ height: work.text?.length > 2 ? '120px' : '100%' }}
+                                  animate={!textExpanded ? { height: work.text?.length > 2 ? '120px' : '100%', transition: { delay: 0.1, type: "spring", stiffness: 250, damping: 45, mass: 1 }} : { height: '100%', transition: {delay: 0.1, type: "spring", stiffness: 250, damping: 45, mass: 1 } }}
+                                  className={`w-full overflow-hidden h-[120px]`}
+                                >
+                                  <div className="overflow-hidden">
+                                    {/* {work.text?.length > 2 && !textExpanded ? (
+                                      <BodyRich content={work.text?.slice(0,2)} />
+                                    ) : (
+                                      <BodyRich content={work.text} />
+                                    )} */}
+                                    <BodyRich content={work.text} />
+                                  </div>
+                                </m.div>
+                              </div>
+                              
+                              <div className="hidden lg:block">
+                                <m.div
+                                  initial={{ height: work.text?.length > 2 ? '200px' : '100%' }}
+                                  animate={!textExpanded ? { height: work.text?.length > 2 ? '200px' : '100%', transition: { delay: 0.1, type: "spring", stiffness: 250, damping: 45, mass: 1 }} : { height: '100%', transition: {delay: 0.1, type: "spring", stiffness: 250, damping: 45, mass: 1 } }}
+                                  className={`w-full overflow-hidden h-[200px]`}
+                                >
+                                  <div className="overflow-hidden">
+                                    {/* {work.text?.length > 2 && !textExpanded ? (
+                                      <BodyRich content={work.text?.slice(0,2)} />
+                                    ) : (
+                                      <BodyRich content={work.text} />
+                                    )} */}
+                                    <BodyRich content={work.text} />
+                                  </div>
+                                </m.div>
+                              </div>
                             </div>
-
+                              
                             {work.text?.length > 2 && (
-                              <button aria-label="Expand text" onClick={textExpandToggle} className="text-gray block">{textExpanded ? '- Read Less' : '+ Read more'}</button>
+                              <button aria-label="Expand text" onClick={textExpandToggle} className="text-gray flex text-base leading-[1.45] lg:text-2xl lg:leading-[1.4]"><span className={`block transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-500 mr-1`}>—</span><span className="mr-1">Read</span><span className="block relative overflow-hidden">
+                                <span className="opacity-0">More</span>
+                                <span className={`absolute inset-0 transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-500 ${textExpanded ? '-translate-y-full' : 'translate-y-0' }`}>More</span>
+                                <span className={`absolute inset-0 transition-transform ease-[cubic-bezier(0.71,0,0.17,1)] duration-500 ${textExpanded ? 'translate-y-0' : 'translate-y-full' }`}>Less</span>
+                              </span></button>
                             )}
                           </>
                         )}
