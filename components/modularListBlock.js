@@ -5,7 +5,7 @@ export default function ModularListBlock({ heading, listItems }) {
   return listItems && (
     <>
       {heading && (
-        <h2 className="block text-3xl/none lg:text-4xl/none mb-4 pb-0 tracking-[-0.015em] lg:tracking-[-0.015em]">{heading}</h2>
+        <h2 className="block text-[24px]/[1.1] lg:text-[32px]/[1.045] mb-3 lg:mb-5 pb-0 tracking-[-0.015em] lg:tracking-[-0.015em]">{heading}</h2>
       )}
 
       <ul className="border-t border-gray">
@@ -19,17 +19,17 @@ export default function ModularListBlock({ heading, listItems }) {
 
           return e.internal ? (
             <li className="block" key={i}>
-              <Link href={`${route}${e.internalLink?.slug ? `/${e.internalLink?.slug?.current}` : `` }`} className="flex items-start py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-1 relative group">
+              <Link href={`${route}${e.internalLink?.slug ? `/${e.internalLink?.slug?.current}` : `` }`} className="flex items-start py-3 lg:pt-[14px] lg:pb-[13px] border-b border-gray text-base/[1.25] lg:text-[21px]/[1.25] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-1 relative group">
                 {e.year && (
-                  <span className="block pr-3 tabular-nums w-[60px] lg:w-[80px]">{e.year}</span>
+                  <span className="block pr-3 tabular-nums w-[57px] lg:w-[80px]">{e.year}</span>
                 )}
                 
                 {!e.textRich && (
-                  <span className="flex-1 leading-[1.075] lg:pr-12 lg:max-w-[800px]">{e.text}</span>
+                  <span className="flex-1 lg:pr-12 lg:max-w-[800px]">{e.text}</span>
                 )}
                 
                 {e.textRich && (
-                  <span className="flex-1 leading-[1.075] lg:pr-12 lg:max-w-[800px]">
+                  <span className="flex-1 lg:pr-12 lg:max-w-[800px] [&>.content>p]:text-base/[1.25] lg:[&>.content>p]:text-[21px]/[1.25]">
                     <BodyRich content={e.textRich} />
                   </span>
                 )}
@@ -39,17 +39,17 @@ export default function ModularListBlock({ heading, listItems }) {
             </li>
           ) : (
             <li className="block" key={i}>
-              <a href={e.externalLink} target="_blank" rel="noopener noreferrer" className="flex items-start py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-1 relative group">
+              <a href={e.externalLink} target="_blank" rel="noopener noreferrer" className="flex items-start py-3 lg:pt-[14px] lg:pb-[13px] border-b border-gray text-base/[1.25] lg:text-[21px]/[1.25] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-1 relative group">
                 {e.year && (
-                  <span className="block pr-3 tabular-nums w-[60px] lg:w-[80px]">{e.year}</span>
+                  <span className="block pr-3 tabular-nums w-[57px] lg:w-[80px]">{e.year}</span>
                 )}
                 
                 {!e.textRich && (
-                  <span className="flex-1 leading-[1.075] lg:pr-12 lg:max-w-[800px]">{e.text}</span>
+                  <span className="flex-1 lg:pr-12 lg:max-w-[800px]">{e.text}</span>
                 )}
 
                 {e.textRich && (
-                  <span className="flex-1 leading-[1.075] lg:pr-12 lg:max-w-[800px]">
+                  <span className="flex-1 lg:pr-12 lg:max-w-[800px] [&>.content>p]:text-base/[1.25] lg:[&>.content>p]:text-[21px]/[1.25]">
                     <BodyRich content={e.textRich} />
                   </span>
                 )}

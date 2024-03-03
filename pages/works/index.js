@@ -134,7 +134,7 @@ export default function Works(initialData) {
           </m.div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-5 pt-28 lg:pt-80">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-5 pt-28 lg:pt-64">
               {works.map((e, i) => {
                 return (
                   <Fragment key={i}>
@@ -148,17 +148,17 @@ export default function Works(initialData) {
                                 initial={{ y: 45 }}
                                 animate={{ y: 0, transition: { delay: 0, type: "spring", stiffness: 250, damping: 75, mass: 1 }}}
                               >
-                                <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group">
+                                <Link href={`/works/${e.slug?.current}`} className="block w-full a11y-focus group mb-4 lg:mb-0">
                                   <div className="block">
                                     <SanityImageResponsive
                                       image={eee.image ? eee.image : eee}
-                                      className="w-full mb-0 pb-0 lg:mb-[5px]"
+                                      className="w-full pb-0 mb-[5px]"
                                       noCaption
                                       sizes={`(max-width: 1024px) 66vw, 20vw`}
                                       priority={i == 0 || i == 1 || i == 7 || i == 9 || i == 11 || i == 12}
                                     />
-                                    <div className="flex-wrap text-base/tight text-gray opacity-0 lg:group-hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hidden lg:flex">
-                                      <span className="block w-full lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:group-hover:text-black dark:lg:group-hover:text-white">{e.title}, {e.year}</span>
+                                    <div className="flex-wrap text-base/tight text-gray lg:opacity-0 lg:group-hover:opacity-100 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] flex">
+                                      <span className="block w-full italic lg:flex-1 transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:group-hover:text-gray dark:lg:group-hover:text-gray">{e.title}, {e.year}</span>
                                       
                                       {/* <span className="block w-full lg:w-auto transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:group-hover:text-black dark:lg:group-hover:text-white">[{i}]</span> */}
                                     </div>

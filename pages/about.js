@@ -86,7 +86,7 @@ export default function About(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-80">
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-64">
             {about.contentSections.map((e, i)=> {
               return (
                 <div id={slugify(e.title)} className="scroll-mt-6" key={i}>

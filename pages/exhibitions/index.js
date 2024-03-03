@@ -77,7 +77,7 @@ export default function Exhibitions(initialData) {
           </div>
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-80">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-12 lg:pt-64">
               {exhibitions.map((e, i) => {
                 let delay = 0.1
                 i == 0 && (delay = 0.1)

@@ -88,18 +88,18 @@ export default function ExhibitionsSlug(initialData) {
           </div> */}
 
           <m.article variants={fade} className="w-full pb-4 lg:pb-8">
-            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-8">
+            <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 pt-28 lg:pt-64 mb-4 lg:mb-10">
               <div className="col-span-12 lg:col-span-10 lg:col-start-3">
                 <h1 className="text-[32px]/none lg:text-[64px]/[1] w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] hidden lg:flex flex-wrap"><SplitTextReveal delay={.2}>{exhibition.title}</SplitTextReveal></h1>
 
-                <h1 className="text-[32px]/[0.95] lg:text-[64px]/[1] w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] flex lg:hidden flex-wrap"><SplitTextReveal delay={.1}>{exhibition.title}</SplitTextReveal></h1>
+                <h1 className="text-[32px]/[1.1] lg:text-[64px]/[1] w-[90%] lg:w-[60%] max-w-3xl mb-0 tracking-[-0.025em] lg:tracking-[-0.025em] flex lg:hidden flex-wrap"><SplitTextReveal delay={.1}>{exhibition.title}</SplitTextReveal></h1>
               </div>
             </div>
             <div className="relative">
               <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-24 relative">
                 <div className="col-span-12 lg:col-span-2 order-2 lg:order-1  lg:sticky lg:top-32">
                   {exhibition.gallery && (
-                    <div className="mb-4 lg:mb-5">
+                    <div className="mb-4 lg:mb-6">
                       <span className="block text-base/none mb-[5px]">
                         <TextReveal delay={.1}>Gallery</TextReveal>
                       </span>
@@ -109,7 +109,7 @@ export default function ExhibitionsSlug(initialData) {
                     </div>
                   )}
                   {exhibition.location && (
-                    <div className="mb-4 lg:mb-5">
+                    <div className="mb-4 lg:mb-6">
                       <span className="block text-base/none mb-[5px]">
                         <TextReveal delay={.1}>Location</TextReveal>
                       </span>
@@ -119,7 +119,7 @@ export default function ExhibitionsSlug(initialData) {
                     </div>
                   )}
                   {exhibition.year && (
-                    <div className="mb-4 lg:mb-5">
+                    <div className="mb-4 lg:mb-6">
                       <span className="block text-base/none mb-[5px]">
                         <TextReveal delay={.1}>Year</TextReveal>
                       </span>
@@ -129,7 +129,7 @@ export default function ExhibitionsSlug(initialData) {
                     </div>
                   )}
                   {exhibition.links && (
-                    <div className="mb-4 lg:mb-5">
+                    <div className="mb-4 lg:mb-6">
                       <span className="block text-base/none mb-[5px]">
                         <TextReveal delay={.1}>Links</TextReveal>
                       </span>

@@ -105,7 +105,7 @@ export default function Words(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8 h-full min-h-[100vh] flex items-start">
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 h-full lg:min-h-[100dvh] flex items-start">
             <div className="grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 fixed bottom-4 lg:bottom-8 left-0 hidden lg:grid pointer-events-none overflow-hidden">
               <div className={`col-span-4 transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] relative overflow-hidden duration-[500ms] ${imageActive !== false ? 'opacity-100' : 'opacity-0' }`}>
                 <div className="relative overflow-hidden max-w-[550px] h-[90vh]">
@@ -134,7 +134,7 @@ export default function Words(initialData) {
               >
                   {words.map((e, i) => {
                     return (
-                      <li className="block" key={i}><Link href={`words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(null)} className="py-3 lg:py-4 border-b border-gray text-base/[1.25] lg:text-2xl/none transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-2 relative group overflow-hidden flex flex-wrap">
+                      <li className="block" key={i}><Link href={`words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(null)} className="py-3 lg:py-[13px] border-b border-gray text-base/[1.25] lg:text-2xl/[1.25] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-2 relative group overflow-hidden flex flex-wrap">
                         <div className="flex flex-wrap lg:w-[95%]">
                           <SplitTextReveal delay={0.2}>
                             {e.title}

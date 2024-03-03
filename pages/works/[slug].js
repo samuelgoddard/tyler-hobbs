@@ -554,7 +554,7 @@ export default function WorkSlug(initialData) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { type: "spring", stiffness: 250, damping: 45, mass: 1}}}
                     exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
-                    className="w-full min-h-screen pt-64 lg:pt-80 px-4 lg:px-8"
+                    className="w-full min-h-screen pt-56 lg:pt-64 px-4 lg:px-8"
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-8">
                       <div className="col-span-1 lg:col-span-2">
