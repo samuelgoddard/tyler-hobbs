@@ -465,3 +465,7 @@ pre[data-line] {
 .leading-none {
 	@apply leading-[1.03];
 }
+
+button {
+	-webkit-tap-highlight-color: transparent;
+}

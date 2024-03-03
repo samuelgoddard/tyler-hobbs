@@ -183,6 +183,8 @@ export const worksSlugQuery = `{
         }
       },
       layout,
+      tallEdgeCase,
+      veryTallEdgeCase,
       videoEmbed,
       alignment,
       containerWidth,

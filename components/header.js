@@ -115,7 +115,14 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.4, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
                                 Works
+                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -128,7 +135,14 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.45, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
                                 Words
+                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -141,7 +155,14 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.5, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
                                 Exhibitions
+                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -154,7 +175,14 @@ export default function Header({ contact, worksCats }) {
                         >
                           <span className="block relative overflow-hidden">
                             <span className="block translate-y-[0.2vw]">
+                              <m.span
+                                className="block will-change-transform"
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                exit={{ opacity: 0, transition: { delay: -0.1, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                              >
                                 About
+                              </m.span>
                             </span>
                           </span>
                         </Link>
@@ -187,7 +215,16 @@ export default function Header({ contact, worksCats }) {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                   >
-                                    {e.platform}
+                                    <span className="block relative overflow-hidden">
+                                      <m.span
+                                        className="block"
+                                        initial={{ y: '100%' }}
+                                        animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                                        exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                                      >
+                                        {e.platform}
+                                      </m.span>
+                                    </span>
                                   </a>
                                 </li>
                               )
@@ -197,7 +234,16 @@ export default function Header({ contact, worksCats }) {
                       )}
                       
                       <span className="text-base/tight block">
-                        &copy; Tyler Hobbs - {new Date().getFullYear() }
+                        <span className="block relative overflow-hidden ">
+                          <m.span
+                            className="block"
+                            initial={{ y: '100%' }}
+                            animate={{ y: 0, transition: { delay: 0.55, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
+                            exit={{ opacity: 0, transition: { delay: 0.5, duration: 0.5, ease: [0.71,0,0.17,1] }}}
+                          >
+                            &copy; Tyler Hobbs - {new Date().getFullYear() }
+                          </m.span>
+                        </span>
                       </span>
                     </div>
 

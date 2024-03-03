@@ -1,7 +1,8 @@
 import SanityImage from "./sanity-image"
 import SanityImageResponsive from "./sanity-image-responsive"
+import { m } from "framer-motion"
 
-export default function GalleryImages({ containerWidth, images, i, selectedIndex, alignment, type, video, layout }) {
+export default function GalleryImages({ containerWidth, images, i, selectedIndex, alignment, type, video, layout, tall, veryTall }) {
   
   let innerCols = 'col-span-6'
   let alignClass = 'justify-center'
@@ -17,35 +18,107 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
   alignment == 'right' && (alignClass = 'justify-end')
 
   containerWidth == 4 && ( 
-    innerCols = 'w-[32.11%]'
+    innerCols = 'w-[32.11%]',
+
+    tall && (
+      innerCols = 'w-[32.11%] max-w-[45dvh]'
+    ),
+    veryTall && (
+      innerCols = 'w-[32.11%] max-w-[35dvh]'
+    )
   )
   containerWidth == 6 && (
-    innerCols = 'w-[49.33%]'
+    innerCols = 'w-[49.33%]',
+
+    (tall && images.length == 1) && (
+      innerCols = 'w-[49.33%] max-w-[50dvh]'
+    ),
+    (tall && images.length > 1) && (
+      innerCols = 'w-[49.33%] max-w-[88dvh]'
+    ),
+    (veryTall && images.length == 1) && (
+      innerCols = 'w-[49.33%] max-w-[35dvh]'
+    ),
+    (veryTall && images.length > 1) && (
+      innerCols = 'w-[49.33%] max-w-[72dvh]'
+    )
   )
   containerWidth == 8 && (
     innerCols = 'w-[66.11%]',
     sizes = `(max-width: 1024px) 90vw,75vw`,
 
-    images?.length == 2 && (
-      maxW = 'max-w-[50vh]'
+    (tall && images.length > 1) && (
+      innerCols = 'w-[66.11%] max-w-[110dvh]'
+    ),
+    (tall && images.length > 2) && (
+      innerCols = 'w-[66.11%] max-w-[80dvh]'
+    ),
+    (veryTall && images.length > 1) && (
+      innerCols = 'w-[66.11%] max-w-[90dvh]'
+    ),
+    (veryTall && images.length > 2) && (
+      innerCols = 'w-[66.11%] max-w-[100dvh]'
     )
   )
   containerWidth == 10 && (
     innerCols = 'w-[83%]',
-    sizes = `(max-width: 1024px) 90vw,80vw`
+    sizes = `(max-width: 1024px) 90vw,80vw`,
+
+    (tall && images.length == 1) && (
+      innerCols = 'w-[83%] max-w-[45vh]'
+    ),
+    (tall && images.length > 1) && (
+      innerCols = 'w-[83%] max-w-[120vh]'
+    ),
+    (tall && images.length > 2) && (
+      innerCols = 'w-[83%] max-w-[145dvh]'
+    ),
+
+    (veryTall && images.length == 1) && (
+      innerCols = 'w-[83%] max-w-[35vh]'
+    ),
+    (veryTall && images.length > 1) && (
+      innerCols = 'w-[83%] max-w-[100vh]'
+    ),
+    (veryTall && images.length > 2) && (
+      innerCols = 'w-[83%] max-w-[125dvh]'
+    )
   )
   containerWidth == 12 && (
     innerCols = 'w-[100%]',
     fill = images.length == 1 ? true : false,
-    sizes = `(max-width: 1024px) 90vw,99vw`
+    sizes = `(max-width: 1024px) 90vw,99vw`,
 
-    // images?.length == 2 && (
-    //   maxW = 'max-w-[90ch]'
-    // )
+    (images.length > 1) && (
+      sizes = `(max-width: 1024px) 90vw,50vw`
+    ),
+    
+    (tall && images.length == 1) && (
+      innerCols = 'w-[100%] max-w-[45vh]'
+    ),
+    (tall && images.length > 1) && (
+      innerCols = 'w-[100%] max-w-[155vh]'
+    ),
+    (tall && images.length > 3) && (
+      innerCols = 'w-[100%] max-w-[180dvh]'
+    )
+
+    (veryTall && images.length == 1) && (
+      innerCols = 'w-[100%] max-w-[35vh]'
+    ),
+    (veryTall && images.length > 1) && (
+      innerCols = 'w-[100%] max-w-[125vh]'
+    ),
+    (veryTall && images.length > 3) && (
+      innerCols = 'w-[100%] max-w-[150dvh]'
+    )
   )
 
   return(
-    <div className={`absolute inset-0 bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
+    <m.div
+      initial={{ y: 45 }}
+      animate={{ y: 0, transition: { type: "spring", stiffness: 250, damping: 75, mass: 1 }}}
+      className={`absolute inset-0 bottom-8 w-full px-4 lg:px-8 dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[350ms] overflow-hidden items-center ${ i == selectedIndex ? 'opacity-100' : 'opacity-0' }`}>
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{containerWidth}</div> */}
 
       {/* <div className="fixed bottom-0 left-0 z-[10000] text-sm font-mono">Debug:{layout}</div> */}
@@ -56,9 +129,6 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
             <div className={`flex h-full space-x-6 ${centeredY && 'items-center'} ${alignClass}`}>
               <div className={`flex w-full items-start justify-center space-x-6 ${containerWidth == 12 && images.length == 1 && 'h-full'}`}>
                 {images.map((img, i) => {
-                  // let portrait = (img.asset.metadata.dimensions.height > img.asset.metadata.dimensions.width)
-                  // max-w-[45vh]
-
                   return (
                     <div className={`${fill ? 'h-full' : '' } w-full relative overflow-hidden  ${maxW}`} key={i}>
                       { fill ? (
@@ -72,7 +142,6 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                       ) : (
                         <SanityImageResponsive
                           image={img}
-                          sizes={`(max-width: 1024px) 90vw,66vw`}
                           className="w-full"
                         />
                       )}
@@ -128,7 +197,6 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
                     ) : (
                       <SanityImageResponsive
                         image={img.image}
-                        sizes={sizesinner}
                         className="w-full"
                       />
                     )}
@@ -149,6 +217,6 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
           </div>
         )}
       </div>
-    </div>
+    </m.div>
   )
 }

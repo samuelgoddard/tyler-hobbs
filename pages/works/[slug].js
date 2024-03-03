@@ -38,7 +38,7 @@ export default function WorkSlug(initialData) {
   // const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const searchParams = useSearchParams();
   const [galleryContext, setGalleryContext] = useState(0)  
-  const [modeState, setModeState] = useState('gallery')
+  const [modeState, setModeState] = useState(work.gallerySlides?.length ? 'gallery' : 'info')
   const mode = searchParams.get('mode')
 
   const textExpandToggle = () => {
@@ -68,10 +68,10 @@ export default function WorkSlug(initialData) {
 
   useKeypress('ArrowRight', () => {
     if (galleryContext == work.gallerySlides?.length) {
-      if (work.next) {
-        router.push(`/works/${work.next.slug.current}`)
+      if (work.next?.slug) {
+        router.push(`/works/${work.next?.slug?.current}`)
       } else {
-        router.push(`/works/${work.first.slug.current}`)
+        router.push(`/works/${work.first?.slug?.current}`)
       }
     } else {
       scrollNext();
@@ -350,7 +350,7 @@ export default function WorkSlug(initialData) {
                           exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                           onClick={scrollPrev}
                           aria-label="Scroll to previous slide"
-                          className={`fixed bottom-3 lg:bottom-0 lg:top-28 left-4 lg:left-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden lg:hidden pointer-events-auto h-[65dvh] flex items-end`}
+                          className={`fixed bottom-3 lg:bottom-0 lg:top-28 left-4 lg:left-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none overflow-hidden lg:hidden pointer-events-auto h-[65dvh] flex items-end appearance-none outline-none`}
                         >
                           <svg className="pointer-events-auto w-6 lg:w-10 rotate-180 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                         </m.button>
@@ -365,7 +365,7 @@ export default function WorkSlug(initialData) {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
                           exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
-                          aria-label="Scroll to next slide" className={`absolute bottom-3 lg:bottom-0 lg:top-28 right-4 lg:right-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none lg:hidden h-[65dvh] flex pointer-events-auto items-end justify-end`}
+                          aria-label="Scroll to next slide" className={`absolute bottom-3 lg:bottom-0 lg:top-28 right-4 lg:right-0 w-[45.5%] lg:w-1/2 z-[100] text-black dark:text-white focus:border-none focus:outline-none group lg:cursor-none lg:hidden h-[65dvh] flex pointer-events-auto items-end justify-end appearance-none outline-none`}
                         >
                           <svg className="pointer-events-auto w-6 lg:w-10 block lg:hidden" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.152 13.32V11.784H17.096C17.552 11.784 17.744 11.832 18.152 11.928C18.344 11.976 18.44 11.904 18.44 11.784C18.44 11.688 18.32 11.64 18.176 11.592C17.936 11.52 17.672 11.472 17.36 11.232L13.328 7.944V6.024L20.048 11.784V13.32L13.328 19.08V17.16L17.36 13.872C17.672 13.632 17.936 13.584 18.176 13.512C18.32 13.464 18.44 13.416 18.44 13.32C18.44 13.2 18.344 13.128 18.152 13.176C17.744 13.272 17.552 13.32 17.096 13.32H3.152Z" fill="currentColor"/></svg>
                         </m.button>
@@ -404,6 +404,8 @@ export default function WorkSlug(initialData) {
                                     type={e._type}
                                     video={e.videoEmbed}
                                     layout={e.layout}
+                                    tall={e.tallEdgeCase}
+                                    veryTall={e.veryTallEdgeCase}
                                     selectedIndex={galleryContext}
                                   />
                                 )
@@ -419,6 +421,7 @@ export default function WorkSlug(initialData) {
                                         image={e}
                                         sizes={`(max-width: 1024px) 90vw,60vw`}
                                         className="w-1/2"
+                                        noCaption
                                       />
                                     </div>
                                   </div>
@@ -443,7 +446,7 @@ export default function WorkSlug(initialData) {
                                   </span>
                                   
                                   <span className={`flex flex-wrap text-4xl/none lg:text-7xl text-gray ${work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
-                                    {work.next ? (
+                                    {work.next?.slug ? (
                                       <AnimatePresence>
                                       { galleryContext == work.gallerySlides?.length && (
                                         <SplitText
