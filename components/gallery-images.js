@@ -101,8 +101,7 @@ export default function GalleryImages({ containerWidth, images, i, selectedIndex
     ),
     (tall && images.length > 3) && (
       innerCols = 'w-[100%] max-w-[180dvh]'
-    )
-
+    ),
     (veryTall && images.length == 1) && (
       innerCols = 'w-[100%] max-w-[35vh]'
     ),
