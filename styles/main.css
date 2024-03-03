@@ -16,6 +16,16 @@ body {
   overflow-y: scroll !important;
 }
 
+.content {
+	@apply text-base leading-[1.45] lg:text-2xl lg:leading-[1.4] !important;
+}
+
+blockquote {
+	.content {
+		@apply text-[28px]/[1.025] lg:text-5xl/[1.045] !important;
+	}
+}
+
 .a11y-focus {
   @apply outline-none ring-current focus-visible:ring-4;
 }

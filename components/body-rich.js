@@ -3,7 +3,7 @@ import {PortableText} from '@portabletext/react'
 import slugify from 'slugify'
 import Link from 'next/link'
 
-export default function BodyRich({ content }) {
+export default function BodyRich({ content, className }) {
   const components = {
     marks: {
       internalLink: ({value, children}) => {
@@ -31,7 +31,7 @@ export default function BodyRich({ content }) {
   }
 
   return (
-    <div className="content">
+    <div className={`content ${className}`}>
       <PortableText
         value={content}
         components={components}

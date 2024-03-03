@@ -91,7 +91,7 @@ export default function Page(initialData) {
             </div>
           </div>
 
-          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-28 lg:pt-64">
+          <m.article variants={fade} className="w-full pb-4 lg:pb-8 pt-20 lg:pt-64">
           {page.contentSections ? (
             <>
               {page.contentSections.map((e, i)=> {

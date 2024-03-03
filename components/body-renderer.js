@@ -14,21 +14,21 @@ let bodySerializers = {
   block: {
     component: BlockContentWrapper,
     wrapper: ({ children }) => 
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-12 lg:mb-20">
         {children}
       </div>
   },
   textBlock: {
     component: ModularTextBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-16 lg:mb-20 items-end">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-4 lg:gap-8 mb-12 lg:mb-20 items-end">
       {children}
     </div>
   },
   headingBlock: {
     component: ModularHeadingBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
       <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
       </div>
@@ -37,7 +37,7 @@ let bodySerializers = {
   blockquoteBlock: {
     component: ModularBlockquoteBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
       <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
       </div>
@@ -46,7 +46,7 @@ let bodySerializers = {
   imageBlock: {
     component: ModularImageBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
       <div className="col-span-12 lg:col-span-12">
         {children}
       </div>
@@ -55,21 +55,21 @@ let bodySerializers = {
   imageGridBlock: {
     component: ModularImageGridBlock,
     wrapper: ({ children }) => 
-      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
         {children}
       </div>
   },
   embedBlock: {
     component: ModularEmbedBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
         {children}
     </div>
   },
   codeBlock: {
     component: ModularCodeBlock,
     wrapper: ({ children }) => 
-    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+    <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
       <div className="col-span-12 lg:col-span-10 lg:col-start-3">
         {children}
       </div>
@@ -78,7 +78,7 @@ let bodySerializers = {
   listBlock: {
     component: ModularListBlock,
     wrapper: ({ children }) => 
-      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-16 lg:mb-20">
+      <div className="grid grid-cols-12 w-full px-4 lg:px-8 gap-x-4 lg:gap-x-8 mb-12 lg:mb-20">
         <div className="col-span-12 lg:col-span-8 lg:col-start-5">
           {children}
         </div>

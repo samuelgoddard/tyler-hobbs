@@ -16,7 +16,7 @@
   & > ul {
     @apply list-item list-inside my-6 ml-4;
     li {
-      @apply relative pl-5 pb-1 lg:pb-3;
+      @apply relative pl-5 pb-1 lg:pb-[6px];
       
       &::after {
         content: ' ';
@@ -61,7 +61,7 @@
   }
 
   & > h2, & > .h2 {
-    @apply text-3xl lg:text-4xl;
+    @apply text-[26px]/[1.1] lg:text-4xl/[1.1];
   }
 
   & > * ~ h2 {
@@ -86,7 +86,7 @@ iframe {
 
 #print-request-table {
   table {
-    @apply w-full lg:w-[59%] ml-auto;
+    @apply w-full lg:w-[59%] ml-auto text-base leading-[1] lg:text-2xl lg:leading-[1];
     
     tr {
       @apply border-b border-current;

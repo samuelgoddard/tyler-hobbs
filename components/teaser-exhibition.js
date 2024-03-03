@@ -18,13 +18,13 @@ export default function TeaserExhibition({ href, heading, location, year, image,
           />
         </div>
         <div className="flex flex-wrap text-base/tight text-gray transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] group-hover:translate-x-2 group-hover:text-black dark:group-hover:white">
-          <span className="block w-full mb-1">
+          <span className="block w-full mb-[2px] lg:mb-1">
             <TextReveal delay={delay ? delay : 0}>{heading}</TextReveal>
           </span>
-          <span className="block w-full mb-1">
+          <span className="block w-full mb-[2px] lg:mb-1">
             <TextReveal delay={delay ? delay : 0}>{location}</TextReveal>
           </span>
-          <span className="block w-full mb-1">
+          <span className="block w-full mb-[2px] lg:mb-1">
             <TextReveal delay={delay ? delay : 0}>{year}</TextReveal>
           </span>
         </div>

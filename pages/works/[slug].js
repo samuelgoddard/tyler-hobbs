@@ -257,7 +257,7 @@ export default function WorkSlug(initialData) {
                           aria-label="Change to gallery mode"
                           initial={{ y: '100%' }}
                           animate={{ y: 0, transition: { type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                          exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                          exit={{ opacity: 0, transition: { duration: 0, ease: [0.71,0,0.17,1]}}}
                           className={`block leading-none a11y-focus ${(modeState == 'gallery') && 'text-black dark:text-white'}`}
                         >Gallery</m.button>
                       </span>
@@ -275,7 +275,7 @@ export default function WorkSlug(initialData) {
                           aria-label="Change to info mode"
                           initial={{ y: '100%' }}
                           animate={{ y: 0, transition: { type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                          exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                          exit={{ opacity: 0, transition: { duration: 0, ease: [0.71,0,0.17,1]}}}
                           className={`block leading-none a11y-focus ${modeState == 'info' && 'text-black dark:text-white'}`}
                         >Info</m.button>
                       </span>
@@ -306,7 +306,7 @@ export default function WorkSlug(initialData) {
                         <m.span
                           initial={{ y: '100%' }}
                           animate={{ y: 0, transition: { delay: 0.2, type: "spring", stiffness: 250, damping: 45, mass: 1}}}
-                          exit={{ opacity: 0, transition: { duration: 0.5, ease: [0.71,0,0.17,1]}}}
+                          exit={{ opacity: 0, transition: { duration: 0, ease: [0.71,0,0.17,1]}}}
                           className="block leading-none text-black dark:text-white"
                         >{mobileSlides && (`${galleryContext + 1 > mobileSlides?.length ? galleryContext : galleryContext + 1} — ${mobileSlides?.length}`)}</m.span>
                       </span>
@@ -432,7 +432,7 @@ export default function WorkSlug(initialData) {
                             <Link aria-label="Navigate to next project" href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] hidden lg:block ${ galleryContext == work.gallerySlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[12vh] max-w-[75%] lg:max-w-[75%] xl:max-[65%] 2xl:max-w-[880px]">
-                                  <span className="block overflow-hidden mb-4">
+                                  <span className="block overflow-hidden mb-4 text-gray">
                                     <AnimatePresence>
                                       { galleryContext == work.gallerySlides?.length && (
                                         <m.span
@@ -445,7 +445,7 @@ export default function WorkSlug(initialData) {
                                     </AnimatePresence>
                                   </span>
                                   
-                                  <span className={`flex flex-wrap text-4xl/none lg:text-7xl text-gray ${work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
+                                  <span className={`flex flex-wrap text-4xl/none lg:text-[64px]/[1] text-gray ${work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
                                     {work.next?.slug ? (
                                       <AnimatePresence>
                                       { galleryContext == work.gallerySlides?.length && (
@@ -490,7 +490,7 @@ export default function WorkSlug(initialData) {
                             <Link aria-label="Navigate to next project" href={`/works/${work.next?.slug ? work.next.slug.current : work.first.slug.current}`} className={`absolute inset-0 w-full h-full px-4 lg:px-8 bg-white dark:bg-black transition-opacity ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] block lg:hidden ${ galleryContext == mobileSlides?.length ? 'opacity-100' : 'opacity-0 pointer-events-none' }`}>
                               <div className="flex h-full items-end justify-start">
                                 <div className="mb-6 lg:mb-[10vh] max-w-[100%] lg:max-w-[65%]">
-                                  <span className="block overflow-hidden leading-none mb-4">
+                                  <span className="block overflow-hidden leading-none mb-4 text-gray">
                                     <AnimatePresence>
                                       { galleryContext == mobileSlides?.length && (
                                         <m.span
@@ -503,7 +503,7 @@ export default function WorkSlug(initialData) {
                                     </AnimatePresence>
                                   </span>
 
-                                  <span className={`flex flex-wrap text-[9vw]/none md:text-[5.5vw]/none lg:text-7xl text-gray ${ work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
+                                  <span className={`flex flex-wrap text-[32px]/[1.025] md:text-[5.5vw]/none lg:text-7xl text-gray ${ work.next && splitNextTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })} ${!work.next && splitFirstTitle?.map((e,i) => { return (` text-${i + 1}-highlight `) })}`}>
                                     {work.next ? (
                                       <AnimatePresence>
                                         { galleryContext == mobileSlides?.length && (

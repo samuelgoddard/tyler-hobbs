@@ -98,7 +98,7 @@ export default function Carousel({ images }) {
       </div>
       
       {images.length > 1 && (
-        <div className="flex text-base/none lg:text-base/none text-gray space-x-2">
+        <div className="flex text-sm/none lg:text-base/none text-gray space-x-2">
           {scrollSnaps.map((_, i) => (
             <button aria-label="Scroll to specific slide" className={'embla__dot'.concat(i === selectedIndex ? ' text-black dark:text-white' : '' )} key={i} onClick={() => scrollTo(i)} type="button">{i + 1}</button>
           ))}

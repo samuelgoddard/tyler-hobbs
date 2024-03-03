@@ -134,7 +134,7 @@ export default function Words(initialData) {
               >
                   {words.map((e, i) => {
                     return (
-                      <li className="block" key={i}><Link href={`words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(null)} className="py-3 lg:py-4 border-b border-gray text-lg/none lg:text-2xl/none transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-2 relative group overflow-hidden flex flex-wrap">
+                      <li className="block" key={i}><Link href={`words/${e.slug.current}`} onMouseEnter={()=> setImageActive(i)} onMouseLeave={()=> setImageActive(null)} className="py-3 lg:py-4 border-b border-gray text-base/[1.25] lg:text-2xl/none transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] lg:hover:pl-2 relative group overflow-hidden flex flex-wrap">
                         <div className="flex flex-wrap lg:w-[95%]">
                           <SplitTextReveal delay={0.2}>
                             {e.title}

@@ -123,12 +123,12 @@ export default function SanityImageResponsive({ image, className, alt, priority,
           )}
         </div>
         {image.linksTo && fancyHover && (
-          <div className="hidden lg:block lg:pt-[6px] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] opacity-0 group-hover:opacity-100">{image.linksTo.title}</div>
+          <div className="hidden lg:block lg:pt-[6px] transition-all ease-[cubic-bezier(0.71,0,0.17,1)] duration-[500ms] opacity-0 group-hover:opacity-100 text-sm/snug lg:text-base/snug">{image.linksTo.title}</div>
         )}
         {!noCaption && (
           <>
             {image.caption && (
-              <figcaption className="block text-sm/snug lg:text-base/snug text-gray py-2">
+              <figcaption className="block [&>.content>p]:text-sm/snug lg:text-base/snug text-gray py-2 lg:[&>.content>p]:text-base/snug">
                 <BodyRich content={image.caption} />
               </figcaption>
             )}
